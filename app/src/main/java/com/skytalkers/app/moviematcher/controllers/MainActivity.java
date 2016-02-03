@@ -1,9 +1,9 @@
-package com.example.schuylerreinken.moviematcher.controllers;
+package com.skytalkers.app.moviematcher.controllers;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.schuylerreinken.moviematcher.R;
+import com.skytalkers.app.moviematcher.R;
 
 public class MainActivity extends AppCompatActivity {
 
