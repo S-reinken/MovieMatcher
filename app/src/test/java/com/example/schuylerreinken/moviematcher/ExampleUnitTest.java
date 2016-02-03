@@ -1,4 +1,4 @@
-package com.example.schuylerreinken.moviematcher;
+package com.skytalkers.app.moviematcher;
 
 import org.junit.Test;
 
