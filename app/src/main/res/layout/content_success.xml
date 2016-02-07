@@ -20,4 +20,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="144dp"
         android:text="Login Success!" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/logout"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="93dp"
+        android:onClick="onLogoutButtonClick" />
 </RelativeLayout>

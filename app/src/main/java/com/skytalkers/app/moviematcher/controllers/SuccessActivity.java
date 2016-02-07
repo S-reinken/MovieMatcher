@@ -1,10 +1,12 @@
 package com.skytalkers.app.moviematcher.controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.skytalkers.app.moviematcher.R;
@@ -26,6 +28,13 @@ public class SuccessActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    public void onLogoutButtonClick(View v) {
+        Log.d("**MOVIEMATCHER**", "Register button clicked");
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }

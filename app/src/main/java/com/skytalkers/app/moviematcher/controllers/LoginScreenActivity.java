@@ -46,7 +46,7 @@ public class LoginScreenActivity extends AppCompatActivity {
     }
 
     public void onLoginButtonClick(View v) {
-        Log.d("**MOVIEMATCHER**", "Login button clicked");
+        Log.d("**MOVIEMATCHER**", "Attempting Login");
         UserManager um = new UserManager();
         String name = ((EditText) findViewById(R.id.usernameText)).getText().toString();
         String pass = ((EditText) findViewById(R.id.passwordText)).getText().toString();
@@ -54,6 +54,7 @@ public class LoginScreenActivity extends AppCompatActivity {
             Log.d("**MOVIEMATCHER**", "Login Success");
             Intent intent = new Intent(this, SuccessActivity.class);
             startActivity(intent);
+            finish();
         } else {
             Context context = getApplicationContext();
             int dur = Toast.LENGTH_SHORT;
