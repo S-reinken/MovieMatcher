@@ -5,33 +5,27 @@ package com.skytalkers.app.moviematcher.models;
  * Holds basic information about a user.
  */
 public class User {
-    private String nickname;
+    //private String nickname;
     private String username;
     private String password;
-    private String email;
-    boolean isAdmin = false;
+    //private String email;
+    //boolean isAdmin = false;
 
-    public User(String nick, String user, String pass, String eml) {
-        nickname = nick;
+    public User(String user, String pass) {
+        //nickname = nick;
         username = user;
         password = pass;
-        email = eml;
+        //email = eml;
     }
 
-    public String getNick() {
-        return nickname;
-    }
+    /*public String getNick() { return nickname; }*/
 
-    public String getName() {
-        return username;
-    }
+    public String getName() { return username; }
 
-    public String getEmail() {
-        return email;
-    }
+    public Boolean login(String pass) { return pass.equals(password); }
 
-    public boolean isAdmin() {
-        return isAdmin;
-    }
+    /*public String getEmail() { return email; }*/
+
+    /*public boolean isAdmin() { return isAdmin; }*/
 
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.skytalkers.app.moviematcher.R;
+import com.skytalkers.app.moviematcher.models.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        UserManager um = new UserManager();
+        um.addUser("user1", "pass1");
+        um.addUser("user2", "pass2");
     }
 
     @Override
