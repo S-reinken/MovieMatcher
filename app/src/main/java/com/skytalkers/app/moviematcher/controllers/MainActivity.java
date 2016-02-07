@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         UserManager um = new UserManager();
         um.addUser("user1", "pass1");
         um.addUser("user2", "pass2");
+        um.addUser("user", "pass");
     }
 
     @Override
