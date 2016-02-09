@@ -64,4 +64,10 @@ public class LoginScreenActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, _____________________.class);
 //        startActivity(intent);
     }
+
+    public void onCancelButtonClick(View v) {
+        Log.d("**MOVIEMATCHER**", "Cancel Login");
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }
