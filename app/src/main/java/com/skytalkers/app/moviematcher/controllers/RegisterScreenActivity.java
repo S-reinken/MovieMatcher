@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.skytalkers.app.moviematcher.R;
@@ -27,5 +28,10 @@ public class RegisterScreenActivity extends AppCompatActivity {
             }
         });
     }
+
+//    public void onRegisterButtonClick(View v) {
+//        Log.d("**MOVIEMATCHER**", "Attempting Registration");
+//
+//    }
 
 }
