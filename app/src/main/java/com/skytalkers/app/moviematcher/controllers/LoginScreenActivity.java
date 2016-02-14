@@ -52,7 +52,8 @@ public class LoginScreenActivity extends AppCompatActivity {
         String pass = ((EditText) findViewById(R.id.passwordText)).getText().toString();
         if (um.login(name, pass)) {
             Log.d("**MOVIEMATCHER**", "Login Success");
-            Intent intent = new Intent(this, SuccessActivity.class);
+            um.setUser(name);
+            Intent intent = new Intent(this, PrimaryActivity.class);
             startActivity(intent);
             finish();
         } else {
@@ -61,13 +62,10 @@ public class LoginScreenActivity extends AppCompatActivity {
             Toast t = Toast.makeText(context, "Login Failed", dur);
             t.show();
         }
-//        Intent intent = new Intent(this, _____________________.class);
-//        startActivity(intent);
     }
 
     public void onCancelButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Cancel Login");
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 }

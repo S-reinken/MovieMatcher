@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         UserManager um = new UserManager();
-        um.addUser("user1", "pass1");
-        um.addUser("user2", "pass2");
-        um.addUser("user", "pass");
+        um.addUser("user1", "pass1", "first1", "last1", "email1@test.com");
+        um.addUser("u1", "p1", "f1", "l1", "e1@test.com");
+        //um.addUser("user", "pass");
     }
 
     @Override

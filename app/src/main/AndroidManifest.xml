@@ -18,15 +18,61 @@
         <activity
             android:name=".controllers.LoginScreenActivity"
             android:label="@string/title_activity_login_screen"
+            android:parentActivityName=".controllers.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controllers.RegisterScreenActivity"
             android:label="@string/title_activity_register_screen"
+            android:parentActivityName=".controllers.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controllers.SuccessActivity"
             android:label="@string/title_activity_success"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controllers.PrimaryActivity"
+            android:label="@string/title_activity_primary"
+            android:parentActivityName=".controllers.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.skytalkers.app.moviematcher.controllers.MainActivity" />
+        </activity>
+        <activity
+            android:name=".controllers.UserProfileActivity"
+            android:label="@string/title_activity_user_profile"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.skytalkers.app.moviematcher.controllers.UserListActivity" />
+        </activity>
+        <activity
+            android:name=".controllers.UserListActivity"
+            android:label="@string/title_activity_user_list"
+            android:parentActivityName=".controllers.PrimaryActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.skytalkers.app.moviematcher.controllers.PrimaryActivity" />
+        </activity>
+        <activity
+            android:name=".controllers.EditProfileActivity"
+            android:label="@string/title_activity_edit_profile"
+            android:parentActivityName=".controllers.PrimaryActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".controllers.UserProfileActivity" />
+        </activity>
+        <activity
+            android:name=".controllers.ChangePasswordActivity"
+            android:label="@string/title_activity_change_password"
+            android:parentActivityName=".controllers.PrimaryActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.skytalkers.app.moviematcher.controllers.PrimaryActivity" />
+        </activity>
     </application>
 
 </manifest>

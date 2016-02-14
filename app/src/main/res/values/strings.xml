@@ -3,4 +3,9 @@
     <string name="title_activity_login_screen">LoginScreenActivity</string>
     <string name="title_activity_register_screen">RegisterScreenActivity</string>
     <string name="title_activity_success">SuccessActivity</string>
+    <string name="title_activity_primary">PrimaryActivity</string>
+    <string name="title_activity_user_list">UserListActivity</string>
+    <string name="title_activity_user_profile">UserProfile</string>
+    <string name="title_activity_edit_profile">EditProfile</string>
+    <string name="title_activity_change_password">ChangePassword</string>
 </resources>
