@@ -10,7 +10,17 @@ public class User {
     private String first;
     private String last;
     private String email;
+    private String major;
     //boolean isAdmin = false;
+
+    public User(String user, String pass, String f, String l, String e, String m) {
+        username = user;
+        password = pass;
+        first = f;
+        last = l;
+        email = e;
+        major = m;
+    }
 
     public User(String user, String pass, String f, String l, String e) {
         username = user;
@@ -18,6 +28,7 @@ public class User {
         first = f;
         last = l;
         email = e;
+        major = "";
     }
 
     public String getName() { return username; }
@@ -26,15 +37,16 @@ public class User {
 
     public String getLast() { return last; }
 
-    public String email() { return email; }
+    public String getMajor() { return major; }
 
     public Boolean login(String pass) { return pass.equals(password); }
 
-    public void edit(String name, String f, String l, String e) {
+    public void edit(String name, String f, String l, String e, String m) {
         username = name;
         first = f;
         last = l;
         email = e;
+        major = m;
     }
 
     public void changePass(String pass) {
@@ -44,9 +56,8 @@ public class User {
     public String getEmail() { return email; }
 
     public String toString() {
-        return username + " " + first + " " + last + " " + email;
+        return username + " " + first + " " + last + " " + email + " " + major;
     }
 
     /*public boolean isAdmin() { return isAdmin; }*/
-
 }

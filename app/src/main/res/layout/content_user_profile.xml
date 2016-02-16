@@ -69,4 +69,14 @@
         android:layout_alignStart="@+id/emailText"
         android:layout_marginBottom="58dp"
         android:onClick="onBackButtonClick" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Major"
+        android:id="@+id/majorText"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/emailText"
+        android:layout_alignStart="@+id/emailText" />
 </RelativeLayout>

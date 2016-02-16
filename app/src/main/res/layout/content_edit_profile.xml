@@ -107,4 +107,22 @@
         android:layout_toRightOf="@+id/nameTextView"
         android:layout_toEndOf="@+id/nameTextView"
         android:onClick="onApplyButtonClick" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Major"
+        android:id="@+id/majorTextView"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/applyButton"
+        android:layout_toEndOf="@+id/applyButton" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/majorEditText"
+        android:layout_alignTop="@+id/nameEditText"
+        android:layout_alignLeft="@+id/majorTextView"
+        android:layout_alignStart="@+id/majorTextView" />
 </RelativeLayout>

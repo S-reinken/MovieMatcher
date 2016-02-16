@@ -36,6 +36,7 @@ public class UserProfileActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.firstText)).setText(um.getUserFirst());
         ((TextView) findViewById(R.id.lastText)).setText(um.getUserLast());
         ((TextView) findViewById(R.id.emailText)).setText(um.getUserEmail());
+        ((TextView) findViewById(R.id.majorText)).setText(um.getUserMajor());
     }
 
     public void onBackButtonClick(View v) {

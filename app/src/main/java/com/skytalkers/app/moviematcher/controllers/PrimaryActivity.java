@@ -28,7 +28,7 @@ public class PrimaryActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); 
     }
 
     public void onLogoutButtonClick(View v) {

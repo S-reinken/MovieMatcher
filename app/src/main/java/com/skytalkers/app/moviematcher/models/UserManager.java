@@ -13,11 +13,12 @@ public class UserManager {
     private static ArrayList<String> userList;
     private static User user;
 
+
     public void setUser(String name) { user = findUser(name); }
 
     public User findUser(String id) { return users.get(id); }
 
-    public User getUser() { return user; }
+    //public User getUser() { return user; }
 
     public String getUserByPos(int pos) { return userList.get(pos); }
 
@@ -29,6 +30,13 @@ public class UserManager {
 
     public String getUserEmail() { return user.getEmail(); }
 
+    public String getUserMajor() { return user.getMajor(); }
+
+    public void addUser(String name, String pass, String f, String l, String e, String m) {
+        users.put(name, new User(name, pass, f, l, e, m));
+        userList = new ArrayList<>(users.keySet());
+    }
+
     public void addUser(String name, String pass, String f, String l, String e) {
         users.put(name, new User(name, pass, f, l, e));
         userList = new ArrayList<>(users.keySet());
@@ -39,9 +47,9 @@ public class UserManager {
         userList = new ArrayList<>(users.keySet());
     }
 
-    public void editUser(String name, String f, String l, String e) {
+    public void editUser(String name, String f, String l, String e, String m) {
         users.remove(user.getName());
-        user.edit(name, f, l, e);
+        user.edit(name, f, l, e, m);
         users.put(name, user);
         userList = new ArrayList<>(users.keySet());
     }

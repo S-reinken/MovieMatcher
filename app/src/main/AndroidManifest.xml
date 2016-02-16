@@ -26,10 +26,6 @@
             android:parentActivityName=".controllers.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".controllers.SuccessActivity"
-            android:label="@string/title_activity_success"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".controllers.PrimaryActivity"
             android:label="@string/title_activity_primary"
             android:parentActivityName=".controllers.MainActivity"

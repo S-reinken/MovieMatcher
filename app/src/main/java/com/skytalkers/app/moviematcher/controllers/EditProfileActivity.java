@@ -35,6 +35,7 @@ public class EditProfileActivity extends AppCompatActivity {
         ((EditText) findViewById(R.id.firstEditText)).setText(um.getUserFirst());
         ((EditText) findViewById(R.id.lastEditText)).setText(um.getUserLast());
         ((EditText) findViewById(R.id.emailEditText)).setText(um.getUserEmail());
+        ((EditText) findViewById(R.id.majorEditText)).setText(um.getUserMajor());
     }
 
     public void onBackButtonClick(View v) {
@@ -43,12 +44,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
     public void onApplyButtonClick(View v) {
         UserManager um = new UserManager();
-        User user = um.getUser();
         String name = ((EditText) findViewById(R.id.nameEditText)).getText().toString();
         String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
         String first = ((EditText) findViewById(R.id.firstEditText)).getText().toString();
         String last = ((EditText) findViewById(R.id.lastEditText)).getText().toString();
-        um.editUser(name, first, last, email);
+        String major = ((EditText) findViewById(R.id.majorEditText)).getText().toString();
+        um.editUser(name, first, last, email, major);
         finish();
     }
 
