@@ -13,11 +13,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.controllers.Fragments.ProfileFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.SearchFragment;
 import com.skytalkers.app.moviematcher.models.UserManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
