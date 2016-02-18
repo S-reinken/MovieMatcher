@@ -53,7 +53,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         if (um.login(name, pass)) {
             Log.d("**MOVIEMATCHER**", "Login Success");
             um.setUser(name);
-            Intent intent = new Intent(this, PrimaryActivity.class);
+            Intent intent = new Intent(this, NavigationActivity.class);
             startActivity(intent);
             finish();
         } else {
