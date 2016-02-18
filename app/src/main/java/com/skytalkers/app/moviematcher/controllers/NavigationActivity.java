@@ -1,5 +1,7 @@
 package com.skytalkers.app.moviematcher.controllers;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -79,11 +81,13 @@ public class NavigationActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        Fragment myFragment = null;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            myFragment = new SearchFragment();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -95,7 +99,11 @@ public class NavigationActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
-
+        /*
+        android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
+        fManager.beginTransaction()
+                .replace(R.id.container, myFragment)
+                .commit();*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
