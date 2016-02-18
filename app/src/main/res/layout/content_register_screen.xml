@@ -113,7 +113,7 @@
         android:layout_below="@+id/regFirst"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="31dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -128,22 +128,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="REGISTER"
         android:id="@+id/regButton"
-        android:onClick="onRegisterButtonClick"
-        android:layout_marginBottom="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/regLast"
-        android:layout_alignStart="@+id/regLast" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:id="@+id/cancelButton"
-        android:onClick="onCancelButtonClick"
-        android:layout_alignTop="@+id/regButton"
-        android:layout_alignRight="@+id/regFirst"
-        android:layout_alignEnd="@+id/regFirst" />
-
+        android:layout_below="@+id/regPassword"
+        android:layout_toRightOf="@+id/textView6"
+        android:layout_toEndOf="@+id/textView6" />
 </RelativeLayout>

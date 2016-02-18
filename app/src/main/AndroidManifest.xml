@@ -21,6 +21,10 @@
             android:parentActivityName=".controllers.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".controllers.NavigationActivity"
+            android:label="@string/title_activity_navigation_screen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".controllers.RegisterScreenActivity"
             android:label="@string/title_activity_register_screen"
             android:parentActivityName=".controllers.MainActivity"
