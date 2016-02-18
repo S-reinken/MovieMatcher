@@ -100,17 +100,10 @@ public class NavigationActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-            myFragment = new SearchFragment();
-        } else if (id == R.id.nav_search) {
+        if (id == R.id.nav_search) {
             myFragment = new SearchFragment();
         } else if (id == R.id.nav_profile) {
             myFragment = new ProfileFragment();
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
