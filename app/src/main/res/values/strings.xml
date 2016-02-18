@@ -7,4 +7,5 @@
     <string name="searchbar">Search Movies Here!</string>
     <string name="search">Search</string>
     <string name="mainScreenText">Go to Main Screen</string>
+    <string name="title_activity_navigation_screen">nav</string>
 </resources>
