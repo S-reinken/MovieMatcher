@@ -1,4 +1,4 @@
-package com.skytalkers.app.moviematcher.controllers;
+package com.skytalkers.app.moviematcher.controllers.Activities;
 
 import android.content.Context;
 import android.os.Bundle;

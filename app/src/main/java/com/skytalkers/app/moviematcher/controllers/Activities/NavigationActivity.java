@@ -1,7 +1,5 @@
-package com.skytalkers.app.moviematcher.controllers;
+package com.skytalkers.app.moviematcher.controllers.Activities;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.skytalkers.app.moviematcher.R;
+import com.skytalkers.app.moviematcher.controllers.Fragments.ProfileFragment;
+import com.skytalkers.app.moviematcher.controllers.Fragments.SearchFragment;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class NavigationActivity extends AppCompatActivity

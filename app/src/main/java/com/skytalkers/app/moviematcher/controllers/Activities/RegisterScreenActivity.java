@@ -1,4 +1,4 @@
-package com.skytalkers.app.moviematcher.controllers;
+package com.skytalkers.app.moviematcher.controllers.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,18 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import com.skytalkers.app.moviematcher.R;
-import com.skytalkers.app.moviematcher.models.User;
-import com.skytalkers.app.moviematcher.models.UserManager;
 
-public class UserProfileActivity extends AppCompatActivity {
+public class RegisterScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_register_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -30,17 +27,11 @@ public class UserProfileActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        UserManager um = new UserManager();
-        ((TextView) findViewById(R.id.usernameText)).setText(um.getUserName());
-        ((TextView) findViewById(R.id.firstText)).setText(um.getUserFirst());
-        ((TextView) findViewById(R.id.lastText)).setText(um.getUserLast());
-        ((TextView) findViewById(R.id.emailText)).setText(um.getUserEmail());
-        ((TextView) findViewById(R.id.majorText)).setText(um.getUserMajor());
     }
 
-    public void onBackButtonClick(View v) {
-        finish();
-    }
+//    public void onRegisterButtonClick(View v) {
+//        Log.d("**MOVIEMATCHER**", "Attempting Registration");
+//
+//    }
 
 }

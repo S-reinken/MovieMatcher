@@ -1,4 +1,4 @@
-package com.skytalkers.app.moviematcher.controllers;
+package com.skytalkers.app.moviematcher.controllers.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

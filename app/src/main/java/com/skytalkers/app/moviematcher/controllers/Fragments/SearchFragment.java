@@ -1,4 +1,4 @@
-package com.skytalkers.app.moviematcher.controllers;
+package com.skytalkers.app.moviematcher.controllers.Fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
