@@ -52,6 +52,7 @@
         android:layout_marginBottom="71dp"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4" />
+        android:layout_alignEnd="@+id/textView4"
+        android:onClick="onNavButtonClick" />
 
 </RelativeLayout>
