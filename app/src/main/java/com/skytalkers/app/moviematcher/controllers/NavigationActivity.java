@@ -81,7 +81,7 @@ public class NavigationActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Fragment myFragment = null;
+        android.support.v4.app.Fragment myFragment = null;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -99,11 +99,11 @@ public class NavigationActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
-        /*
+
         android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
         fManager.beginTransaction()
                 .replace(R.id.container, myFragment)
-                .commit();*/
+                .commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
