@@ -44,4 +44,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterScreenActivity.class);
         startActivity(intent);
     }
+
+    public void onNavButtonClick(View v) {
+        Log.d("**MOVIEMATCHER**", "Navigation button clicked");
+        Intent intent = new Intent(this, NavigationActivity.class);
+        startActivity(intent);
+    }
 }
