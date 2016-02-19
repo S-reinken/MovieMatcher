@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class SearchFragment extends Fragment {
 
+    //Use this adapter to change the items in the search screen
     ListAdapter adapter;
-
     View myView;
 
     @Override
