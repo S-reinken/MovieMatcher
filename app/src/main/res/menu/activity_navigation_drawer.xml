@@ -15,10 +15,10 @@
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Profile" />
-        <!--<item
-            android:id="@+id/nav_manage"
+        <item
+            android:id="@+id/nav_new_movies"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />-->
+            android:title="New Movies" />
     </group>
     <!--
     <item android:title="Communicate">

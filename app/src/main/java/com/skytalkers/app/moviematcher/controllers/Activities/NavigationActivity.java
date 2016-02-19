@@ -18,6 +18,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.skytalkers.app.moviematcher.R;
+import com.skytalkers.app.moviematcher.controllers.Fragments.NewMoviesFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.ProfileFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.SearchFragment;
 import com.skytalkers.app.moviematcher.models.UserManager;
@@ -106,6 +107,8 @@ public class NavigationActivity extends AppCompatActivity
             myFragment = new SearchFragment();
         } else if (id == R.id.nav_profile) {
             myFragment = new ProfileFragment();
+        } else if (id == R.id.nav_new_movies) {
+            myFragment = new NewMoviesFragment();
         }
 
         android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
