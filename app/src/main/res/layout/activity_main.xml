@@ -10,7 +10,7 @@
     tools:context=".controllers.Activities.MainActivity">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/loginButton"
@@ -20,7 +20,7 @@
         android:onClick="onLoginButtonClick" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/registerButton"
