@@ -13,11 +13,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import com.skytalkers.app.moviematcher.R;
+import com.skytalkers.app.moviematcher.controllers.Fragments.NewMoviesFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.ProfileFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.SearchFragment;
 import com.skytalkers.app.moviematcher.models.UserManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -93,18 +100,15 @@ public class NavigationActivity extends AppCompatActivity
         android.support.v4.app.Fragment myFragment = null;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-            myFragment = new SearchFragment();
-        } else if (id == R.id.nav_search) {
+        /*
+        If you want to add a new Fragment to the system, make the fragment and add it to this if - else if series.
+        */
+        if (id == R.id.nav_search) {
             myFragment = new SearchFragment();
         } else if (id == R.id.nav_profile) {
             myFragment = new ProfileFragment();
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_new_movies) {
+            myFragment = new NewMoviesFragment();
         }
 
         android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
@@ -116,6 +120,9 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
 
+    /*
+    All button and screen responses must be referred here in the ACTIVITY, NOT the fragment they are contained in.
+     */
     public void onLogoutButtonClick(View v) {
         UserManager um = new UserManager();
         um.logout();
