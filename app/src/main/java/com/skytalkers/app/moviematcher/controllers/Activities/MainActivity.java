@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.models.*;
 
@@ -43,6 +47,39 @@ public class MainActivity extends AppCompatActivity {
         Log.d("**MOVIEMATCHER**", "Register button clicked");
         Intent intent = new Intent(this, RegisterScreenActivity.class);
         startActivity(intent);
+    }
+
+    //yedukp76ffytfuy24zsqk7f5
+    public void onRTButtonClick(View v) throws Exception {
+        Log.d("**MOVIEMATCHER**", "RT Clicked");
+        String req = "http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5";
+        String s;
+        Log.d("**MOVIEMATCHER**", "Launching Thread");
+        Thread thread = new Thread(new Runnable() {
+            private String req;
+            @Override
+            public void run() {
+                try {
+                    Log.d("**MOVIEMATCHER**", "Requesting HTTP");
+                    URL url = new URL(req);
+                    InputStream is = url.openStream();
+                    StringBuilder sb = new StringBuilder();
+                    int ch;
+                    while ((ch = is.read()) != -1) sb.append((char) ch);
+                    Log.d("**MOVIEMATCHER**", sb.toString());
+                } catch (Exception e) {
+                    Log.d("**MOVIEMATCHER**", e.toString());
+                    return;
+                }
+            }
+            public Runnable init(String var) {
+                Log.d("**MOVIEMATCHER**", "Successful init");
+                req = var;
+                return this;
+            }
+        }.init(req));
+        thread.start();
+        Log.d("**MOVIEMATCHER**", "Finished RT Request");
     }
 
 }
