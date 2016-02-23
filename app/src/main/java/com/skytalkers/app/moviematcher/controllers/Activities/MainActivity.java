@@ -17,9 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         UserManager um = new UserManager();
-        um.addUser("user1", "pass1", "first1", "last1", "email1@test.com", "major1");
-        um.addUser("u1", "p1", "f1", "l1", "e1@test.com", "m1");
-        //um.addUser("user", "pass");
+        um.addUser("admin", "admin", "admin", "admin", "admin");
     }
 
     @Override
@@ -52,4 +50,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d("**MOVIEMATCHER**", HTTPRequest.sendRequest(req));
     }
 
+    public void onDebugButtonClick(View v) {
+        UserManager um = new UserManager();
+        um.setUser("admin");
+        Intent intent = new Intent(this, NavigationActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

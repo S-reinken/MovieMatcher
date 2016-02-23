@@ -169,10 +169,20 @@ public class NavigationActivity extends AppCompatActivity
         String req = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey="
                 + HTTPRequest.getKey()
                 + "q="
-                + parsedName + "&page_limit=1";
+                + parsedName + "&page_limit=5";
         String res = HTTPRequest.sendRequest(req);
         JSONObject json = new JSONObject(res);
         Log.d("**MOVIEMATCHER**", res);
         Log.d("**MOVIEMATCHER**", json.getJSONArray("movies").getJSONObject(0).getString("title"));
+
+        int count = Math.min(json.getInt("total"), 5);
+        ArrayList<String> movies = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            movies.add(json.getJSONArray("movies").getJSONObject(i).getString("title"));
+        }
+        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, movies);
+        ListView lv = (ListView) findViewById(R.id.searchListView);
+        lv.setAdapter(adapter);
+
     }
 }

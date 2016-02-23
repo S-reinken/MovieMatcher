@@ -50,7 +50,8 @@ public class SearchFragment extends Fragment {
         content.add("Insidious");
         content.add("The Artist");
         adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, content);
-        ListView list = (ListView) (myView.findViewById(R.id.listView));
+        ListView list = (ListView) (myView.findViewById(R.id.searchListView));
+
         list.setAdapter(adapter);
 
         return myView;
