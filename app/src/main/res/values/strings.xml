@@ -13,4 +13,5 @@
     <string name="search">Search</string>
     <string name="mainScreenText">Go to Main Screen</string>
     <string name="title_activity_navigation_screen">nav</string>
+    <string name="title_activity_new_movies">NewMoviesActivity</string>
 </resources>
