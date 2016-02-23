@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -21,7 +24,10 @@ import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.controllers.Fragments.NewMoviesFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.ProfileFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.SearchFragment;
+import com.skytalkers.app.moviematcher.models.HTTPRequest;
 import com.skytalkers.app.moviematcher.models.UserManager;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,5 +156,19 @@ public class NavigationActivity extends AppCompatActivity
         Intent intent = new Intent(this, UserProfileActivity.class);
         intent.putExtra("user_object", user);
         startActivity(intent);
+    }
+    //http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=[your_api_key]&q=Toy+Story+3&page_limit=1
+    public void onBasicSearchButtonClick(View v) throws Exception{
+        String name = ((EditText) findViewById(R.id.basicSearchEditText)).getText().toString();
+        String parsed[] = name.split(" ");
+        String parsedName = TextUtils.join("+", parsed);
+        String req = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey="
+                + HTTPRequest.getKey()
+                + "q="
+                + parsedName + "&page_limit=1";
+        String res = HTTPRequest.sendRequest(req);
+        JSONObject json = new JSONObject(res);
+        Log.d("**MOVIEMATCHER**", res);
+        Log.d("**MOVIEMATCHER**", json.getJSONArray("movies").getJSONObject(0).getString("title"));
     }
 }

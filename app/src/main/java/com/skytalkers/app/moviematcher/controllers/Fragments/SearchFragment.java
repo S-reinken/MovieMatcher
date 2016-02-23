@@ -3,18 +3,24 @@ package com.skytalkers.app.moviematcher.controllers.Fragments;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SimpleCursorAdapter;
+import android.text.TextUtils;
+import android.util.JsonReader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.skytalkers.app.moviematcher.R;
+import com.skytalkers.app.moviematcher.models.HTTPRequest;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONObject;
 
 /**
  * Created by schuylerreinken on 2/18/16.
@@ -49,4 +55,5 @@ public class SearchFragment extends Fragment {
 
         return myView;
     }
+
 }

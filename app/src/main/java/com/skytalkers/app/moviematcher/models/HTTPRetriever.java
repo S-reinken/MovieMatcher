@@ -11,6 +11,7 @@ import java.net.URL;
 public class HTTPRetriever implements Runnable {
     private String req;
     private String res;
+    private InputStream is;
     private static boolean err = false;
 
     public HTTPRetriever(String r) {
@@ -23,6 +24,7 @@ public class HTTPRetriever implements Runnable {
             Log.d("**MOVIEMATCHER**", "Requesting HTTP");
             URL url = new URL(req);
             InputStream is = url.openStream();
+            this.is = is;
             StringBuilder sb = new StringBuilder();
             int ch;
             while ((ch = is.read()) != -1) sb.append((char) ch);
@@ -33,6 +35,8 @@ public class HTTPRetriever implements Runnable {
             return;
         }
     }
+
+    public InputStream getStream() { return is; }
 
     public String getResponse() {
         return res;
