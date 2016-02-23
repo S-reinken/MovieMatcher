@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.skytalkers.app.moviematcher.models.UserManager;
 import com.skytalkers.app.moviematcher.R;
+import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class RegisterScreenActivity extends AppCompatActivity {
 

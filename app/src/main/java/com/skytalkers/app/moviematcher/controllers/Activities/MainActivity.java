@@ -45,4 +45,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //yedukp76ffytfuy24zsqk7f5
+    public void onRTButtonClick(View v) throws Exception {
+        Log.d("**MOVIEMATCHER**", "RT Clicked");
+        String req = "http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5";
+        Log.d("**MOVIEMATCHER**", HTTPRequest.sendRequest(req));
+    }
+
 }
