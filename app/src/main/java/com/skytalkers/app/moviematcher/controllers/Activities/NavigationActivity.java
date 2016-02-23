@@ -21,6 +21,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.skytalkers.app.moviematcher.R;
+import com.skytalkers.app.moviematcher.controllers.Fragments.NewDVDsFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.NewMoviesFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.ProfileFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.SearchFragment;
@@ -42,6 +43,7 @@ public class NavigationActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +51,7 @@ public class NavigationActivity extends AppCompatActivity
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -115,6 +117,8 @@ public class NavigationActivity extends AppCompatActivity
             myFragment = new ProfileFragment();
         } else if (id == R.id.nav_new_movies) {
             myFragment = new NewMoviesFragment();
+        } else if (id == R.id.nav_new_dvds) {
+            myFragment = new NewDVDsFragment();
         }
 
         android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
