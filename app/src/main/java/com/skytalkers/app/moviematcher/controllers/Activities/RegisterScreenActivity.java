@@ -29,7 +29,7 @@ public class RegisterScreenActivity extends AppCompatActivity {
         });
     }
 
-//    public void onRegisterButtonClick(View v) {
+//    public void onRegisterButtonClick(View v) {f
 //        Log.d("**MOVIEMATCHER**", "Attempting Registration");
 //
 //    }
