@@ -45,10 +45,6 @@ public class SearchFragment extends Fragment {
         myView = inflater.inflate(R.layout.search_layout, container, false);
 
         List<String> content = new ArrayList<>();
-        content.add("Avatar");
-        content.add("The Jungle Book");
-        content.add("Insidious");
-        content.add("The Artist");
         adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, content);
         ListView list = (ListView) (myView.findViewById(R.id.searchListView));
 

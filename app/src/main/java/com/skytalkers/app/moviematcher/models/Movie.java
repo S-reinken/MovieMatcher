@@ -3,6 +3,7 @@ package com.skytalkers.app.moviematcher.models;
 public class Movie {
     private String name;
     private int id;
+
     //date released
     //ratinglist / array
 

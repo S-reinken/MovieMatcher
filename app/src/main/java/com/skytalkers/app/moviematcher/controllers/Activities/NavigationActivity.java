@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -183,6 +184,12 @@ public class NavigationActivity extends AppCompatActivity
         ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, movies);
         ListView lv = (ListView) findViewById(R.id.searchListView);
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
 
     }
 }

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 //"http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5"
 public class RottenTomatoesManager {
 
+    private static String res;
     //getMoviebyName(String name) {
     //getMoviebyDate(Date initial, Date final)
 
@@ -30,7 +31,7 @@ public class RottenTomatoesManager {
         return getRTRequest(req);
     }
 
-    private static ArrayList<Movie> getRTRequest(String url) {
+    public static ArrayList<Movie> getRTRequest(String url) {
         ArrayList<Movie> movies = new ArrayList<>();
         String res;
         try {
@@ -42,7 +43,7 @@ public class RottenTomatoesManager {
 
         JSONObject json = null;
         try {
-             json = new JSONObject(res);
+            json = new JSONObject(res);
         } catch (JSONException e) {
             Log.d("**JSON**", "Failed to get JSON object");
             e.printStackTrace();
