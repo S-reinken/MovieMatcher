@@ -21,15 +21,14 @@ public class RottenTomatoesManager {
     //getMoviebyDate(Date initial, Date final)
 
     public static ArrayList<Movie> getNewMovies() { //Opening?; only returning up to 5 for now
-        String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/opening.json?apikey=yedukp76ffytfuy24zsqk7f5&limit=5";
+        String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
         return getRTRequest(req);
     }
 
-//    public static ArrayList<Movie> getRecentDVDs() {
-//        String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5";
-//        ArrayList<Movie> recentDvd = getRTRequest(req);
-//        return movies;
-//    }
+    public static ArrayList<Movie> getRecentDVDs() {
+        String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
+        return getRTRequest(req);
+    }
 
     private static ArrayList<Movie> getRTRequest(String url) {
         ArrayList<Movie> movies = new ArrayList<>();
