@@ -1,6 +1,7 @@
 package com.skytalkers.app.moviematcher.models;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -10,9 +11,10 @@ import java.util.HashMap;
  */
 public class UserManager {
     private static Map<String,User> users = new HashMap<>();
-    private static ArrayList<String> userList;
-    private static User user;
     private static DatabaseManager mgr = new DatabaseManager();
+    private static List<User> userList;
+    private static User user;
+
     private static User checkedUser;
 
     public static void setCheckedUser(User a) {
@@ -22,12 +24,21 @@ public class UserManager {
 
     //public User findUser(String id) { return users.get(id); }
     public User findUser(String id) {
-        return mgr.getData(id);
+        userList = mgr.getAllUsers();
+        for (User u : userList) {
+            if (id.equals(u.getUsername())) {
+                return u;
+            }
+        }
+        return null;
     }
 
     //public User getUser() { return user; }
 
-    public String getUserByPos(int pos) { return userList.get(pos); }
+    public void setUserList() {
+        userList = mgr.getAllUsers();
+    }
+    public User getUserByPos(int pos) { return userList.get(pos); }
 
     public String getUserName() { return user.getUsername(); }
 
@@ -61,14 +72,14 @@ public class UserManager {
 
     public void deleteUser(String name) {
         users.remove(name);
-        userList = new ArrayList<>(users.keySet());
+        //userList = new ArrayList<>(users.keySet());
     }
 
     public void editUser(String name, String f, String l, String e, String m) {
         users.remove(user.getUsername());
         user.edit(name, f, l, e, m);
         users.put(name, user);
-        userList = new ArrayList<>(users.keySet());
+        //userList = new ArrayList<>(users.keySet());
     }
 
     public void changePass(String pass) {
@@ -78,6 +89,7 @@ public class UserManager {
 
     public Boolean login(String name, String pass) {
         User u = findUser(name);
+        System.out.println("Not in the activity yet");
         if (u == null) return false;
         return u.login(pass);
     }
@@ -86,7 +98,7 @@ public class UserManager {
         user = null;
     }
 
-    public ArrayList<String> getUserList() {
+    public List<User> getUserList() {
         return userList;
     }
 
