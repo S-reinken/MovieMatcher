@@ -20,12 +20,15 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.firebase.client.Firebase;
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.controllers.Fragments.NewDVDsFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.NewMoviesFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.ProfileFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.SearchFragment;
+import com.skytalkers.app.moviematcher.models.DatabaseManager;
 import com.skytalkers.app.moviematcher.models.HTTPRequest;
+import com.skytalkers.app.moviematcher.models.User;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
 import org.json.JSONObject;
@@ -39,6 +42,8 @@ public class NavigationActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
+
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

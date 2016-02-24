@@ -13,31 +13,37 @@ public class User {
     private String major;
     //boolean isAdmin = false;
 
-    public User(String user, String pass, String f, String l, String e, String m) {
-        username = user;
-        password = pass;
-        first = f;
-        last = l;
-        email = e;
-        major = m;
+    public User() {
+
     }
 
-    public User(String user, String pass, String f, String l, String e) {
-        username = user;
-        password = pass;
-        first = f;
-        last = l;
-        email = e;
+    public User(String name, String password, String first, String last, String email, String major) {
+        username = name;
+        this.password = password;
+        this.first = first;
+        this.last = last;
+        this.email = email;
+        this.major = major;
+    }
+
+    public User(String name, String password, String first, String last, String email) {
+        username = name;
+        this.password = password;
+        this.first = first;
+        this.last = last;
+        this.email = email;
         major = "";
     }
 
-    public String getName() { return username; }
+    public String getUsername() { return username; }
 
     public String getFirst() { return first; }
 
     public String getLast() { return last; }
 
     public String getMajor() { return major; }
+
+    public String getPassword() { return password; }
 
     public Boolean login(String pass) { return pass.equals(password); }
 

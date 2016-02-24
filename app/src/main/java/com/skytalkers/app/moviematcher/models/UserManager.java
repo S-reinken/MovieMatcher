@@ -12,17 +12,24 @@ public class UserManager {
     private static Map<String,User> users = new HashMap<>();
     private static ArrayList<String> userList;
     private static User user;
+    private static DatabaseManager mgr = new DatabaseManager();
+    private static User checkedUser;
 
-
+    public static void setCheckedUser(User a) {
+        checkedUser = a;
+    }
     public void setUser(String name) { user = findUser(name); }
 
-    public User findUser(String id) { return users.get(id); }
+    //public User findUser(String id) { return users.get(id); }
+    public User findUser(String id) {
+        return mgr.getData(id);
+    }
 
     //public User getUser() { return user; }
 
     public String getUserByPos(int pos) { return userList.get(pos); }
 
-    public String getUserName() { return user.getName(); }
+    public String getUserName() { return user.getUsername(); }
 
     public String getUserFirst() { return user.getFirst(); }
 
@@ -32,14 +39,24 @@ public class UserManager {
 
     public String getUserMajor() { return user.getMajor(); }
 
+    /*
     public void addUser(String name, String pass, String f, String l, String e, String m) {
         users.put(name, new User(name, pass, f, l, e, m));
         userList = new ArrayList<>(users.keySet());
+    }*/
+
+    public void addUser(String name, String pass, String f, String l, String e, String m) {
+        mgr.addUser(new User(name, pass, f, l, e, m));
     }
 
+    /*
     public void addUser(String name, String pass, String f, String l, String e) {
         users.put(name, new User(name, pass, f, l, e));
         userList = new ArrayList<>(users.keySet());
+    }*/
+
+    public void addUser(String name, String pass, String f, String l, String e) {
+        mgr.addUser(new User(name, pass, f, l, e));
     }
 
     public void deleteUser(String name) {
@@ -48,7 +65,7 @@ public class UserManager {
     }
 
     public void editUser(String name, String f, String l, String e, String m) {
-        users.remove(user.getName());
+        users.remove(user.getUsername());
         user.edit(name, f, l, e, m);
         users.put(name, user);
         userList = new ArrayList<>(users.keySet());
@@ -56,7 +73,7 @@ public class UserManager {
 
     public void changePass(String pass) {
         user.changePass(pass);
-        users.put(user.getName(), user);
+        users.put(user.getUsername(), user);
     }
 
     public Boolean login(String name, String pass) {
