@@ -23,17 +23,17 @@ public class RottenTomatoesManager {
     //getMoviebyName(String name) {
     //getMoviebyDate(Date initial, Date final)
 
-    public static ArrayList<Movie> getNewMovies() throws InterruptedException { //Opening?; only returning up to 5 for now
+    public static ArrayList<Movie> getNewMovies() throws Exception { //Opening?; only returning up to 5 for now
         String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
         return getRTRequest(req);
     }
 
-    public static ArrayList<Movie> getRecentDVDs() throws InterruptedException {
+    public static ArrayList<Movie> getRecentDVDs() throws Exception {
         String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
         return getRTRequest(req);
     }
 
-    public static ArrayList<Movie> getRTRequest(String url) throws InterruptedException {
+    public static ArrayList<Movie> getRTRequest(String url) throws Exception {
         ArrayList<Movie> movies = new ArrayList<>();
         String res;
         try {
@@ -62,11 +62,11 @@ public class RottenTomatoesManager {
                 String title = jsonObject.optString("title");
                 int id = jsonObject.optInt("id");
                 HTTPRequest http = new HTTPRequest(jsonObject.getJSONObject("posters").optString("thumbnail"));
-                http.sendRequest();
-                Bitmap image = BitmapFactory.decodeStream(http.getStream());
+                http.sendImageRequest();
+                Bitmap image = http.getImage();
                 Movie m = new Movie(title, id, image);
                 movies.add(m);
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 Log.d("VolleyApp", "Failed to get JSON object");
                 e.printStackTrace();
             }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,8 @@ public class NewMoviesFragment extends Fragment {
         myView = inflater.inflate(R.layout.new_movies_layout, container, false);
 
         MovieManager mm = new MovieManager();
-        try { mm.sendNewMovieRequest(); } catch (InterruptedException e) {
+        try { mm.sendNewMovieRequest(); } catch (Exception e) {
+            Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
             ToastWrapper.show(getActivity().getApplicationContext(), "Failed to get movies");
         }
         ArrayList<String> titlesToShow = mm.getTitles();
@@ -43,7 +45,8 @@ public class NewMoviesFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MovieManager mm = new MovieManager();
                 Intent intent = new Intent(getActivity().getApplicationContext(), MovieActivity.class);
-                intent.putExtra("movie", mm.getMovies().get(position));
+                intent.putExtra("title", mm.getMovies().get(position).getTitle());
+                intent.putExtra("image", mm.getMovies().get(position).getImage());
                 startActivity(intent);
             }
         });

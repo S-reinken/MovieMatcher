@@ -31,7 +31,7 @@ public class NewDVDsFragment extends Fragment {
         myView = inflater.inflate(R.layout.new_dvds_layout, container, false);
 
         MovieManager mm = new MovieManager();
-        try { mm.sendRecentDVDRequest(); } catch (InterruptedException e) {
+        try { mm.sendRecentDVDRequest(); } catch (Exception e) {
             ToastWrapper.show(getActivity().getApplicationContext(), "Failed to get movies");
         }
         ArrayList<String> titlesToShow = mm.getTitles();
@@ -43,7 +43,8 @@ public class NewDVDsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MovieManager mm = new MovieManager();
                 Intent intent = new Intent(getActivity().getApplicationContext(), MovieActivity.class);
-                intent.putExtra("movie", mm.getMovies().get(position));
+                intent.putExtra("title", mm.getMovies().get(position).getTitle());
+                intent.putExtra("image", mm.getMovies().get(position).getImage());
                 startActivity(intent);
             }
         });

@@ -1,5 +1,6 @@
 package com.skytalkers.app.moviematcher.controllers.Activities;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,9 +23,10 @@ public class MovieActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Movie m = (Movie) getIntent().getSerializableExtra("movie");
-        ((TextView) findViewById(R.id.movieTextView)).setText(m.getTitle());
-        ((ImageView) findViewById(R.id.movieImageView)).setImageBitmap(m.getImage());
+        String title = getIntent().getStringExtra("title");
+        Bitmap image = getIntent().getParcelableExtra("image");
+        ((TextView) findViewById(R.id.movieTextView)).setText(title);
+        ((ImageView) findViewById(R.id.movieImageView)).setImageBitmap(Bitmap.createScaledBitmap(image, 540, 800, false));
     }
 
 }

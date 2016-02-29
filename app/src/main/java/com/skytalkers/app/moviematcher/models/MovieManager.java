@@ -21,7 +21,7 @@ public class MovieManager {
         req = url;
     }
 
-    public void sendRTRequest(String name) throws InterruptedException {
+    public void sendRTRequest(String name) throws Exception {
         req = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey="
                 + HTTPRequest.getKey()
                 + "q="
@@ -29,11 +29,11 @@ public class MovieManager {
         movies = RottenTomatoesManager.getRTRequest(req);
     }
 
-    public void sendNewMovieRequest() throws InterruptedException {
+    public void sendNewMovieRequest() throws Exception {
         movies = RottenTomatoesManager.getNewMovies();
     }
 
-    public void sendRecentDVDRequest() throws InterruptedException {
+    public void sendRecentDVDRequest() throws Exception {
         movies = RottenTomatoesManager.getRecentDVDs();
     }
 
