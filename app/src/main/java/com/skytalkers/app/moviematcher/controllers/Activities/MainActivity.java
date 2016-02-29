@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
     public void onRTButtonClick(View v) throws Exception {
         Log.d("**MOVIEMATCHER**", "RT Clicked");
         String req = "http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5";
-        Log.d("**MOVIEMATCHER**", HTTPRequest.sendRequest(req));
+        MovieManager mm = new MovieManager();
+        mm.sendNewMovieRequest();
+        Log.d("**MOVIEMATCHER**", mm.getTitles().get(0));
     }
 
     public void onDebugButtonClick(View v) {

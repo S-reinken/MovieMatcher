@@ -1,5 +1,7 @@
 package com.skytalkers.app.moviematcher.models;
 
+import android.graphics.Bitmap;
+
 import java.io.InputStream;
 
 /**
@@ -7,17 +9,26 @@ import java.io.InputStream;
  */
 public class HTTPRequest {
 
-    private HTTPRequest() {
+    String req;
+    String res;
+    InputStream is;
 
+    public HTTPRequest(String req) {
+        this.req = req;
     }
 
-    public static String sendRequest(String req) throws InterruptedException {
+    public void sendRequest() throws InterruptedException {
         HTTPRetriever retriever = new HTTPRetriever(req);
         Thread thread = new Thread(retriever);
         thread.start();
         thread.join();
-        return retriever.getResponse();
+        res = retriever.getResponse();
+        is = retriever.getStream();
     }
+
+    public String getResponse() { return res; }
+
+    public InputStream getStream() throws InterruptedException { return is; }
 
     public static String getKey() {
         return "yedukp76ffytfuy24zsqk7f5&";

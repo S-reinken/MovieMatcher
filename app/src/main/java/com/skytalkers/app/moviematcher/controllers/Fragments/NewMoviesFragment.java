@@ -19,7 +19,6 @@ import java.util.ArrayList;
  * Created by schuylerreinken on 2/19/16.
  */
 public class NewMoviesFragment extends Fragment {
-
     View myView;
     ListAdapter adapter;
     @Nullable
@@ -27,12 +26,12 @@ public class NewMoviesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.new_movies_layout, container, false);
 
-        ArrayList<Movie> newMovies = RottenTomatoesManager.getNewMovies();
-        ArrayList<String> titlesToShow = new ArrayList<>();
-        for (int i = 0; i < newMovies.size(); i++) {
-            titlesToShow.add(newMovies.get(i).getTitle());
+        MovieManager mm = new MovieManager();
+        try { mm.sendNewMovieRequest(); } catch (InterruptedException e) {
+            ToastWrapper.show(getActivity().getApplicationContext(), "Failed to get movies");
         }
-        adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, titlesToShow);
+        ArrayList<String> titlesToShow = mm.getTitles();
+        adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, titlesToShow);
         ListView list = (ListView) (myView.findViewById(R.id.listView3));
         list.setAdapter(adapter);
         return myView;
