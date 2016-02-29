@@ -158,11 +158,11 @@ public class NavigationActivity extends AppCompatActivity
 
     public void onViewProfileButtonClick(View v) {
         UserManager um = new UserManager();
-        String user = um.getUserName();
         Intent intent = new Intent(this, UserProfileActivity.class);
-        intent.putExtra("user_object", user);
+        intent.putExtra("user", um.getUserName());
         startActivity(intent);
     }
+
     //http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=[your_api_key]&q=Toy+Story+3&page_limit=1
     public void onBasicSearchButtonClick(View v) throws Exception{
         String name = ((EditText) findViewById(R.id.basicSearchEditText)).getText().toString();
@@ -171,15 +171,8 @@ public class NavigationActivity extends AppCompatActivity
         MovieManager mm = new MovieManager();
         mm.sendRTRequest(parsedName);
         ArrayList<String> movies = mm.getTitles();
-        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, movies);
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, movies);
         ListView lv = (ListView) findViewById(R.id.searchListView);
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
-
     }
 }

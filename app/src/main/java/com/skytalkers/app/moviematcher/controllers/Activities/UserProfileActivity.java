@@ -21,22 +21,15 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        String name = getIntent().getStringExtra("user");
         UserManager um = new UserManager();
-        ((TextView) findViewById(R.id.usernameText)).setText(um.getUserName());
-        ((TextView) findViewById(R.id.firstText)).setText(um.getUserFirst());
-        ((TextView) findViewById(R.id.lastText)).setText(um.getUserLast());
-        ((TextView) findViewById(R.id.emailText)).setText(um.getUserEmail());
-        ((TextView) findViewById(R.id.majorText)).setText(um.getUserMajor());
+        ((TextView) findViewById(R.id.usernameText)).setText(name);
+        ((TextView) findViewById(R.id.firstText)).setText(um.findUserFirst(name));
+        ((TextView) findViewById(R.id.lastText)).setText(um.findUserLast(name));
+        ((TextView) findViewById(R.id.emailText)).setText(um.findUserEmail(name));
+        ((TextView) findViewById(R.id.majorText)).setText(um.findUserMajor(name));
     }
 
     public void onBackButtonClick(View v) {

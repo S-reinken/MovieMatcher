@@ -7,10 +7,11 @@ import java.util.ArrayList;
 
 /**
  * Created by Bruce on 2/28/2016.
+ * Class to hold and manage a list of movies.
  */
 public class MovieManager {
-    private ArrayList<Movie> movies;
-    private String req;
+    private static ArrayList<Movie> movies;
+    private static String req;
 
     public MovieManager() {
 
@@ -35,6 +36,8 @@ public class MovieManager {
     public void sendRecentDVDRequest() throws InterruptedException {
         movies = RottenTomatoesManager.getRecentDVDs();
     }
+
+    public ArrayList<Movie> getMovies() { return movies; }
 
     public ArrayList<String> getTitles() {
         ArrayList<String> titles = new ArrayList<>();

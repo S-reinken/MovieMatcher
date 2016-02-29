@@ -21,15 +21,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_password);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -47,12 +39,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         pass = ((EditText) findViewById(R.id.newEdit)).getText().toString();
         if (!pass.equals(((EditText) findViewById(R.id.confirmNewEdit)).getText().toString())) {
             msgbox("New passwords don't match");
-            return;
         } else {
             um.changePass(pass);
             finish();
         }
-
     }
 
     public boolean confirm(String name, String pass) {

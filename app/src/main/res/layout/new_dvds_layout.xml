@@ -14,5 +14,5 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="472dp"
-        android:id="@+id/listView2" />
+        android:id="@+id/dvdListView" />
 </LinearLayout>

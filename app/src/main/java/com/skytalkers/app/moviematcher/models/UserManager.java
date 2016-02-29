@@ -32,6 +32,11 @@ public class UserManager {
 
     public String getUserMajor() { return user.getMajor(); }
 
+    public String findUserFirst(String name) { return users.get(name).getFirst(); }
+    public String findUserLast(String name) { return users.get(name).getLast(); }
+    public String findUserEmail(String name) { return users.get(name).getEmail(); }
+    public String findUserMajor(String name) { return users.get(name).getMajor(); }
+
     public void addUser(String name, String pass, String f, String l, String e, String m) {
         users.put(name, new User(name, pass, f, l, e, m));
         userList = new ArrayList<>(users.keySet());

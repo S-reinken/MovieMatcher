@@ -16,7 +16,7 @@
     <ListView
         android:layout_width="353dp"
         android:layout_height="380dp"
-        android:id="@+id/listView3"
+        android:id="@+id/movieListView"
         android:nestedScrollingEnabled="true"
         android:scrollIndicators="right"
         android:clickable="true"

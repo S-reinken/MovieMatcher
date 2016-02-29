@@ -2,7 +2,9 @@ package com.skytalkers.app.moviematcher.models;
 
 import android.graphics.Bitmap;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable {
     private String name;
     private int id;
     private Bitmap image;

@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         UserManager um = new UserManager();
         um.addUser("admin", "admin", "admin", "admin", "admin");
+        um.addUser("1","2","3","4","5");
     }
 
     @Override
@@ -57,6 +58,5 @@ public class MainActivity extends AppCompatActivity {
         um.setUser("admin");
         Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
-        finish();
     }
 }

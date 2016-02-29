@@ -1,24 +1,26 @@
 package com.skytalkers.app.moviematcher.controllers.Fragments;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.skytalkers.app.moviematcher.R;
+import com.skytalkers.app.moviematcher.controllers.Activities.MovieActivity;
 import com.skytalkers.app.moviematcher.models.*;
 
 import java.util.ArrayList;
 
 /**
  * Created by schuylerreinken on 2/23/16.
+ * Fragment to display new DVDs.
  */
 public class NewDVDsFragment extends Fragment {
     View myView;
@@ -34,8 +36,17 @@ public class NewDVDsFragment extends Fragment {
         }
         ArrayList<String> titlesToShow = mm.getTitles();
         adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, titlesToShow);
-        ListView list = (ListView) (myView.findViewById(R.id.listView2));
-        list.setAdapter(adapter);
+        ListView lv = (ListView) (myView.findViewById(R.id.dvdListView));
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MovieManager mm = new MovieManager();
+                Intent intent = new Intent(getActivity().getApplicationContext(), MovieActivity.class);
+                intent.putExtra("movie", mm.getMovies().get(position));
+                startActivity(intent);
+            }
+        });
         return myView;
     }
 }
