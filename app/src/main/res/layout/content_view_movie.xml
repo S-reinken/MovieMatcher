@@ -26,7 +26,8 @@
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
+        android:id="@+id/avgAllRating"
+        android:stepSize="1.0"
         android:layout_below="@+id/textView13"
         android:layout_centerHorizontal="true" />
 
@@ -36,7 +37,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="User Avg. (all)"
         android:id="@+id/textView13"
-        android:layout_below="@+id/ratingBar3"
+        android:layout_below="@+id/userRating"
         android:layout_alignLeft="@+id/textView12"
         android:layout_alignStart="@+id/textView12" />
 
@@ -46,21 +47,23 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="User Avg. (your major)"
         android:id="@+id/textView14"
-        android:layout_below="@+id/ratingBar"
+        android:layout_below="@+id/avgAllRating"
         android:layout_centerHorizontal="true" />
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBar2"
+        android:id="@+id/avgMajorRating"
+        android:stepSize="1.0"
         android:layout_below="@+id/textView14"
-        android:layout_alignLeft="@+id/ratingBar"
-        android:layout_alignStart="@+id/ratingBar" />
+        android:layout_alignLeft="@+id/avgAllRating"
+        android:layout_alignStart="@+id/avgAllRating" />
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBar3"
+        android:id="@+id/userRating"
+        android:stepSize="1.0"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
@@ -70,7 +73,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Your Rating"
         android:id="@+id/textView12"
-        android:layout_above="@+id/ratingBar3"
+        android:layout_above="@+id/userRating"
         android:layout_centerHorizontal="true" />
 
     <ImageView

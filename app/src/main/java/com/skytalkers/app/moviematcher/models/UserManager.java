@@ -70,6 +70,14 @@ public class UserManager {
         return u.login(pass);
     }
 
+    public int getRating(String m) {
+        return user.getRating(m);
+    }
+
+    public void rate(String m, int r) {
+        user.rate(m,r);
+    }
+
     public void logout() {
         user = null;
     }

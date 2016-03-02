@@ -1,5 +1,8 @@
 package com.skytalkers.app.moviematcher.models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Bruce on 2/3/2016.
  * Holds basic information about a user.
@@ -11,6 +14,7 @@ public class User {
     private String last;
     private String email;
     private String major;
+    private Map<String,Integer> ratings = new HashMap<>();
     //boolean isAdmin = false;
 
     public User(String user, String pass, String f, String l, String e, String m) {
@@ -58,6 +62,10 @@ public class User {
     public String toString() {
         return username + " " + first + " " + last + " " + email + " " + major;
     }
+
+    public void rate(String m, int r) { ratings.put(m,r); }
+
+    public int getRating(String m) { return ratings.get(m); }
 
     /*public boolean isAdmin() { return isAdmin; }*/
 }

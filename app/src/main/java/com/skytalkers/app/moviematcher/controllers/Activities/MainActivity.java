@@ -9,6 +9,9 @@ import android.view.View;
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.models.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         UserManager um = new UserManager();
         um.addUser("admin", "admin", "admin", "admin", "admin");
-        um.addUser("1","2","3","4","5");
+        um.addUser("1", "2", "3", "4", "5");
     }
 
     @Override
@@ -49,11 +52,17 @@ public class MainActivity extends AppCompatActivity {
         Log.d("**MOVIEMATCHER**", "RT Clicked");
         String req = "http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5";
         MovieManager mm = new MovieManager();
+        //try {
         mm.sendNewMovieRequest();
+        //} catch (Exception e) { for (Movie m : mm.getMovies()) Log.d("**MOVIEMATCHER**", "Title" + m.getTitle()); }
         Log.d("**MOVIEMATCHER**", mm.getTitles().get(0));
     }
 
     public void onDebugButtonClick(View v) {
+        MovieManager mm = new MovieManager();
+        Map<String,Integer> ma = new HashMap<>();
+        try{ma = mm.getRatings("Gods Of Egypt");}
+        catch (Exception e){};
         UserManager um = new UserManager();
         um.setUser("admin");
         Intent intent = new Intent(this, NavigationActivity.class);

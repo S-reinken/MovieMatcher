@@ -20,6 +20,7 @@ import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.controllers.Activities.MovieActivity;
 import com.skytalkers.app.moviematcher.models.HTTPRequest;
 import com.skytalkers.app.moviematcher.models.MovieManager;
+import com.skytalkers.app.moviematcher.models.UserManager;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -46,9 +47,11 @@ public class SearchFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MovieManager mm = new MovieManager();
+                mm.addMovie(mm.getMovies().get(position).getTitle());
                 Intent intent = new Intent(getActivity().getApplicationContext(), MovieActivity.class);
                 intent.putExtra("title", mm.getMovies().get(position).getTitle());
                 intent.putExtra("image", mm.getMovies().get(position).getImage());
+                intent.putExtra("rating", String.valueOf(mm.getMovies().get(position).getRating(new UserManager().getUserName())));
                 startActivity(intent);
             }
         });
