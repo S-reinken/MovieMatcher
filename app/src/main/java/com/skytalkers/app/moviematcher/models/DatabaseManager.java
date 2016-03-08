@@ -18,13 +18,14 @@ import java.util.concurrent.CountDownLatch;
  */
 public class DatabaseManager {
     static Firebase client = new Firebase("https://blazing-fire-2549.firebaseio.com/");
-    static List<User> list = new ArrayList<User>();
+    static List<User> userList = new ArrayList<User>();
+    static List<User> adminList = new ArrayList<>();
 
     private class ListListener implements ValueEventListener {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                list.add(snapshot.getValue(User.class));
+                userList.add(snapshot.getValue(User.class));
             }
         }
 
@@ -40,9 +41,14 @@ public class DatabaseManager {
 
     public void prepareUsers() {
         client.child("Users").child("NormalUsers").addValueEventListener(new ListListener());
+        client.child("Users").child("Admins").addValueEventListener(new ListListener());
     }
     public List<User> getAllUsers() {
-        return list;
+        return userList;
+    }
+
+    public List<User> getAdmins() {
+        return  null;
     }
 
 

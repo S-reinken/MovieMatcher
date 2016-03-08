@@ -48,9 +48,6 @@ public class LoginScreenActivity extends AppCompatActivity {
         Log.d("**MOVIEMATCHER**", "Resuming the login screen");
     }
 
-    public void prepareDatabase() {
-
-    }
     public void onLoginButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Attempting Login");
         UserManager um = new UserManager();

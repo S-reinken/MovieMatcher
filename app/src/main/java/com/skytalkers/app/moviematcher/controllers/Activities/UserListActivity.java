@@ -8,11 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.skytalkers.app.moviematcher.R;
+import com.skytalkers.app.moviematcher.models.User;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class UserListActivity extends ListActivity {
 
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<User> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
