@@ -65,11 +65,12 @@ public class NavigationActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         android.support.v4.app.Fragment myFragment = new ProfileFragment();
-
         android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
         fManager.beginTransaction()
                 .replace(R.id.container, myFragment)
+                .addToBackStack(null)
                 .commit();
+
     }
 
     @Override
@@ -126,6 +127,7 @@ public class NavigationActivity extends AppCompatActivity
         android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
         fManager.beginTransaction()
                 .replace(R.id.container, myFragment)
+                .addToBackStack(null)
                 .commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -36,6 +36,7 @@ public class MovieActivity extends AppCompatActivity {
         Map<String,Movie> ma = mm.getMap();
         Map<String,Integer> maa = mm.getRatings("Gods Of Egypt");
         ((RatingBar) findViewById(R.id.avgAllRating)).setRating(mm.getMovie(title).getAverageRating());
+        ((RatingBar) findViewById(R.id.avgMajorRating)).setRating(mm.getMovie(title).getMajorRating());
         try {
             int rating = mm.getRatings(title).get(new UserManager().getUserName());
             ((RatingBar) findViewById(R.id.userRating)).setRating(mm.getRatings(title).get(new UserManager().getUserName()));

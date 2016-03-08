@@ -42,7 +42,7 @@ public class Movie {
 
     public int getRating(String u) { return ratings.get(u) == null ? 0 : ratings.get(u); }
 
-    public Map<String,Integer> getRatings() { return ratings;   }
+    public Map<String,Integer> getRatings() { return ratings; }
 
     public int getAverageRating() {
         int avg = 0;
@@ -50,5 +50,16 @@ public class Movie {
             avg += r;
         }
         return ratings.size() > 0 ? avg / ratings.size() : 0;
+    }
+
+    public int getMajorRating() {
+        int avg = 0, count = 0;
+        UserManager um = new UserManager();
+        for (Map.Entry<String,Integer> rating : ratings.entrySet()) {
+            if (um.getUserMajor().equals(um.findUserMajor(rating.getKey()))) {
+                avg += rating.getValue(); count++;
+            }
+        }
+        return count > 0 ? avg / count : 0;
     }
 }

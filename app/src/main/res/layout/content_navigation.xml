@@ -12,5 +12,5 @@
     tools:context=".controllers.Activities.NavigationActivity"
     tools:showIn="@layout/app_bar_navigation"
     android:id="@+id/container">
-
+    
 </RelativeLayout>
