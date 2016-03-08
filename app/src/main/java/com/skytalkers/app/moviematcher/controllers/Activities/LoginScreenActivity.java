@@ -13,8 +13,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.models.ToastWrapper;
+import com.skytalkers.app.moviematcher.models.DatabaseManager;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class LoginScreenActivity extends AppCompatActivity {
@@ -22,6 +24,12 @@ public class LoginScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Firebase.setAndroidContext(this);
+        DatabaseManager mgr = new DatabaseManager();
+        mgr.prepareUsers();
+
+
         setContentView(R.layout.activity_login_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -40,6 +48,9 @@ public class LoginScreenActivity extends AppCompatActivity {
         Log.d("**MOVIEMATCHER**", "Resuming the login screen");
     }
 
+    public void prepareDatabase() {
+
+    }
     public void onLoginButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Attempting Login");
         UserManager um = new UserManager();
@@ -51,7 +62,14 @@ public class LoginScreenActivity extends AppCompatActivity {
             Intent intent = new Intent(this, NavigationActivity.class);
             startActivity(intent);
             finish();
-        } else { ToastWrapper.show(getApplicationContext(), "Login Failed"); }
+        } else {
+            Context context = this;
+            int dur = Toast.LENGTH_SHORT;
+            Log.d("**MOVIEMATCHER**", "Login Failed");
+            Toast t = Toast.makeText(context, "Login Failed", dur);
+            t.show();
+        }
+        System.out.println("Now the button click has ended");
     }
 
     public void onCancelButtonClick(View v) {

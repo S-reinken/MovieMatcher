@@ -27,7 +27,7 @@ public class UserListActivity extends ListActivity {
     @Override
     public void onListItemClick(ListView lv, View v, int position, long id) {
         UserManager um = new UserManager();
-        String user = um.getUserByPos(position);
+        String user = um.getUserByPos(position).getUsername();
         Intent intent = new Intent(this, UserProfileActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
