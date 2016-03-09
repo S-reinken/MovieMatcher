@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.controllers.Activities.MovieActivity;
@@ -33,19 +34,19 @@ public class MovieListFragment extends Fragment {
         myView = inflater.inflate(R.layout.movie_list_layout, container, false);
 
         MovieManager mm = new MovieManager();
-        try { mm.sendNewMovieRequest(); } catch (Exception e) {
-            Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
-            ToastWrapper.show(getActivity().getApplicationContext(), "Failed to get movies");
-        }
         ArrayList<String> titlesToShow = mm.getTitles();
         adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, titlesToShow);
+        ((TextView) myView.findViewById(R.id.movieListTextView)).setText(mm.getTitle());
         ListView lv = (ListView) (myView.findViewById(R.id.movieListView));
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MovieManager mm = new MovieManager();
-                mm.addMovie(mm.getMovies().get(position).getTitle());
+                Log.d("MovieContains", String.valueOf(mm.contains(mm.getMovies().get(position))));
+                if (!mm.contains(mm.getMovies().get(position))) {
+                    mm.addMovie(mm.getMovies().get(position).getTitle());
+                }
                 Intent intent = new Intent(getActivity().getApplicationContext(), MovieActivity.class);
                 intent.putExtra("title", mm.getMovies().get(position).getTitle());
                 intent.putExtra("image", mm.getMovies().get(position).getImage());

@@ -20,8 +20,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         UserManager um = new UserManager();
-        um.addUser("admin", "admin", "admin", "admin", "admin");
-        um.addUser("1", "2", "3", "4", "5");
+        um.addUser("admin", "admin", "admin", "admin", "admin", "CS");
+        um.addUser("1", "2", "3", "4", "5", "NOTCS");
+        um.addUser("6", "7", "8", "9", "10", "CS");
+        //recTesting();
+        majorRecTesting();
     }
 
     @Override
@@ -59,13 +62,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onDebugButtonClick(View v) {
-        MovieManager mm = new MovieManager();
-        Map<String,Integer> ma = new HashMap<>();
-        try{ma = mm.getRatings("Gods Of Egypt");}
-        catch (Exception e){};
         UserManager um = new UserManager();
         um.setUser("admin");
         Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
+    }
+
+    public void recTesting() {
+        MovieManager mm = new MovieManager();
+        try { mm.sendNewMovieRequest(); } catch (Exception e) {
+            Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
+            ToastWrapper.show(this, "Failed to get movies");
+        }
+        int rating = 1;
+        for (Movie m : mm.getMovies()) {
+            m.rate("admin", rating++);
+            mm.addMovie(m.getTitle());
+        }
+    }
+
+    public void majorRecTesting() {
+        MovieManager mm = new MovieManager();
+        try { mm.sendNewMovieRequest(); } catch (Exception e) {
+            Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
+            ToastWrapper.show(this, "Failed to get movies");
+        }
+        int rating = 1;
+        for (int i = 0; i < 5; i+=2) {
+            Movie m = mm.getMovies().get(i);
+            m.rate("admin", rating++);
+            mm.addMovie((m.getTitle()));
+        }
+        Log.d("MOVIEMATCHER", String.valueOf(mm.getUserMovies().size()));
     }
 }
