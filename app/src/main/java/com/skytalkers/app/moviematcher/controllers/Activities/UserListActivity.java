@@ -13,7 +13,7 @@ import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class UserListActivity extends ListActivity {
 
-    ArrayAdapter<User> adapter;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class UserListActivity extends ListActivity {
     @Override
     public void onListItemClick(ListView lv, View v, int position, long id) {
         UserManager um = new UserManager();
-        String user = um.getUserByPos(position).getUsername();
+        String user = um.getUserByPos(position);
         Intent intent = new Intent(this, UserProfileActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);

@@ -11,8 +11,8 @@ import java.util.HashMap;
  */
 public class UserManager {
     private static Map<String,User> users = new HashMap<>();
-    private static DatabaseManager mgr = new DatabaseManager();
-    private static List<User> userList;
+    //private static DatabaseManager mgr = new DatabaseManager();
+    private static ArrayList<String> userList;
     private static User user;
 
     private static User checkedUser;
@@ -22,8 +22,8 @@ public class UserManager {
     }
     public void setUser(String name) { user = findUser(name); }
 
-    //public User findUser(String id) { return users.get(id); }
-    public User findUser(String id) {
+    public User findUser(String id) { return users.get(id); }
+    /*public User findUser(String id) {
         userList = mgr.getAllUsers();
         for (User u : userList) {
             if (id.equals(u.getUsername())) {
@@ -31,14 +31,14 @@ public class UserManager {
             }
         }
         return null;
-    }
+    }*/
 
     //public User getUser() { return user; }
 
-    public void setUserList() {
+    /*public void setUserList() {
         userList = mgr.getAllUsers();
-    }
-    public User getUserByPos(int pos) { return userList.get(pos); }
+    }*/
+    public String getUserByPos(int pos) { return userList.get(pos); }
 
     public String getUserName() { return user.getUsername(); }
 
@@ -50,7 +50,7 @@ public class UserManager {
 
     public String getUserMajor() { return user.getMajor(); }
 
-    /*
+
     public String findUserFirst(String name) { return users.get(name).getFirst(); }
     public String findUserLast(String name) { return users.get(name).getLast(); }
     public String findUserEmail(String name) { return users.get(name).getEmail(); }
@@ -59,21 +59,21 @@ public class UserManager {
     public void addUser(String name, String pass, String f, String l, String e, String m) {
         users.put(name, new User(name, pass, f, l, e, m));
         userList = new ArrayList<>(users.keySet());
-    }*/
-
-    public void addUser(String name, String pass, String f, String l, String e, String m) {
-        mgr.addUser(new User(name, pass, f, l, e, m));
     }
 
-    /*
+    /*public void addUser(String name, String pass, String f, String l, String e, String m) {
+        mgr.addUser(new User(name, pass, f, l, e, m));
+    }*/
+
+
     public void addUser(String name, String pass, String f, String l, String e) {
         users.put(name, new User(name, pass, f, l, e));
         userList = new ArrayList<>(users.keySet());
-    }*/
-
-    public void addUser(String name, String pass, String f, String l, String e) {
-        mgr.addUser(new User(name, pass, f, l, e));
     }
+
+    /*public void addUser(String name, String pass, String f, String l, String e) {
+        mgr.addUser(new User(name, pass, f, l, e));
+    }*/
 
     public void deleteUser(String name) {
         users.remove(name);
@@ -111,7 +111,7 @@ public class UserManager {
         user = null;
     }
 
-    public List<User> getUserList() {
+    public ArrayList<String> getUserList() {
         return userList;
     }
 
