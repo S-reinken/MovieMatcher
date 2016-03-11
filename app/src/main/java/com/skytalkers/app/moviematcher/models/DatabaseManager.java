@@ -35,20 +35,34 @@ public class DatabaseManager {
         }
     }
 
+    private class AdminListListener implements ValueEventListener {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                adminList.add(snapshot.getValue(User.class));
+            }
+        }
+
+        @Override
+        public void onCancelled(FirebaseError firebaseError) {
+
+        }
+    }
+
     public void addUser(User user) {
         client.child("Users").child("NormalUsers").child(user.getUsername()).setValue(user);
     }
 
     public void prepareUsers() {
         client.child("Users").child("NormalUsers").addValueEventListener(new ListListener());
-        client.child("Users").child("Admins").addValueEventListener(new ListListener());
+        client.child("Users").child("Admins").addValueEventListener(new AdminListListener());
     }
     public List<User> getAllUsers() {
         return userList;
     }
 
     public List<User> getAdmins() {
-        return  null;
+        return  adminList;
     }
 
 
