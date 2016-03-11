@@ -62,4 +62,13 @@ public class Movie {
         }
         return count > 0 ? avg / count : 0;
     }
+
+    public String toString() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object m) {
+        return id == ((Movie)m).getId();
+    }
 }

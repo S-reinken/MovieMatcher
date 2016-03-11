@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +18,7 @@ public class MovieManager {
     private static ArrayList<Movie> movies;
     private static String req;
     private static ArrayList<Movie> userMovies = new ArrayList<>();
+    private static String listTitle;
 
     public MovieManager() {
 
@@ -24,6 +27,12 @@ public class MovieManager {
     public MovieManager(String url) {
         req = url;
     }
+
+    public void setTitle(String title) {
+        listTitle = title;
+    }
+
+    public String getTitle() { return listTitle; }
 
     public void sendRTRequest(String name) throws Exception {
         req = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey="
@@ -56,11 +65,12 @@ public class MovieManager {
     public Movie findMovie(String m) { return movieMap.get(m); }
 
     public void addMovie(String m) {
+        Log.d("Movie Add", m + " " + String.valueOf(movieMap.get(m)));
         userMovies.add(movieMap.get(m));
     }
 
     public void rate(String m, String u, int r) {
-        movieMap.get(m).rate(u,r);
+        movieMap.get(m).rate(u, r);
     }
 
     public ArrayList<Movie> getUserMovies() { return userMovies; }
@@ -71,9 +81,46 @@ public class MovieManager {
         return titles;
     }
 
+    public ArrayList<String> getUserTitles() {
+        ArrayList<String> titles = new ArrayList<>();
+        for (Movie m : userMovies) titles.add(m.getTitle());
+        return titles;
+    }
+
     public ArrayList<Bitmap> getImages() {
         ArrayList<Bitmap> images = new ArrayList<>();
         for (Movie m : movies) images.add(m.getImage());
         return images;
+    }
+
+    public boolean contains(Movie mov) {
+        for (Movie m : userMovies) if (m.equals(mov)) return true;
+        return false;
+    }
+
+    public void getOverallRec() {
+        Collections.sort(userMovies, new Comparator<Movie>() {
+           public int compare(Movie m1, Movie m2) {
+               return m2.getAverageRating() - m1.getAverageRating();
+           }
+        });
+        movies = userMovies;
+    }
+
+    public ArrayList<Movie> filterMajorMovies() {
+        ArrayList<Movie> temp = new ArrayList<>();
+        for (Movie m : userMovies) {
+            if (m.getMajorRating() != 0) temp.add(m);
+        }
+        return temp;
+    }
+
+    public void getMajorRec(String major) {
+        Collections.sort(userMovies, new Comparator<Movie>() {
+            public int compare(Movie m1, Movie m2) {
+                return m2.getMajorRating() - m1.getMajorRating();
+            }
+        });
+        movies = filterMajorMovies();
     }
 }

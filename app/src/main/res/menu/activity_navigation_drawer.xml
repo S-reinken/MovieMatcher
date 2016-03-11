@@ -23,6 +23,10 @@
             android:id="@+id/nav_new_dvds"
             android:icon="@drawable/ic_menu_manage"
             android:title="New DVDs" />
+        <item
+            android:id="@+id/nav_rec"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Movie Recommendations" />
     </group>
     <!--
     <item android:title="Communicate">

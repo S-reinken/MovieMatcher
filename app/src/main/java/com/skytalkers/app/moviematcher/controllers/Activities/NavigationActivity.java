@@ -2,8 +2,6 @@ package com.skytalkers.app.moviematcher.controllers.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -15,28 +13,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.firebase.client.Firebase;
 import com.skytalkers.app.moviematcher.R;
-import com.skytalkers.app.moviematcher.controllers.Fragments.NewDVDsFragment;
-import com.skytalkers.app.moviematcher.controllers.Fragments.NewMoviesFragment;
+import com.skytalkers.app.moviematcher.controllers.Fragments.MovieListFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.ProfileFragment;
+import com.skytalkers.app.moviematcher.controllers.Fragments.RecommendationFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.SearchFragment;
-import com.skytalkers.app.moviematcher.models.DatabaseManager;
-import com.skytalkers.app.moviematcher.models.HTTPRequest;
 import com.skytalkers.app.moviematcher.models.MovieManager;
-import com.skytalkers.app.moviematcher.models.User;
+import com.skytalkers.app.moviematcher.models.ToastWrapper;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,8 +35,6 @@ public class NavigationActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Firebase.setAndroidContext(this);
-
         setContentView(R.layout.activity_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -116,6 +105,7 @@ public class NavigationActivity extends AppCompatActivity
         android.support.v4.app.Fragment myFragment = null;
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        MovieManager mm = new MovieManager();
         /*
         If you want to add a new Fragment to the system, make the fragment and add it to this if - else if series.
         */
@@ -124,15 +114,26 @@ public class NavigationActivity extends AppCompatActivity
         } else if (id == R.id.nav_profile) {
             myFragment = new ProfileFragment();
         } else if (id == R.id.nav_new_movies) {
-            myFragment = new NewMoviesFragment();
+            mm.setTitle("New Movies");
+            try { mm.sendNewMovieRequest(); } catch (Exception e) {
+                Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
+                ToastWrapper.show(this, "Failed to get movies");
+            }
+            myFragment = new MovieListFragment();
         } else if (id == R.id.nav_new_dvds) {
-            myFragment = new NewDVDsFragment();
+            mm.setTitle("New DVDs");
+            try { mm.sendRecentDVDRequest(); } catch (Exception e) {
+                Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
+                ToastWrapper.show(this, "Failed to get movies");
+            }
+            myFragment = new MovieListFragment();
+        } else if (id == R.id.nav_rec) {
+            myFragment = new RecommendationFragment();
         }
 
         android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
         fManager.beginTransaction()
                 .replace(R.id.container, myFragment)
-                .addToBackStack(null)
                 .commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -181,6 +182,22 @@ public class NavigationActivity extends AppCompatActivity
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, movies);
         ListView lv = (ListView) findViewById(R.id.searchListView);
         lv.setAdapter(adapter);
+    }
 
+    public void onOverallButtonClick(View v) {
+        MovieManager mm = new MovieManager();
+        mm.setTitle("Overall Recommendations");
+        mm.getOverallRec();
+        android.support.v4.app.Fragment myFragment = new MovieListFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).commit();
+    }
+
+    public void onMajorButtonClick(View v) {
+        MovieManager mm = new MovieManager();
+        mm.setTitle("Major Recommendations");
+        Log.d("**MOVIEMATCHER**", String.valueOf(mm.getUserTitles()));
+        mm.getMajorRec(new UserManager().getUserMajor());
+        android.support.v4.app.Fragment myFragment = new MovieListFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).commit();
     }
 }

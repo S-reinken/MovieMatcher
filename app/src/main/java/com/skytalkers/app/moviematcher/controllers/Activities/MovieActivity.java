@@ -31,10 +31,6 @@ public class MovieActivity extends AppCompatActivity {
         MovieManager mm = new MovieManager();
         ((TextView) findViewById(R.id.movieTextView)).setText(title);
         ((ImageView) findViewById(R.id.movieImageView)).setImageBitmap(Bitmap.createScaledBitmap(image, 540, 800, false));
-        Movie a = mm.getMovie(title);
-        ArrayList<Movie> am = mm.getMovies();
-        Map<String,Movie> ma = mm.getMap();
-        Map<String,Integer> maa = mm.getRatings("Gods Of Egypt");
         ((RatingBar) findViewById(R.id.avgAllRating)).setRating(mm.getMovie(title).getAverageRating());
         ((RatingBar) findViewById(R.id.avgMajorRating)).setRating(mm.getMovie(title).getMajorRating());
         try {
