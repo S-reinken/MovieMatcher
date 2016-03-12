@@ -21,7 +21,9 @@
             android:name=".controllers.Activities.LoginScreenActivity"
             android:label="@string/title_activity_login_screen"
             android:parentActivityName=".controllers.Activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:noHistory="true">
+
             <!--<intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE"/>

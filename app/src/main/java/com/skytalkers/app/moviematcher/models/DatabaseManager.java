@@ -57,6 +57,7 @@ public class DatabaseManager {
         client.child("Users").child("NormalUsers").addValueEventListener(new ListListener());
         client.child("Users").child("Admins").addValueEventListener(new AdminListListener());
     }
+
     public List<User> getAllUsers() {
         return userList;
     }
