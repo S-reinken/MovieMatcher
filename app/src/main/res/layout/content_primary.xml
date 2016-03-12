@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".controllers.Activities.PrimaryActivity"
-    tools:showIn="@layout/activity_primary">
+    tools:showIn="@layout/activity_primary"
+    android:id="@+id/profileLayout">
 
     <Button
         android:layout_width="wrap_content"

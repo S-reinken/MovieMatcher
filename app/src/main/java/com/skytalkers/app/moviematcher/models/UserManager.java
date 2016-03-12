@@ -13,6 +13,7 @@ public class UserManager {
     private static Map<String,User> users = new HashMap<>();
     private static DatabaseManager mgr = new DatabaseManager();
     private static List<User> userList;
+    private static List<User> adminList;
     private static User user;
 
     private static User checkedUser;
@@ -24,6 +25,7 @@ public class UserManager {
 
     //public User findUser(String id) { return users.get(id); }
     public User findUser(String id) {
+        adminList = mgr.getAdmins();
         userList = mgr.getAllUsers();
         for (User u : userList) {
             if (id.equals(u.getUsername())) {
@@ -31,6 +33,14 @@ public class UserManager {
             }
         }
         return null;
+    }
+
+    public boolean isAdmin() {
+        if (adminList.contains(user)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //public User getUser() { return user; }

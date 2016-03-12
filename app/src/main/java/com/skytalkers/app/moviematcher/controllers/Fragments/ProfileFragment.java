@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.models.UserManager;
@@ -19,38 +21,14 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        RelativeLayout layout = (RelativeLayout) this.getActivity().findViewById(R.id.profileLayout);
+        Button adminButton = new Button(this.getContext());
+        adminButton.setText("Show Users");
+        adminButton.setLayoutParams(new RelativeLayout.LayoutParams(20, 20));
+        if (this.getActivity().getIntent().getBooleanExtra("Admin", false)) {
+            layout.addView(adminButton);
+        }
         myView = inflater.inflate(R.layout.content_primary, container, false);
         return myView;
     }
-
-    /*
-    public void onLogoutButtonClick(View v) {
-        UserManager um = new UserManager();
-        um.logout();
-        this.getActivity().finish();
-    }
-
-    public void onUsersButtonClick(View v) {
-        Intent intent = new Intent(this.getContext(), UserListActivity.class);
-        startActivity(intent);
-    }
-
-    public void onUserEditButtonClick(View v) {
-        Intent intent = new Intent(this.getContext(), EditProfileActivity.class);
-        startActivity(intent);
-    }
-
-    public void onChangePassButtonClick(View v) {
-        Intent intent = new Intent(this.getContext(), ChangePasswordActivity.class);
-        startActivity(intent);
-    }
-
-    public void onViewProfileButtonClick(View v) {
-        UserManager um = new UserManager();
-        String user = um.getUserName();
-        Intent intent = new Intent(this.getContext(), UserProfileActivity.class);
-        intent.putExtra("user_object", user);
-        startActivity(intent);
-    }
-    */
 }

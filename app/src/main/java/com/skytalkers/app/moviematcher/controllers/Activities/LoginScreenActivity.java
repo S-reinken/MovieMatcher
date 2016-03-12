@@ -57,6 +57,11 @@ public class LoginScreenActivity extends AppCompatActivity {
             Log.d("**MOVIEMATCHER**", "Login Success");
             um.setUser(name);
             Intent intent = new Intent(this, NavigationActivity.class);
+            if (um.isAdmin()) {
+                intent.putExtra("Admin", true);
+            } else {
+                intent.putExtra("Admin", false);
+            }
             startActivity(intent);
             finish();
         } else {
@@ -66,7 +71,7 @@ public class LoginScreenActivity extends AppCompatActivity {
             Toast t = Toast.makeText(context, "Login Failed", dur);
             t.show();
         }
-        System.out.println("Now the button click has ended");
+        //System.out.println("Now the button click has ended");
     }
 
     public void onCancelButtonClick(View v) {
