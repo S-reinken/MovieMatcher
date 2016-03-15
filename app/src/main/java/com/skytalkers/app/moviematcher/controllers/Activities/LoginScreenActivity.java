@@ -26,9 +26,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Firebase.setAndroidContext(this);
-        DatabaseManager mgr = new DatabaseManager();
-        mgr.prepareUsers();
-
+        UserManager um = new UserManager();
 
         setContentView(R.layout.activity_login_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

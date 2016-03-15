@@ -19,14 +19,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
+        DatabaseManager mgr = new DatabaseManager();
+        mgr.prepareUsers();
         setContentView(R.layout.activity_main);
 
-        UserManager um = new UserManager();
-        um.addAdmin("admin", "admin", "admin", "admin", "admin", "CS");
-        um.addUser("1", "2", "3", "4", "5", "NOTCS");
-        um.addUser("6", "7", "8", "9", "10", "CS");
         //recTesting();
-        majorRecTesting();
+        //majorRecTesting();
+        //databaseTest();
     }
 
     @Override
@@ -64,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onDebugButtonClick(View v) {
+
         UserManager um = new UserManager();
+        //um.databaseTest();
         um.setUser("admin");
         Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
@@ -97,4 +98,5 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.d("MOVIEMATCHER", String.valueOf(mm.getUserMovies().size()));
     }
+
 }

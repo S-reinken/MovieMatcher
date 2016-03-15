@@ -55,16 +55,16 @@ public class DatabaseManager {
 
     public void prepareUsers() {
         client.child("Users").child("NormalUsers").addValueEventListener(new ListListener());
-        client.child("Users").child("Admins").addValueEventListener(new AdminListListener());
+        //client.child("Users").child("Admins").addValueEventListener(new AdminListListener());
     }
 
     public List<User> getAllUsers() {
         return userList;
     }
 
-    public List<User> getAdmins() {
+    /*public List<User> getAdmins() {
         return  adminList;
-    }
+    }*/
 
 
 }

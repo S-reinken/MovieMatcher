@@ -1,5 +1,7 @@
 package com.skytalkers.app.moviematcher.models;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,17 +12,23 @@ import java.util.HashMap;
  * User Manager object to manage all registered users.
  */
 public class UserManager {
-    private static Map<String,User> users = new HashMap<>();
+    private static Map<String,User> users;
     private static DatabaseManager mgr = new DatabaseManager();
     private static List<String> userList;
     private static List<String> adminList = new ArrayList<>();
     private static User user;
 
-    private static User checkedUser;
-
-    public static void setCheckedUser(User a) {
-        checkedUser = a;
+    public UserManager() {
+        Log.d("UM constructor pre-init", "Test");
+        if (users == null) {
+            users = new HashMap<>();
+            List<User> uList = new DatabaseManager().getAllUsers();
+            Log.d("UM constructor", String.valueOf(uList.size()));
+            for (User u : uList) users.put(u.getUsername(), u);
+        }
+        userList = new ArrayList<>(users.keySet());
     }
+
     public void setUser(String name) { user = findUser(name); }
 
     public User findUser(String id) { return users.get(id); }
@@ -47,6 +55,7 @@ public class UserManager {
         return users.get(name).isBanned();
     }
 
+    /*
     public void addAdmin(String name, String pass, String f, String l, String e, String m) {
         addUser(name, pass, f, l , e, m);
         users.get(name).setAdmin();
@@ -57,6 +66,7 @@ public class UserManager {
         addUser(name, pass, f, l, e);
         users.get(name).setAdmin();
     }
+    */
     //public User getUser() { return user; }
 
     /*public void setUserList() {
@@ -83,6 +93,8 @@ public class UserManager {
     public void addUser(String name, String pass, String f, String l, String e, String m) {
         users.put(name, new User(name, pass, f, l, e, m));
         userList = new ArrayList<>(users.keySet());
+        DatabaseManager mgr = new DatabaseManager();
+        mgr.addUser(users.get(name));
     }
 
     /*public void addUser(String name, String pass, String f, String l, String e, String m) {
@@ -138,9 +150,4 @@ public class UserManager {
     public List<String> getUserList() {
         return userList;
     }
-
-    public List<String> getAdminList() {
-        return adminList;
-    }
-
 }
