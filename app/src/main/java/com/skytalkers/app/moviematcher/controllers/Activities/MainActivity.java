@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         UserManager um = new UserManager();
-        um.addUser("admin", "admin", "admin", "admin", "admin", "CS");
+        um.addAdmin("admin", "admin", "admin", "admin", "admin", "CS");
         um.addUser("1", "2", "3", "4", "5", "NOTCS");
         um.addUser("6", "7", "8", "9", "10", "CS");
         //recTesting();

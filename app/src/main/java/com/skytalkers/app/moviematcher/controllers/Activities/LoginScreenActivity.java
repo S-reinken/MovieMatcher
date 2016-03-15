@@ -54,22 +54,17 @@ public class LoginScreenActivity extends AppCompatActivity {
         String name = ((EditText) findViewById(R.id.usernameText)).getText().toString();
         String pass = ((EditText) findViewById(R.id.passwordText)).getText().toString();
         if (um.login(name, pass)) {
-            Log.d("**MOVIEMATCHER**", "Login Success");
-            um.setUser(name);
-            Intent intent = new Intent(this, NavigationActivity.class);
-            if (um.isAdmin()) {
-                intent.putExtra("Admin", true);
+            Log.d("**MOVIEMATCHER**", "Login Match");
+            if (!um.isBanned(name)) {
+                um.setUser(name);
+                Intent intent = new Intent(this, NavigationActivity.class);
+                startActivity(intent);
+                finish();
             } else {
-                intent.putExtra("Admin", false);
+                ToastWrapper.show(this, "User Banned");
             }
-            startActivity(intent);
-            finish();
         } else {
-            Context context = this;
-            int dur = Toast.LENGTH_SHORT;
-            Log.d("**MOVIEMATCHER**", "Login Failed");
-            Toast t = Toast.makeText(context, "Login Failed", dur);
-            t.show();
+            ToastWrapper.show(this, "Login Failed");
         }
         //System.out.println("Now the button click has ended");
     }

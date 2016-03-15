@@ -29,6 +29,12 @@ public class ProfileFragment extends Fragment {
             layout.addView(adminButton);
         }
         myView = inflater.inflate(R.layout.content_primary, container, false);
+        Button b = (Button) myView.findViewById(R.id.usersButton);
+        if (!(new UserManager().isAdmin())) {
+            b.setVisibility(View.INVISIBLE);
+        } else {
+            b.setVisibility(View.VISIBLE);
+        }
         return myView;
     }
 }

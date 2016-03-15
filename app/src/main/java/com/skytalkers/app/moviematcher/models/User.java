@@ -15,7 +15,8 @@ public class User {
     private String email;
     private String major;
     private Map<String,Integer> ratings = new HashMap<>();
-    //boolean isAdmin = false;
+    private boolean banned = false;
+    boolean admin = false;
 
     public User() {
 
@@ -73,5 +74,8 @@ public class User {
 
     public int getRating(String m) { return ratings.get(m); }
 
-    /*public boolean isAdmin() { return isAdmin; }*/
+    public boolean isAdmin() { return admin; }
+    public boolean isBanned() { return banned; }
+    public void setAdmin() { admin = true; }
+    public void toggleBan(boolean ban) { banned = !ban; }
 }

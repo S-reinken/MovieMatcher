@@ -20,16 +20,18 @@
         <activity
             android:name=".controllers.Activities.LoginScreenActivity"
             android:label="@string/title_activity_login_screen"
+            android:noHistory="true"
             android:parentActivityName=".controllers.Activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:noHistory="true">
+            android:theme="@style/AppTheme.NoActionBar">
 
-            <!--<intent-filter>
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data android:scheme="http"
                     android:host="www.skytalkers.com"/>
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".controllers.Activities.NavigationActivity"
@@ -87,7 +89,11 @@
         <activity
             android:name=".controllers.Activities.MovieActivity"
             android:label="@string/title_activity_movie"
-            android:theme="@style/AppTheme.NoActionBar"> </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".controllers.Activities.UserStatusActivity"
+            android:label="@string/title_activity_user_status"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
