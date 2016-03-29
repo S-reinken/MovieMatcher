@@ -13,9 +13,9 @@ import java.util.HashMap;
  */
 public class UserManager {
     private static Map<String,User> users;
-    private static DatabaseManager mgr = new DatabaseManager();
+    //private static DatabaseManager mgr = new DatabaseManager();
     private static List<String> userList;
-    private static List<String> adminList = new ArrayList<>();
+    //private static List<String> adminList = new ArrayList<>();
     private static User user;
 
     public UserManager() {

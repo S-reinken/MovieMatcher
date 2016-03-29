@@ -10,8 +10,6 @@ import com.firebase.client.Firebase;
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.models.*;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /*
     public void recTesting() {
         MovieManager mm = new MovieManager();
         try { mm.sendNewMovieRequest(); } catch (Exception e) {
@@ -98,5 +97,5 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.d("MOVIEMATCHER", String.valueOf(mm.getUserMovies().size()));
     }
-
+    */
 }

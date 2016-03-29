@@ -1,9 +1,6 @@
 package com.skytalkers.app.moviematcher.models;
 
 import android.graphics.Bitmap;
-import android.os.Parcelable;
-
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,5 +67,10 @@ public class Movie {
     @Override
     public boolean equals(Object m) {
         return id == ((Movie)m).getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getId();
     }
 }
