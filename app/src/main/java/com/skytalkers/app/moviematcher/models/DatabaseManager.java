@@ -37,6 +37,10 @@ public class DatabaseManager {
         return userList;
     }
 
+    public List<Movie> getMovieList() {
+        return movieList;
+    }
+
     /*public List<User> getAdmins() {
         return  adminList;
     }*/
