@@ -1,6 +1,5 @@
 package com.skytalkers.app.moviematcher.controllers.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,7 +16,7 @@ import com.skytalkers.app.moviematcher.models.UserManager;
  * Created by schuylerreinken on 2/18/16.
  */
 public class ProfileFragment extends Fragment {
-    View myView;
+    private View myView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

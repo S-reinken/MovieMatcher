@@ -1,22 +1,16 @@
 package com.skytalkers.app.moviematcher.controllers.Activities;
 
 import android.content.Intent;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.models.ToastWrapper;
-import com.skytalkers.app.moviematcher.models.DatabaseManager;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class LoginScreenActivity extends AppCompatActivity {
@@ -26,7 +20,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Firebase.setAndroidContext(this);
-        UserManager um = new UserManager();
+        //UserManager um = new UserManager();
 
         setContentView(R.layout.activity_login_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

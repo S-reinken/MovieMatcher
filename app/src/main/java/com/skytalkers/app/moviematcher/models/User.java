@@ -16,7 +16,7 @@ public class User {
     private String major;
     private Map<String,Integer> ratings = new HashMap<>();
     private boolean banned = false;
-    boolean admin = false;
+    private boolean admin = false;
 
     public User() {
 

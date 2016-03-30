@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.controllers.Activities.MovieActivity;
 import com.skytalkers.app.moviematcher.models.MovieManager;
-import com.skytalkers.app.moviematcher.models.ToastWrapper;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
 import java.util.ArrayList;
@@ -26,8 +25,8 @@ import java.util.ArrayList;
  * Created by Bruce on 3/8/2016.
  */
 public class MovieListFragment extends Fragment {
-    View myView;
-    ListAdapter adapter;
+    private View myView;
+    private ListAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

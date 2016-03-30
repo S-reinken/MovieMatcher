@@ -1,7 +1,6 @@
 package com.skytalkers.app.moviematcher.models;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
 //import com.android.volley.*;
@@ -22,6 +21,10 @@ public class RottenTomatoesManager {
     private String res;
     //getMoviebyName(String name) {
     //getMoviebyDate(Date initial, Date final)
+
+    private RottenTomatoesManager() {
+
+    }
 
     public static ArrayList<Movie> getNewMovies() throws Exception { //Opening?; only returning up to 5 for now
         String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";

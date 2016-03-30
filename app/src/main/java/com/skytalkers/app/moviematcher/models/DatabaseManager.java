@@ -1,25 +1,50 @@
 package com.skytalkers.app.moviematcher.models;
 
 
-import android.util.Log;
-
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by schuylerreinken on 2/23/16.
  */
 public class DatabaseManager {
-    static Firebase client = new Firebase("https://blazing-fire-2549.firebaseio.com/");
-    static List<User> userList = new ArrayList<User>();
-    static List<User> adminList = new ArrayList<>();
+    private static Firebase client = new Firebase("https://blazing-fire-2549.firebaseio.com/");
+    private static List<User> userList = new ArrayList<User>();
+    private static List<Movie> movieList = new ArrayList<>();
+
+    public void addUser(User user) {
+        client.child("Users").child("NormalUsers").child(user.getUsername()).setValue(user);
+        userList.add(user);
+    }
+
+    public void addMovie(Movie movie) {
+        client.child("Movies").child(movie.getTitle()).setValue(movie);
+        movieList.add(movie);
+    }
+
+    public void prepareUsers() {
+        client.child("Users").child("NormalUsers").addValueEventListener(new ListListener());
+        client.child("Movies").addValueEventListener(new MovieListener());
+        //client.child("Users").child("Admins").addValueEventListener(new AdminListListener());
+    }
+
+    public List<User> getAllUsers() {
+        return userList;
+    }
+
+    public List<Movie> getMovieList() {
+        return movieList;
+    }
+
+    /*public List<User> getAdmins() {
+        return  adminList;
+    }*/
+
 
     private class ListListener implements ValueEventListener {
         @Override
@@ -35,11 +60,11 @@ public class DatabaseManager {
         }
     }
 
-    private class AdminListListener implements ValueEventListener {
+    private class MovieListener implements ValueEventListener {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                adminList.add(snapshot.getValue(User.class));
+                movieList.add(snapshot.getValue(Movie.class));
             }
         }
 
@@ -48,23 +73,4 @@ public class DatabaseManager {
 
         }
     }
-
-    public void addUser(User user) {
-        client.child("Users").child("NormalUsers").child(user.getUsername()).setValue(user);
-    }
-
-    public void prepareUsers() {
-        client.child("Users").child("NormalUsers").addValueEventListener(new ListListener());
-        //client.child("Users").child("Admins").addValueEventListener(new AdminListListener());
-    }
-
-    public List<User> getAllUsers() {
-        return userList;
-    }
-
-    /*public List<User> getAdmins() {
-        return  adminList;
-    }*/
-
-
 }

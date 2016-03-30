@@ -2,8 +2,6 @@ package com.skytalkers.app.moviematcher.controllers.Activities;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -13,7 +11,6 @@ import android.widget.Toast;
 
 import com.skytalkers.app.moviematcher.models.UserManager;
 import com.skytalkers.app.moviematcher.R;
-import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class RegisterScreenActivity extends AppCompatActivity {
 

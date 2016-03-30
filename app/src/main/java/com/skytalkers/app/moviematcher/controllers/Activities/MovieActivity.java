@@ -9,12 +9,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.skytalkers.app.moviematcher.R;
-import com.skytalkers.app.moviematcher.models.Movie;
 import com.skytalkers.app.moviematcher.models.MovieManager;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
-import java.util.ArrayList;
-import java.util.Map;
 
 public class MovieActivity extends AppCompatActivity {
 
@@ -36,7 +33,7 @@ public class MovieActivity extends AppCompatActivity {
         try {
             int rating = mm.getRatings(title).get(new UserManager().getUserName());
             ((RatingBar) findViewById(R.id.userRating)).setRating(mm.getRatings(title).get(new UserManager().getUserName()));
-        } catch (Exception e) { };
+        } catch (Exception e) { }
         ((RatingBar) findViewById(R.id.userRating)).setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
