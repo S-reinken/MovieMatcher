@@ -105,6 +105,8 @@ public class UserManager {
     public void addUser(String name, String pass, String f, String l, String e) {
         users.put(name, new User(name, pass, f, l, e));
         userList = new ArrayList<>(users.keySet());
+        DatabaseManager mgr = new DatabaseManager();
+        mgr.addUser(users.get(name));
     }
 
     /*public void addUser(String name, String pass, String f, String l, String e) {
@@ -120,12 +122,14 @@ public class UserManager {
         users.remove(user.getUsername());
         user.edit(name, f, l, e, m);
         users.put(name, user);
+        mgr.addUser(users.get(name));
         //userList = new ArrayList<>(users.keySet());
     }
 
     public void changePass(String pass) {
         user.changePass(pass);
         users.put(user.getUsername(), user);
+        mgr.addUser(user);
     }
 
     public Boolean login(String name, String pass) {
