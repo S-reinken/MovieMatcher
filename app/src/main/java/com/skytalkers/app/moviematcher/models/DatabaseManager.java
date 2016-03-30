@@ -15,14 +15,21 @@ import java.util.List;
 public class DatabaseManager {
     private static Firebase client = new Firebase("https://blazing-fire-2549.firebaseio.com/");
     private static List<User> userList = new ArrayList<User>();
-    private static List<User> adminList = new ArrayList<>();
+    private static List<Movie> movieList = new ArrayList<>();
 
     public void addUser(User user) {
         client.child("Users").child("NormalUsers").child(user.getUsername()).setValue(user);
+        userList.add(user);
+    }
+
+    public void addMovie(Movie movie) {
+        client.child("Movies").child(movie.getTitle()).setValue(movie);
+        movieList.add(movie);
     }
 
     public void prepareUsers() {
         client.child("Users").child("NormalUsers").addValueEventListener(new ListListener());
+        client.child("Movies").addValueEventListener(new MovieListener());
         //client.child("Users").child("Admins").addValueEventListener(new AdminListListener());
     }
 
@@ -49,11 +56,11 @@ public class DatabaseManager {
         }
     }
 
-    private class AdminListListener implements ValueEventListener {
+    private class MovieListener implements ValueEventListener {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                adminList.add(snapshot.getValue(User.class));
+                movieList.add(snapshot.getValue(Movie.class));
             }
         }
 
@@ -62,8 +69,4 @@ public class DatabaseManager {
 
         }
     }
-
-
-
-
 }
