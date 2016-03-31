@@ -23,7 +23,9 @@ public class DatabaseManager {
     }
 
     public void addMovie(Movie movie) {
-        client.child("Movies").child(movie.getTitle()).setValue(movie);
+        for (String key : movie.getRatings().keySet()) {
+            client.child("Movies").child(key).setValue(movie.getRating(key));
+        }
         movieList.add(movie);
     }
 
@@ -64,7 +66,11 @@ public class DatabaseManager {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                movieList.add(snapshot.getValue(Movie.class));
+                Movie m = new Movie(snapshot.getKey());
+                for (DataSnapshot sn : snapshot.getChildren()) {
+                    m.rate(sn.getKey(), (int) sn.getValue());
+                }
+                movieList.add(m);
             }
         }
 
