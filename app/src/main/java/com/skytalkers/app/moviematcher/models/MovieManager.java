@@ -20,9 +20,11 @@ public class MovieManager {
     private static ArrayList<Movie> userMovies = new ArrayList<>();
     private static String listTitle;
 
+
     public MovieManager() {
 
     }
+
 
     public MovieManager(String url) {
         req = url;
