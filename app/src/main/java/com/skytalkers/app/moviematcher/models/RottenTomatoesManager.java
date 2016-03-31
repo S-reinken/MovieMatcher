@@ -22,20 +22,41 @@ public class RottenTomatoesManager {
     //getMoviebyName(String name) {
     //getMoviebyDate(Date initial, Date final)
 
+    /**
+     * Constructs empty RottenTomatoesManager object
+     */
     private RottenTomatoesManager() {
 
     }
 
+    /**
+     * Fetches a list of Movie objects that are currently in theaters
+     * @return ArrayList of new movies
+     * @throws Exception if there is an error fetching movies
+     */
     public static ArrayList<Movie> getNewMovies() throws Exception { //Opening?; only returning up to 5 for now
         String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
         return getRTRequest(req);
     }
 
+
+    /**
+     * Fetches a list of Movie objects that are new on DVD
+     * @return ArrayList of new DVDs
+     * @throws Exception if there is an error fetching movies
+     */
     public static ArrayList<Movie> getRecentDVDs() throws Exception {
         String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
         return getRTRequest(req);
     }
 
+    /**
+     * Sends a request to Rotten Tomatoes to fetch a list of movies and parses
+     * JSON files into Movie objects
+     * @param url The url to request from RT
+     * @return ArrayList of movies
+     * @throws Exception if there is an error fetching movies or parsing JSONs
+     */
     public static ArrayList<Movie> getRTRequest(String url) throws Exception {
         ArrayList<Movie> movies = new ArrayList<>();
         String res;
