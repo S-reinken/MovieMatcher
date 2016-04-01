@@ -68,7 +68,7 @@ public class DatabaseManager {
             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                 Movie m = new Movie(snapshot.getKey());
                 for (DataSnapshot sn : snapshot.getChildren()) {
-                    m.rate(sn.getKey(), (int) sn.getValue());
+                    m.rate(sn.getKey(), ((Long)sn.getValue()).intValue());
                 }
                 movieList.add(m);
             }

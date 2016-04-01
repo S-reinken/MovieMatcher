@@ -236,6 +236,7 @@ public class UserManager {
      * @param m Updated major
      */
     public void editUser(String name, String f, String l, String e, String m) {
+        DatabaseManager mgr = new DatabaseManager();
         users.remove(user.getUsername());
         user.edit(name, f, l, e, m);
         users.put(name, user);
@@ -248,6 +249,7 @@ public class UserManager {
      * @param pass Updated password
      */
     public void changePass(String pass) {
+        DatabaseManager mgr = new DatabaseManager();
         user.changePass(pass);
         users.put(user.getUsername(), user);
         mgr.addUser(user);
