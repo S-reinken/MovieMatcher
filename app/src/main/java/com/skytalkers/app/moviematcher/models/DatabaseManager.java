@@ -13,7 +13,8 @@ import java.util.List;
  * Created by schuylerreinken on 2/23/16.
  */
 public class DatabaseManager {
-    private static Firebase client = new Firebase("https://blazing-fire-2549.firebaseio.com/");
+    //private static Firebase client = new Firebase("https://blazing-fire-2549.firebaseio.com/");
+    private static Firebase client = new Firebase("https://resplendent-fire-3901.firebaseio.com/");
     private static List<User> userList = new ArrayList<User>();
     private static List<Movie> movieList = new ArrayList<>();
 

@@ -7,7 +7,7 @@ import java.util.Map;
 public class Movie {
     private String name;
     private int id;
-    private Bitmap image;
+    private String image;
     private Map<String,Integer> ratings = new HashMap<String,Integer>();
 
     //date released
@@ -19,7 +19,7 @@ public class Movie {
 
     public Movie(String t) { name= t; }
 
-    public Movie(String t, int i, Bitmap b) {
+    public Movie(String t, int i, String b) {
         name = t;
         id = i;
         image = b;
@@ -27,13 +27,13 @@ public class Movie {
 
     public String getTitle() { return name; }
 
-    public Bitmap getImage() { return image; }
+    public String getImage() { return image; }
 
     public int getId() { return id; }
 
     public void setTitle(String t) { name = t; }
 
-    public void setImage(Bitmap b) { image = b; }
+    public void setImage(String b) { image = b; }
 
     public void rate(String u, int r) { ratings.put(u,r); }
 

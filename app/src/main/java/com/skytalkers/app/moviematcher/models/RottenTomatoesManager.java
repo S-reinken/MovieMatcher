@@ -87,7 +87,7 @@ public class RottenTomatoesManager {
                 int id = jsonObject.optInt("id");
                 HTTPRequest http = new HTTPRequest(jsonObject.getJSONObject("posters").optString("thumbnail"));
                 http.sendImageRequest();
-                Bitmap image = http.getImage();
+                String image = http.getImage();
                 Movie m = new Movie(title, id, image);
                 movies.add(m);
             } catch (Exception e) {

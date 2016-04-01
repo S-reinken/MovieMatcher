@@ -1,9 +1,11 @@
 package com.skytalkers.app.moviematcher.controllers.Activities;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -24,7 +26,7 @@ public class MovieActivity extends AppCompatActivity {
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String title = getIntent().getStringExtra("title");
-        Bitmap image = getIntent().getParcelableExtra("image");
+        Bitmap image = decodeImage(getIntent().getStringExtra("image"));
         MovieManager mm = new MovieManager();
         ((TextView) findViewById(R.id.movieTextView)).setText(title);
         ((ImageView) findViewById(R.id.movieImageView)).setImageBitmap(Bitmap.createScaledBitmap(image, 540, 800, false));
@@ -46,7 +48,10 @@ public class MovieActivity extends AppCompatActivity {
         });
     }
 
-
+    public Bitmap decodeImage(String image) {
+        byte[] bytes = Base64.decode(image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
 
 
 

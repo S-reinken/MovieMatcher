@@ -1,8 +1,9 @@
 package com.skytalkers.app.moviematcher.models;
 
-
 import android.graphics.Bitmap;
+import android.util.Base64;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 /**
@@ -13,7 +14,7 @@ public class HTTPRequest {
     private String req;
     private String res;
     private InputStream is;
-    private Bitmap image;
+    private String image;
 
     public HTTPRequest(String req) {
         this.req = req;
@@ -32,14 +33,19 @@ public class HTTPRequest {
         Thread thread = new Thread(retriever);
         thread.start();
         thread.join();
-        image = retriever.getImage();
+        Bitmap bmp = retriever.getImage();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        bmp.recycle();
+        byte[] bytes = stream.toByteArray();
+        image = Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
     public String getResponse() { return res; }
 
     public InputStream getStream() throws InterruptedException { return is; }
 
-    public Bitmap getImage() throws Exception { return image; }
+    public String getImage() throws Exception { return image; }
 
     public static String getKey() {
         return "yedukp76ffytfuy24zsqk7f5&";

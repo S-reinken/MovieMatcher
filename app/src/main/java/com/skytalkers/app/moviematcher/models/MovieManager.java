@@ -69,6 +69,8 @@ public class MovieManager {
     public void addMovie(String m) {
         Log.d("Movie Add", m + " " + String.valueOf(movieMap.get(m)));
         userMovies.add(movieMap.get(m));
+        DatabaseManager mgr = new DatabaseManager();
+        mgr.addMovie(movieMap.get(m));
     }
 
     public void rate(String m, String u, int r) {
@@ -87,12 +89,6 @@ public class MovieManager {
         ArrayList<String> titles = new ArrayList<>();
         for (Movie m : userMovies) titles.add(m.getTitle());
         return titles;
-    }
-
-    public ArrayList<Bitmap> getImages() {
-        ArrayList<Bitmap> images = new ArrayList<>();
-        for (Movie m : movies) images.add(m.getImage());
-        return images;
     }
 
     public boolean contains(Movie mov) {
