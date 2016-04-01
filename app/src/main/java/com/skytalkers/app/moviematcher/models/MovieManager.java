@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,19 +16,26 @@ import java.util.Map;
  */
 public class MovieManager {
     private static Map<String,Movie> movieMap = new HashMap<>();
-    private static ArrayList<Movie> movies;
+    private static List<Movie> movies;
     private static String req;
-    private static ArrayList<Movie> userMovies = new ArrayList<>();
+    private static List<Movie> userMovies;
     private static String listTitle;
 
 
     public MovieManager() {
-
+        if (userMovies == null) {
+            userMovies = new DatabaseManager().getMovieList();
+            for (Movie m : userMovies) movieMap.put(m.getTitle(), m);
+        }
     }
 
 
     public MovieManager(String url) {
         req = url;
+    }
+
+    public void setMovies() {
+
     }
 
     public void setTitle(String title) {
@@ -56,7 +64,7 @@ public class MovieManager {
         for (Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
     }
 
-    public ArrayList<Movie> getMovies() { return movies; }
+    public List<Movie> getMovies() { return movies; }
 
     public Movie getMovie(String m) { return movieMap.get(m); }
 
@@ -75,9 +83,10 @@ public class MovieManager {
 
     public void rate(String m, String u, int r) {
         movieMap.get(m).rate(u, r);
+        new DatabaseManager().rate(movieMap.get(m), u, r);
     }
 
-    public ArrayList<Movie> getUserMovies() { return userMovies; }
+    public List<Movie> getUserMovies() { return userMovies; }
 
     public ArrayList<String> getTitles() {
         ArrayList<String> titles = new ArrayList<>();

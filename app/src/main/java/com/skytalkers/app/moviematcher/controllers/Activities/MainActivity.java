@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         mgr.prepareUsers();
         setContentView(R.layout.activity_main);
 
-        recTesting();
+        //recTesting();
         //majorRecTesting();
         //databaseTest();
     }

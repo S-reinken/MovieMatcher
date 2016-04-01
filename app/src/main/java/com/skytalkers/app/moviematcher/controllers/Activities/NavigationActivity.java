@@ -181,6 +181,7 @@ public class NavigationActivity extends AppCompatActivity
 
     public void onOverallButtonClick(View v) {
         MovieManager mm = new MovieManager();
+        mm.setMovies();
         mm.setTitle("Overall Recommendations");
         mm.getOverallRec();
         android.support.v4.app.Fragment myFragment = new MovieListFragment();
@@ -189,6 +190,7 @@ public class NavigationActivity extends AppCompatActivity
 
     public void onMajorButtonClick(View v) {
         MovieManager mm = new MovieManager();
+        mm.setMovies();
         mm.setTitle("Major Recommendations");
         Log.d("**MOVIEMATCHER**", String.valueOf(mm.getUserTitles()));
         mm.getMajorRec(new UserManager().getUserMajor());

@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import com.firebase.client.Firebase;
 import com.skytalkers.app.moviematcher.R;
+import com.skytalkers.app.moviematcher.models.DatabaseManager;
+import com.skytalkers.app.moviematcher.models.MovieManager;
 import com.skytalkers.app.moviematcher.models.ToastWrapper;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
@@ -20,7 +22,8 @@ public class LoginScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Firebase.setAndroidContext(this);
-        //UserManager um = new UserManager();
+        UserManager um = new UserManager();
+        MovieManager mm = new MovieManager();
 
         setContentView(R.layout.activity_login_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

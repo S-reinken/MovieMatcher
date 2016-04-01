@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.skytalkers.app.moviematcher.R;
+import com.skytalkers.app.moviematcher.models.Movie;
 import com.skytalkers.app.moviematcher.models.MovieManager;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
@@ -28,8 +30,13 @@ public class MovieActivity extends AppCompatActivity {
         String title = getIntent().getStringExtra("title");
         Bitmap image = decodeImage(getIntent().getStringExtra("image"));
         MovieManager mm = new MovieManager();
+        Log.d("MovieActivity", title);
+        for (Movie m : mm.getMovies()) {
+            Log.d("MovieActivity", m.getTitle());
+            Log.d("MovieActivity", mm.getMovie(m.getTitle()).getTitle());
+        }
         ((TextView) findViewById(R.id.movieTextView)).setText(title);
-        ((ImageView) findViewById(R.id.movieImageView)).setImageBitmap(Bitmap.createScaledBitmap(image, 540, 800, false));
+        ((ImageView) findViewById(R.id.movieImageView)).setImageBitmap(Bitmap.createScaledBitmap(image, 405, 600, false));
         ((RatingBar) findViewById(R.id.avgAllRating)).setRating(mm.getMovie(title).getAverageRating());
         ((RatingBar) findViewById(R.id.avgMajorRating)).setRating(mm.getMovie(title).getMajorRating());
         try {
@@ -41,7 +48,7 @@ public class MovieActivity extends AppCompatActivity {
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 UserManager um = new UserManager();
                 String title = MovieActivity.this.getIntent().getStringExtra("title");
-                um.rate(title, (int) rating);
+                //um.rate(title, (int) rating);
                 MovieManager mm = new MovieManager();
                 mm.rate(title, um.getUserName(), (int) rating);
             }

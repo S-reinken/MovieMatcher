@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.skytalkers.app.moviematcher.models.MovieManager;
 import com.skytalkers.app.moviematcher.models.UserManager;
 import com.skytalkers.app.moviematcher.R;
 
@@ -22,6 +23,8 @@ public class RegisterScreenActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        UserManager um = new UserManager();
+        MovieManager mm = new MovieManager();
     }
 
     public void onRegisterButtonClick(View v) {
