@@ -20,11 +20,12 @@ public class UserListActivity extends ListActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ArrayAdapter<String> adapter;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
-        UserManager um = new UserManager();
+        final UserManager um = new UserManager();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, um.getUserList());
-        ListView listview = (ListView) findViewById(android.R.id.list);
+        final ListView listview = (ListView) findViewById(android.R.id.list);
         listview.setAdapter(adapter);
     }
 
@@ -37,9 +38,9 @@ public class UserListActivity extends ListActivity {
      */
     @Override
     public void onListItemClick(ListView lv, View v, int position, long id) {
-        UserManager um = new UserManager();
-        String user = um.getUserByPos(position);
-        Intent intent = new Intent(this, UserProfileActivity.class);
+        final UserManager um = new UserManager();
+        final String user = um.getUserByPos(position);
+        final Intent intent = new Intent(this, UserProfileActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     }

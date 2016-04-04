@@ -35,9 +35,11 @@ public class UserManager {
         Log.d("UM constructor pre-init", "Test");
         if (users == null) {
             users = new HashMap<>();
-            List<User> uList = new DatabaseManager().getAllUsers();
+            final List<User> uList = new DatabaseManager().getAllUsers();
             Log.d("UM constructor", String.valueOf(uList.size()));
-            for (User u : uList) users.put(u.getUsername(), u);
+            for (final User u : uList) {
+                users.put(u.getUsername(), u);
+            }
         }
         userList = new ArrayList<>(users.keySet());
     }
@@ -188,7 +190,7 @@ public class UserManager {
     public void addUser(String name, String pass, String f, String l, String e, String m) {
         users.put(name, new User(name, pass, f, l, e, m));
         userList = new ArrayList<>(users.keySet());
-        DatabaseManager mgr = new DatabaseManager();
+        final DatabaseManager mgr = new DatabaseManager();
         mgr.addUser(users.get(name));
     }
 
@@ -210,7 +212,7 @@ public class UserManager {
     public void addUser(String name, String pass, String f, String l, String e) {
         users.put(name, new User(name, pass, f, l, e));
         userList = new ArrayList<>(users.keySet());
-        DatabaseManager mgr = new DatabaseManager();
+        final DatabaseManager mgr = new DatabaseManager();
         mgr.addUser(users.get(name));
     }
 
@@ -236,7 +238,7 @@ public class UserManager {
      * @param m Updated major
      */
     public void editUser(String name, String f, String l, String e, String m) {
-        DatabaseManager mgr = new DatabaseManager();
+        final DatabaseManager mgr = new DatabaseManager();
         users.remove(user.getUsername());
         user.edit(name, f, l, e, m);
         users.put(name, user);
@@ -249,7 +251,7 @@ public class UserManager {
      * @param pass Updated password
      */
     public void changePass(String pass) {
-        DatabaseManager mgr = new DatabaseManager();
+        final DatabaseManager mgr = new DatabaseManager();
         user.changePass(pass);
         users.put(user.getUsername(), user);
         mgr.addUser(user);
@@ -262,9 +264,11 @@ public class UserManager {
      * @return True if password matches, false otherwise
      */
     public Boolean login(String name, String pass) {
-        User u = findUser(name);
+        final User u = findUser(name);
         System.out.println("Not in the activity yet");
-        if (u == null) return false;
+        if (u == null) {
+            return false;
+        }
         return u.login(pass);
     }
 

@@ -6,7 +6,7 @@ import android.widget.Toast;
 /**
  * Created by Bruce on 2/28/2016.
  */
-public class ToastWrapper {
+final public class ToastWrapper {
     /**
      * Empty constructor for a ToastWrapper object
      */
@@ -20,7 +20,7 @@ public class ToastWrapper {
      * @param mes Message contained in the toast
      */
     public static void show(Context c, String mes) {
-        Toast t = Toast.makeText(c, mes, Toast.LENGTH_LONG);
+        final Toast t = Toast.makeText(c, mes, Toast.LENGTH_LONG);
         t.show();
     }
 }

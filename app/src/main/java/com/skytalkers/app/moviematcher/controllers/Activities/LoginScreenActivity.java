@@ -25,11 +25,9 @@ public class LoginScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Firebase.setAndroidContext(this);
-        UserManager um = new UserManager();
-        MovieManager mm = new MovieManager();
 
         setContentView(R.layout.activity_login_screen);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -58,14 +56,14 @@ public class LoginScreenActivity extends AppCompatActivity {
      */
     public void onLoginButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Attempting Login");
-        UserManager um = new UserManager();
-        String name = ((EditText) findViewById(R.id.usernameText)).getText().toString();
-        String pass = ((EditText) findViewById(R.id.passwordText)).getText().toString();
+        final UserManager um = new UserManager();
+        final String name = ((EditText) findViewById(R.id.usernameText)).getText().toString();
+        final String pass = ((EditText) findViewById(R.id.passwordText)).getText().toString();
         if (um.login(name, pass)) {
             Log.d("**MOVIEMATCHER**", "Login Match");
             if (!um.isBanned(name)) {
                 um.setUser(name);
-                Intent intent = new Intent(this, NavigationActivity.class);
+                final Intent intent = new Intent(this, NavigationActivity.class);
                 startActivity(intent);
                 finish();
             } else {

@@ -21,12 +21,12 @@ public class UserStatusActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_status);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String name = getIntent().getStringExtra("name");
-        boolean ban = getIntent().getBooleanExtra("ban", false);
+        final String name = getIntent().getStringExtra("name");
+        final boolean ban = getIntent().getBooleanExtra("ban", false);
         ((TextView) findViewById(R.id.userNameTextView)).setText(name);
         ((TextView) findViewById(R.id.statusTextView)).setText("Status: " + (ban ? "Banned" : "Unlocked"));
         ((Button) findViewById(R.id.statusButton)).setText(ban ? "Unlock" : "Ban");
@@ -38,10 +38,10 @@ public class UserStatusActivity extends AppCompatActivity {
      * @param v Button clicked
      */
     public void onStatusButtonClick(View v) {
-        UserManager um = new UserManager();
-        String name = ((TextView) findViewById(R.id.userNameTextView)).getText().toString();
+        final UserManager um = new UserManager();
+        final String name = ((TextView) findViewById(R.id.userNameTextView)).getText().toString();
         um.toggleBan(name);
-        boolean ban = um.isBanned(name);
+        final boolean ban = um.isBanned(name);
         ((TextView) findViewById(R.id.statusTextView)).setText("Status: " + (ban ? "Banned" : "Unlocked"));
         ((Button) findViewById(R.id.statusButton)).setText(ban ? "Unlock" : "Ban");
         ToastWrapper.show(this, name + " has been " + (ban ? "Banned" : "Unlock"));

@@ -19,11 +19,11 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        UserManager um = new UserManager();
+        final UserManager um = new UserManager();
         ((EditText) findViewById(R.id.nameEditText)).setText(um.getUserName());
         ((EditText) findViewById(R.id.firstEditText)).setText(um.getUserFirst());
         ((EditText) findViewById(R.id.lastEditText)).setText(um.getUserLast());
@@ -44,12 +44,12 @@ public class EditProfileActivity extends AppCompatActivity {
      * @param v
      */
     public void onApplyButtonClick(View v) {
-        UserManager um = new UserManager();
-        String name = ((EditText) findViewById(R.id.nameEditText)).getText().toString();
-        String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
-        String first = ((EditText) findViewById(R.id.firstEditText)).getText().toString();
-        String last = ((EditText) findViewById(R.id.lastEditText)).getText().toString();
-        String major = ((EditText) findViewById(R.id.majorEditText)).getText().toString();
+        final UserManager um = new UserManager();
+        final String name = ((EditText) findViewById(R.id.nameEditText)).getText().toString();
+        final String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
+        final String first = ((EditText) findViewById(R.id.firstEditText)).getText().toString();
+        final String last = ((EditText) findViewById(R.id.lastEditText)).getText().toString();
+        final String major = ((EditText) findViewById(R.id.majorEditText)).getText().toString();
         um.editUser(name, first, last, email, major);
         finish();
     }
