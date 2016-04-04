@@ -11,6 +11,10 @@ import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class PrimaryActivity extends AppCompatActivity {
 
+    /**
+     * Occurs on creation of activity
+     * @param savedInstanceState Android instance data
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,33 +23,56 @@ public class PrimaryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
+    /**
+     * Logs user out
+     * @param v Button clicked
+     */
     public void onLogoutButtonClick(View v) {
         final UserManager um = new UserManager();
         um.logout();
         finish();
     }
 
+    /**
+     * Logs user out when back button is pressed
+     */
     public void onBackPressed() {
         final UserManager um = new UserManager();
         um.logout();
         super.onBackPressed();
     }
 
+    /**
+     * Launches UserListActivity
+     * @param v Button clicked
+     */
     public void onUsersButtonClick(View v) {
         final Intent intent = new Intent(this, UserListActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Launches EditProfileActivity
+     * @param v Button clicked
+     */
     public void onUserEditButtonClick(View v) {
         final Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Launches ChangePasswordActivity
+     * @param v Button clicked
+     */
     public void onChangePassButtonClick(View v) {
         final Intent intent = new Intent(this, ChangePasswordActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Launches UserProfileActivity
+     * @param v Button clicked
+     */
     public void onViewProfileButtonClick(View v) {
         final UserManager um = new UserManager();
         final String user = um.getUserName();

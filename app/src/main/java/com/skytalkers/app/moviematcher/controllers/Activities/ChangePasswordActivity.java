@@ -13,6 +13,10 @@ import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
+    /**
+     * Occurs on creation of activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * Returns to previous view if back button is clicked
+     * @param v Button clicked
+     */
     public void onBackButtonClick(View v) {
         finish();
     }
@@ -31,9 +39,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
         final UserManager um = new UserManager();
         final String name = um.getUserName();
         String pass = ((EditText) findViewById(R.id.oldEdit)).getText().toString();
-        if (!confirm(name, pass)) return;
+        if (!confirm(name, pass)) {return;}
         pass = ((EditText) findViewById(R.id.confirmOldEdit)).getText().toString();
-        if (!confirm(name, pass)) return;
+        if (!confirm(name, pass)) {return;}
         pass = ((EditText) findViewById(R.id.newEdit)).getText().toString();
         if (!pass.equals(((EditText) findViewById(R.id.confirmNewEdit)).getText().toString())) {
             msgbox("New passwords don't match");
@@ -43,6 +51,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Checks for valid password
+     * @param name Username
+     * @param pass Password
+     * @return True if crednetials are correct, false otherwise
+     */
     public boolean confirm(String name, String pass) {
         final UserManager um = new UserManager();
         if (!um.login(name, pass)) {
@@ -52,6 +66,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Posts toast to the screen
+     * @param msg Text to be displayed
+     */
     public void msgbox(String msg) {
         final Context context = getApplicationContext();
         final int dur = Toast.LENGTH_SHORT;

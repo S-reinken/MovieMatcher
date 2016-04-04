@@ -33,6 +33,10 @@ import java.util.ArrayList;
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Occurs on creation of activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +64,10 @@ public class NavigationActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Closes navigation drawer when the back button is pressed, defers to the default back button
+     * behaviour if it isn't
+     */
     @Override
     public void onBackPressed() {
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -70,6 +78,11 @@ public class NavigationActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Inflates and populates options menu
+     * @param menu Menu to be inflated
+     * @return True
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -77,6 +90,12 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
 
+
+    /**
+     *
+     * @param item MenuItem clicked
+     * @return True if
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -92,6 +111,11 @@ public class NavigationActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     *
+     * @param item MenuItem selected
+     * @return True
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -136,12 +160,21 @@ public class NavigationActivity extends AppCompatActivity
     /*
     All button and screen responses must be referred here in the ACTIVITY, NOT the fragment they are contained in.
      */
+
+    /**
+     * Logs user out
+     * @param v Button clicked
+     */
     public void onLogoutButtonClick(View v) {
         final UserManager um = new UserManager();
         um.logout();
         finish();
     }
 
+    /**
+     * Launches UserListFragment
+     * @param v Button clicked
+     */
     public void onUsersButtonClick(View v) {
         final android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
         fManager.beginTransaction()
