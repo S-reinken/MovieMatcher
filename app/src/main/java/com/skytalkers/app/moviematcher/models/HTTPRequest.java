@@ -16,8 +16,8 @@ public class HTTPRequest {
     private InputStream is;
     private String image;
 
-    public HTTPRequest(String req) {
-        this.req = req;
+    public HTTPRequest(String request) {
+        req = request;
     }
 
     public void sendRequest() throws Exception {
@@ -35,8 +35,8 @@ public class HTTPRequest {
         thread.join();
         final Bitmap bmp = retriever.getImage();
         final ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        final int FORMAT = 100;
-        bmp.compress(Bitmap.CompressFormat.PNG, FORMAT, stream);
+        final int format = 100;
+        bmp.compress(Bitmap.CompressFormat.PNG, format, stream);
         bmp.recycle();
         final byte[] bytes = stream.toByteArray();
         image = Base64.encodeToString(bytes, Base64.DEFAULT);

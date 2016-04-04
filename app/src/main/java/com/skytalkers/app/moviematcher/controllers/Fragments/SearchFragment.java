@@ -27,8 +27,6 @@ import java.util.List;
 
 
 public class SearchFragment extends Fragment {
-    private View myView;
-    private ListAdapter adapter;
 
     /**
      * Sets up movie search view

@@ -26,8 +26,6 @@ import java.util.List;
  */
 
 public class MovieListFragment extends Fragment {
-    private View myView;
-    private ListAdapter adapter;
 
     /**
      * Sets up movie list view

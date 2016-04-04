@@ -265,7 +265,7 @@ public class UserManager {
      */
     public Boolean login(String name, String pass) {
         final User u = findUser(name);
-        System.out.println("Not in the activity yet");
+        //System.out.println("Not in the activity yet");
         if (u == null) {
             return false;
         }

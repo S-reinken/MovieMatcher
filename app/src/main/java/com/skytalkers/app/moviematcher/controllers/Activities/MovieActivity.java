@@ -40,15 +40,15 @@ public class MovieActivity extends AppCompatActivity {
             Log.d("MovieActivity", mm.getMovie(m.getTitle()).getTitle());
         }
         ((TextView) findViewById(R.id.movieTextView)).setText(title);
-        final int WIDTH = 405;
-        final int HEIGHT = 600;
-        ((ImageView) findViewById(R.id.movieImageView)).setImageBitmap(Bitmap.createScaledBitmap(image, WIDTH, HEIGHT, false));
+        final int width = 405;
+        final int height = 600;
+        ((ImageView) findViewById(R.id.movieImageView)).setImageBitmap(Bitmap.createScaledBitmap(image, width, height, false));
         ((RatingBar) findViewById(R.id.avgAllRating)).setRating(mm.getMovie(title).getAverageRating());
         ((RatingBar) findViewById(R.id.avgMajorRating)).setRating(mm.getMovie(title).getMajorRating());
         try {
             ((RatingBar) findViewById(R.id.userRating)).setRating(mm.getRatings(title).get(new UserManager().getUserName()));
         } catch (Exception e) {
-        Log.d("I need a unique tag","This is wrong");
+            Log.d("I need a unique tag","This is wrong");
         }
         ((RatingBar) findViewById(R.id.userRating)).setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override

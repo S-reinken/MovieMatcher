@@ -16,7 +16,6 @@ import com.skytalkers.app.moviematcher.models.UserManager;
  * Created by schuylerreinken on 2/18/16.
  */
 public class ProfileFragment extends Fragment {
-    private View myView;
 
     /**
      * Sets up profile view
@@ -32,8 +31,8 @@ public class ProfileFragment extends Fragment {
         final RelativeLayout layout = (RelativeLayout) this.getActivity().findViewById(R.id.profileLayout);
         final Button adminButton = new Button(this.getContext());
         adminButton.setText("Show Users");
-        final int PARAM = 20;
-        adminButton.setLayoutParams(new RelativeLayout.LayoutParams(PARAM, PARAM));
+        final int param = 20;
+        adminButton.setLayoutParams(new RelativeLayout.LayoutParams(param, param));
         if (this.getActivity().getIntent().getBooleanExtra("Admin", false)) {
             layout.addView(adminButton);
         }

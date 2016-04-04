@@ -27,36 +27,36 @@ public class User {
 
     /**
      * Constructs a user object
-     * @param name Username of the user
-     * @param password Password of the user
-     * @param first First name of the user
-     * @param last Last name of the user
-     * @param email Email address of the user
-     * @param major Major of the user
+     * @param iname Username of the user
+     * @param ipassword Password of the user
+     * @param ifirst First name of the user
+     * @param ilast Last name of the user
+     * @param iemail Email address of the user
+     * @param imajor Major of the user
      */
-    public User(String name, String password, String first, String last, String email, String major) {
-        username = name;
-        this.password = password;
-        this.first = first;
-        this.last = last;
-        this.email = email;
-        this.major = major;
+    public User(String iname, String ipassword, String ifirst, String ilast, String iemail, String imajor) {
+        username = iname;
+        this.password = ipassword;
+        this.first = ifirst;
+        this.last = ilast;
+        this.email = iemail;
+        this.major = imajor;
     }
 
     /**
      * Constructs a user object without a major parameter
-     * @param name Username of the user
-     * @param password Password of the user
-     * @param first First name of the user
-     * @param last Last name of the user
-     * @param email Email address of the user
+     * @param iname Username of the user
+     * @param ipassword Password of the user
+     * @param ifirst First name of the user
+     * @param ilast Last name of the user
+     * @param iemail Email address of the user
      */
-    public User(String name, String password, String first, String last, String email) {
-        username = name;
-        this.password = password;
-        this.first = first;
-        this.last = last;
-        this.email = email;
+    public User(String iname, String ipassword, String ifirst, String ilast, String iemail) {
+        username = iname;
+        this.password = ipassword;
+        this.first = ifirst;
+        this.last = ilast;
+        this.email = iemail;
         major = "";
     }
 

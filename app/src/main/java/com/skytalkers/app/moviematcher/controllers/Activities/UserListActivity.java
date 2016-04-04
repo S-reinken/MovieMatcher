@@ -12,8 +12,6 @@ import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class UserListActivity extends ListActivity {
 
-    private ArrayAdapter<String> adapter;
-
     /**
      * Occurs on creation of activity, populates list and displays it in ListView
      * @param savedInstanceState

@@ -6,7 +6,7 @@ import android.widget.Toast;
 /**
  * Created by Bruce on 2/28/2016.
  */
-final public class ToastWrapper {
+public final class ToastWrapper {
     /**
      * Empty constructor for a ToastWrapper object
      */

@@ -128,9 +128,9 @@ public class MovieManager {
 
     public void getOverallRec() {
         Collections.sort(userMovies, new Comparator<Movie>() {
-           public int compare(Movie m1, Movie m2) {
-               return m2.getAverageRating() - m1.getAverageRating();
-           }
+            public int compare(Movie m1, Movie m2) {
+                return m2.getAverageRating() - m1.getAverageRating();
+            }
         });
         movies = userMovies;
     }

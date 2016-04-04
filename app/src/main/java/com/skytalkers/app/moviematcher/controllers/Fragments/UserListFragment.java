@@ -27,8 +27,6 @@ import java.util.List;
  * Displays list of users along with their banned status
  */
 public class UserListFragment extends Fragment {
-    private View myView;
-    private ListAdapter adapter;
 
     /**
      * Sets up User List view

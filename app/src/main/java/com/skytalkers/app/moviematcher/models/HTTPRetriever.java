@@ -23,11 +23,13 @@ public class HTTPRetriever implements Runnable {
         try {
             Log.d("**MOVIEMATCHER**", "Requesting HTTP");
             final URL url = new URL(req);
-            final InputStream is = url.openStream();
-            this.is = is;
+            final InputStream ist = url.openStream();
+            this.is = ist;
             final StringBuilder sb = new StringBuilder();
             int ch;
-            while ((ch = is.read()) != -1) sb.append((char) ch);
+            while ((ch = is.read()) != -1) {
+                sb.append((char) ch);
+            }
             res = sb.toString();
         } catch (Exception e) {
             Log.d("**MOVIEMATCHER**", e.toString());
