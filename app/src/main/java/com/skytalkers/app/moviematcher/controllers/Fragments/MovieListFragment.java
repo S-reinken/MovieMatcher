@@ -19,21 +19,19 @@ import com.skytalkers.app.moviematcher.controllers.Activities.MovieActivity;
 import com.skytalkers.app.moviematcher.models.MovieManager;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Bruce on 3/8/2016.
  */
 public class MovieListFragment extends Fragment {
-    private View myView;
-    private ListAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.movie_list_layout, container, false);
-
+        final View myView = inflater.inflate(R.layout.movie_list_layout, container, false);
+        ListAdapter adapter;
         final MovieManager mm = new MovieManager();
-        final ArrayList<String> titlesToShow = mm.getTitles();
+        final List<String> titlesToShow = mm.getTitles();
         adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, titlesToShow);
         ((TextView) myView.findViewById(R.id.movieListTextView)).setText(mm.getTitle());
         final ListView lv = (ListView) (myView.findViewById(R.id.movieListView));

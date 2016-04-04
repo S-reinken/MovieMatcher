@@ -1,6 +1,5 @@
 package com.skytalkers.app.moviematcher.models;
 
-import android.graphics.Bitmap;
 import android.util.Log;
 
 //import com.android.volley.*;
@@ -13,12 +12,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //yedukp76ffytfuy24zsqk7f5
 //"http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5"
-public class RottenTomatoesManager {
+final public class RottenTomatoesManager {
 
-    private String res;
     //getMoviebyName(String name) {
     //getMoviebyDate(Date initial, Date final)
 
@@ -34,7 +33,7 @@ public class RottenTomatoesManager {
      * @return ArrayList of new movies
      * @throws Exception if there is an error fetching movies
      */
-    public static ArrayList<Movie> getNewMovies() throws Exception { //Opening?; only returning up to 5 for now
+    public static List<Movie> getNewMovies() throws Exception { //Opening?; only returning up to 5 for now
         final String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
         return getRTRequest(req);
     }
@@ -45,7 +44,7 @@ public class RottenTomatoesManager {
      * @return ArrayList of new DVDs
      * @throws Exception if there is an error fetching movies
      */
-    public static ArrayList<Movie> getRecentDVDs() throws Exception {
+    public static List<Movie> getRecentDVDs() throws Exception {
         final String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
         return getRTRequest(req);
     }
@@ -57,7 +56,7 @@ public class RottenTomatoesManager {
      * @return ArrayList of movies
      * @throws Exception if there is an error fetching movies or parsing JSONs
      */
-    public static ArrayList<Movie> getRTRequest(String url) throws Exception {
+    public static List<Movie> getRTRequest(String url) throws Exception {
         final ArrayList<Movie> movies = new ArrayList<>();
         String res;
         try {
@@ -74,7 +73,7 @@ public class RottenTomatoesManager {
             json = new JSONObject(res);
         } catch (JSONException e) {
             Log.d("**JSON**", "Failed to get JSON object");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         assert json != null;
         //now get the array of "movies"data
@@ -92,7 +91,7 @@ public class RottenTomatoesManager {
                 movies.add(m);
             } catch (Exception e) {
                 Log.d("VolleyApp", "Failed to get JSON object");
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
         return movies;

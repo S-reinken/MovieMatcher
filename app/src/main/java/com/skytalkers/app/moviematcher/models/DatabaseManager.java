@@ -1,7 +1,6 @@
 package com.skytalkers.app.moviematcher.models;
 
 
-import android.util.Log;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;

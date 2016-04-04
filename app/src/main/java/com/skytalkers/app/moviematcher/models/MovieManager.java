@@ -1,6 +1,5 @@
 package com.skytalkers.app.moviematcher.models;
 
-import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -25,7 +24,9 @@ public class MovieManager {
     public MovieManager() {
         if (userMovies == null) {
             userMovies = new DatabaseManager().getMovieList();
-            for (final Movie m : userMovies) movieMap.put(m.getTitle(), m);
+            for (final Movie m : userMovies) {
+                movieMap.put(m.getTitle(), m);
+            }
         }
     }
 
@@ -50,18 +51,30 @@ public class MovieManager {
                 + "q="
                 + name + "&page_limit=5";
         movies = RottenTomatoesManager.getRTRequest(req);
-        for (final Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
+        for (final Movie m : movies) {
+            if (!movieMap.containsKey(m.getTitle())) {
+                movieMap.put(m.getTitle(), m);
+            }
+        }
     }
 
     public void sendNewMovieRequest() throws Exception {
         movies = RottenTomatoesManager.getNewMovies();
         Log.d("**MOVIEMATCHER**", String.valueOf(movies.size()));
-        for (final Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
+        for (final Movie m : movies) {
+            if (!movieMap.containsKey(m.getTitle())) {
+                movieMap.put(m.getTitle(), m);
+            }
+        }
     }
 
     public void sendRecentDVDRequest() throws Exception {
         movies = RottenTomatoesManager.getRecentDVDs();
-        for (final Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
+        for (final Movie m : movies) {
+            if (!movieMap.containsKey(m.getTitle())) {
+                movieMap.put(m.getTitle(), m);
+            }
+        }
     }
 
     public List<Movie> getMovies() { return movies; }
@@ -75,7 +88,7 @@ public class MovieManager {
     public Movie findMovie(String m) { return movieMap.get(m); }
 
     public void addMovie(String m) {
-        Log.d("Movie Add", m + " " + String.valueOf(movieMap.get(m)));
+        Log.d("Movie Add", m + " " + movieMap.get(m));
         userMovies.add(movieMap.get(m));
         final DatabaseManager mgr = new DatabaseManager();
         mgr.addMovie(movieMap.get(m));
@@ -88,20 +101,28 @@ public class MovieManager {
 
     public List<Movie> getUserMovies() { return userMovies; }
 
-    public ArrayList<String> getTitles() {
+    public List<String> getTitles() {
         final ArrayList<String> titles = new ArrayList<>();
-        for (final Movie m : movies) titles.add(m.getTitle());
+        for (final Movie m : movies) {
+            titles.add(m.getTitle());
+        }
         return titles;
     }
 
-    public ArrayList<String> getUserTitles() {
+    public List<String> getUserTitles() {
         final ArrayList<String> titles = new ArrayList<>();
-        for (final Movie m : userMovies) titles.add(m.getTitle());
+        for (final Movie m : userMovies) {
+            titles.add(m.getTitle());
+        }
         return titles;
     }
 
     public boolean contains(Movie mov) {
-        for (final Movie m : userMovies) if (m.equals(mov)) return true;
+        for (final Movie m : userMovies) {
+            if (m.equals(mov)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -114,10 +135,12 @@ public class MovieManager {
         movies = userMovies;
     }
 
-    public ArrayList<Movie> filterMajorMovies() {
+    public List<Movie> filterMajorMovies() {
         final ArrayList<Movie> temp = new ArrayList<>();
         for (final Movie m : userMovies) {
-            if (m.getMajorRating() != 0) temp.add(m);
+            if (m.getMajorRating() != 0) {
+                temp.add(m);
+            }
         }
         return temp;
     }

@@ -37,7 +37,9 @@ public class UserManager {
             users = new HashMap<>();
             final List<User> uList = new DatabaseManager().getAllUsers();
             Log.d("UM constructor", String.valueOf(uList.size()));
-            for (final User u : uList) users.put(u.getUsername(), u);
+            for (final User u : uList) {
+                users.put(u.getUsername(), u);
+            }
         }
         userList = new ArrayList<>(users.keySet());
     }
@@ -264,7 +266,9 @@ public class UserManager {
     public Boolean login(String name, String pass) {
         final User u = findUser(name);
         System.out.println("Not in the activity yet");
-        if (u == null) return false;
+        if (u == null) {
+            return false;
+        }
         return u.login(pass);
     }
 
