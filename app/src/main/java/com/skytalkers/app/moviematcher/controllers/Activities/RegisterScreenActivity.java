@@ -27,6 +27,10 @@ public class RegisterScreenActivity extends AppCompatActivity {
         MovieManager mm = new MovieManager();
     }
 
+    /**
+     * Completes registration and finishes activity if user does not already exist
+     * @param v Button that was clicked
+     */
     public void onRegisterButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Attempting Registration");
         UserManager um = new UserManager();
@@ -48,6 +52,10 @@ public class RegisterScreenActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Ends activity
+     * @param v Button that was clicked
+     */
     public void onCancelButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Cancelling Registration");
         finish();

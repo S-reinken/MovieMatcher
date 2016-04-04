@@ -19,6 +19,10 @@ import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class MovieActivity extends AppCompatActivity {
 
+    /**
+     * Occurs on creation of activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,11 @@ public class MovieActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     *
+     * @param image
+     * @return
+     */
     public Bitmap decodeImage(String image) {
         byte[] bytes = Base64.decode(image, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);

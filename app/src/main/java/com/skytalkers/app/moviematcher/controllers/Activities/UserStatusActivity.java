@@ -13,6 +13,10 @@ import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class UserStatusActivity extends AppCompatActivity {
 
+    /**
+     * Occurs on creation of this activity
+     * @param savedInstanceState Android instance data
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,11 @@ public class UserStatusActivity extends AppCompatActivity {
         ((Button) findViewById(R.id.statusButton)).setText(ban ? "Unlock" : "Ban");
     }
 
+
+    /**
+     * Displays banned status of user
+     * @param v Button clicked
+     */
     public void onStatusButtonClick(View v) {
         UserManager um = new UserManager();
         String name = ((TextView) findViewById(R.id.userNameTextView)).getText().toString();

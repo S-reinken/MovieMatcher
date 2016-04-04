@@ -17,6 +17,14 @@ import com.skytalkers.app.moviematcher.models.UserManager;
  */
 public class ProfileFragment extends Fragment {
     private View myView;
+
+    /**
+     * Sets up profile view
+     * @param inflater Inflates raw XML into UI
+     * @param container Parent ViewGroup
+     * @param savedInstanceState Android instance state
+     * @return Profile view
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

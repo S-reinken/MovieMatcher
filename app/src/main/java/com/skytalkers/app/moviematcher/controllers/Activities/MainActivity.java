@@ -13,6 +13,10 @@ import com.skytalkers.app.moviematcher.models.*;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Occurs on creation of activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,29 +30,48 @@ public class MainActivity extends AppCompatActivity {
         //databaseTest();
     }
 
+    /**
+     * Occurs on pause, writes log
+     */
     @Override
     public void onPause() {
         super.onPause();
         Log.d("**MOVIEMATCHER**", "Pausing the main opening screen");
     }
 
+    /**
+     * Occurs on resume, writes log
+     */
     public void onResume() {
         super.onResume();
         Log.d("**MOVIEMATCHER**", "Resuming the main opening screen");
     }
 
+    /**
+     * Starts login screen activity when login button is clicked
+     * @param v Button that was clicked
+     */
     public void onLoginButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Login button clicked");
         Intent intent = new Intent(this, LoginScreenActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Starts registration activity when register button is clicked
+     * @param v Button that was clicked
+     */
     public void onRegisterButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Register button clicked");
         Intent intent = new Intent(this, RegisterScreenActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Sends request for new movies to RottenTomatoes
+     * @param v Button that was clicked
+     * @throws Exception InterruptedException, JSONException, Exception
+     */
     //yedukp76ffytfuy24zsqk7f5
     public void onRTButtonClick(View v) throws Exception {
         Log.d("**MOVIEMATCHER**", "RT Clicked");
@@ -60,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d("**MOVIEMATCHER**", mm.getTitles().get(0));
     }
 
+    /**
+     * Enables admin features
+     * @param v Button that was clicked
+     */
     public void onDebugButtonClick(View v) {
 
         UserManager um = new UserManager();
@@ -69,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     *
+     */
     public void recTesting() {
         MovieManager mm = new MovieManager();
         try { mm.sendNewMovieRequest(); } catch (Exception e) {
@@ -82,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     */
     public void majorRecTesting() {
         MovieManager mm = new MovieManager();
         try { mm.sendNewMovieRequest(); } catch (Exception e) {

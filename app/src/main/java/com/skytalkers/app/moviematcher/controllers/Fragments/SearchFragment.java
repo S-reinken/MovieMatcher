@@ -24,9 +24,19 @@ import java.util.List;
  * Created by schuylerreinken on 2/18/16.
  * Fragment to display a list of searched movies.
  */
+
+
 public class SearchFragment extends Fragment {
     private View myView;
     private ListAdapter adapter;
+
+    /**
+     * Sets up movie search view
+     * @param inflater Inflates raw XML into View objects
+     * @param container Parent ViewGroup
+     * @param savedInstanceState Android instance state
+     * @return Search view
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

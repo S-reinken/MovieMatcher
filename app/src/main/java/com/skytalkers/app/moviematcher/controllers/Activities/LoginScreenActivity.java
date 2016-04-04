@@ -10,13 +10,16 @@ import android.widget.EditText;
 
 import com.firebase.client.Firebase;
 import com.skytalkers.app.moviematcher.R;
-import com.skytalkers.app.moviematcher.models.DatabaseManager;
 import com.skytalkers.app.moviematcher.models.MovieManager;
 import com.skytalkers.app.moviematcher.models.ToastWrapper;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class LoginScreenActivity extends AppCompatActivity {
 
+    /**
+     * Occurs on creation of activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,17 +35,27 @@ public class LoginScreenActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * Occurs on pause, writes log
+     */
     @Override
     public void onPause() {
         super.onPause();
         Log.d("**MOVIEMATCHER**", "Pausing the login screen");
     }
 
+    /**
+     * Occurs on resume, writes log
+     */
     public void onResume() {
         super.onResume();
         Log.d("**MOVIEMATCHER**", "Resuming the login screen");
     }
 
+    /**
+     * Logs user in if credentials are correct and user is not banned
+     * @param v View that was clicked
+     */
     public void onLoginButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Attempting Login");
         UserManager um = new UserManager();
@@ -64,6 +77,10 @@ public class LoginScreenActivity extends AppCompatActivity {
         //System.out.println("Now the button click has ended");
     }
 
+    /**
+     * Cancels activity
+     * @param v View that was clicked
+     */
     public void onCancelButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Cancel Login");
         finish();

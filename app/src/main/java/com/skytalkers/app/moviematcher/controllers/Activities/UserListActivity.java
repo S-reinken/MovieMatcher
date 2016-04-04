@@ -14,6 +14,10 @@ public class UserListActivity extends ListActivity {
 
     private ArrayAdapter<String> adapter;
 
+    /**
+     * Occurs on creation of activity, populates list and displays it in ListView
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +28,13 @@ public class UserListActivity extends ListActivity {
         listview.setAdapter(adapter);
     }
 
+    /**
+     * Starts UserProfileActivity of selected user
+     * @param lv ListView of users
+     * @param v Specific view in ListView
+     * @param position Position of selected user
+     * @param id
+     */
     @Override
     public void onListItemClick(ListView lv, View v, int position, long id) {
         UserManager um = new UserManager();
