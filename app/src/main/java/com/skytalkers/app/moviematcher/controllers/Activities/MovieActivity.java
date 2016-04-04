@@ -23,15 +23,15 @@ public class MovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_movie);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String title = getIntent().getStringExtra("title");
-        Bitmap image = decodeImage(getIntent().getStringExtra("image"));
-        MovieManager mm = new MovieManager();
+        final String title = getIntent().getStringExtra("title");
+        final Bitmap image = decodeImage(getIntent().getStringExtra("image"));
+        final MovieManager mm = new MovieManager();
         Log.d("MovieActivity", title);
-        for (Movie m : mm.getMovies()) {
+        for (final Movie m : mm.getMovies()) {
             Log.d("MovieActivity", m.getTitle());
             Log.d("MovieActivity", mm.getMovie(m.getTitle()).getTitle());
         }
@@ -40,23 +40,23 @@ public class MovieActivity extends AppCompatActivity {
         ((RatingBar) findViewById(R.id.avgAllRating)).setRating(mm.getMovie(title).getAverageRating());
         ((RatingBar) findViewById(R.id.avgMajorRating)).setRating(mm.getMovie(title).getMajorRating());
         try {
-            int rating = mm.getRatings(title).get(new UserManager().getUserName());
+            final int rating = mm.getRatings(title).get(new UserManager().getUserName());
             ((RatingBar) findViewById(R.id.userRating)).setRating(mm.getRatings(title).get(new UserManager().getUserName()));
         } catch (Exception e) { }
         ((RatingBar) findViewById(R.id.userRating)).setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                UserManager um = new UserManager();
-                String title = MovieActivity.this.getIntent().getStringExtra("title");
+                final UserManager um = new UserManager();
+                final String title = MovieActivity.this.getIntent().getStringExtra("title");
                 //um.rate(title, (int) rating);
-                MovieManager mm = new MovieManager();
+                final MovieManager mm = new MovieManager();
                 mm.rate(title, um.getUserName(), (int) rating);
             }
         });
     }
 
     public Bitmap decodeImage(String image) {
-        byte[] bytes = Base64.decode(image, Base64.DEFAULT);
+        final byte[] bytes = Base64.decode(image, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 

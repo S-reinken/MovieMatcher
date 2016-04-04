@@ -32,21 +32,21 @@ public class MovieListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.movie_list_layout, container, false);
 
-        MovieManager mm = new MovieManager();
-        ArrayList<String> titlesToShow = mm.getTitles();
+        final MovieManager mm = new MovieManager();
+        final ArrayList<String> titlesToShow = mm.getTitles();
         adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, titlesToShow);
         ((TextView) myView.findViewById(R.id.movieListTextView)).setText(mm.getTitle());
-        ListView lv = (ListView) (myView.findViewById(R.id.movieListView));
+        final ListView lv = (ListView) (myView.findViewById(R.id.movieListView));
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MovieManager mm = new MovieManager();
+                final MovieManager mm = new MovieManager();
                 Log.d("MovieContains", String.valueOf(mm.contains(mm.getMovies().get(position))));
                 if (!mm.contains(mm.getMovies().get(position))) {
                     mm.addMovie(mm.getMovies().get(position).getTitle());
                 }
-                Intent intent = new Intent(getActivity().getApplicationContext(), MovieActivity.class);
+                final Intent intent = new Intent(getActivity().getApplicationContext(), MovieActivity.class);
                 intent.putExtra("title", mm.getMovies().get(position).getTitle());
                 intent.putExtra("image", mm.getMovies().get(position).getImage());
                 intent.putExtra("rating", String.valueOf(mm.getMovies().get(position).getRating(new UserManager().getUserName())));

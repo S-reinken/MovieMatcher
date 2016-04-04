@@ -20,7 +20,7 @@ public class ToastWrapper {
      * @param mes Message contained in the toast
      */
     public static void show(Context c, String mes) {
-        Toast t = Toast.makeText(c, mes, Toast.LENGTH_LONG);
+        final Toast t = Toast.makeText(c, mes, Toast.LENGTH_LONG);
         t.show();
     }
 }

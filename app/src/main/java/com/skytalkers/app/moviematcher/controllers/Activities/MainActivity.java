@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
-        DatabaseManager mgr = new DatabaseManager();
+        final DatabaseManager mgr = new DatabaseManager();
         mgr.prepareUsers();
         setContentView(R.layout.activity_main);
 
@@ -39,21 +39,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void onLoginButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Login button clicked");
-        Intent intent = new Intent(this, LoginScreenActivity.class);
+        final Intent intent = new Intent(this, LoginScreenActivity.class);
         startActivity(intent);
     }
 
     public void onRegisterButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Register button clicked");
-        Intent intent = new Intent(this, RegisterScreenActivity.class);
+        final Intent intent = new Intent(this, RegisterScreenActivity.class);
         startActivity(intent);
     }
 
     //yedukp76ffytfuy24zsqk7f5
     public void onRTButtonClick(View v) throws Exception {
         Log.d("**MOVIEMATCHER**", "RT Clicked");
-        String req = "http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5";
-        MovieManager mm = new MovieManager();
+        final String req = "http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5";
+        final MovieManager mm = new MovieManager();
         //try {
         mm.sendNewMovieRequest();
         //} catch (Exception e) { for (Movie m : mm.getMovies()) Log.d("**MOVIEMATCHER**", "Title" + m.getTitle()); }
@@ -62,35 +62,35 @@ public class MainActivity extends AppCompatActivity {
 
     public void onDebugButtonClick(View v) {
 
-        UserManager um = new UserManager();
+        final UserManager um = new UserManager();
         //um.databaseTest();
         um.setUser("admin");
-        Intent intent = new Intent(this, NavigationActivity.class);
+        final Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
     }
 
     public void recTesting() {
-        MovieManager mm = new MovieManager();
+        final MovieManager mm = new MovieManager();
         try { mm.sendNewMovieRequest(); } catch (Exception e) {
             Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
             ToastWrapper.show(this, "Failed to get movies");
         }
         int rating = 1;
-        for (Movie m : mm.getMovies()) {
+        for (final Movie m : mm.getMovies()) {
             m.rate("admin", rating++);
             mm.addMovie(m.getTitle());
         }
     }
 
     public void majorRecTesting() {
-        MovieManager mm = new MovieManager();
+        final MovieManager mm = new MovieManager();
         try { mm.sendNewMovieRequest(); } catch (Exception e) {
             Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
             ToastWrapper.show(this, "Failed to get movies");
         }
         int rating = 1;
         for (int i = 0; i < 5; i+=2) {
-            Movie m = mm.getMovies().get(i);
+            final Movie m = mm.getMovies().get(i);
             m.rate("admin", rating++);
             mm.addMovie((m.getTitle()));
         }

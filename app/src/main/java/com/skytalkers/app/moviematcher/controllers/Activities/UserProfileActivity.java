@@ -15,12 +15,12 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String name = getIntent().getStringExtra("user");
-        UserManager um = new UserManager();
+        final String name = getIntent().getStringExtra("user");
+        final UserManager um = new UserManager();
         ((TextView) findViewById(R.id.usernameText)).setText(name);
         ((TextView) findViewById(R.id.firstText)).setText(um.findUserFirst(name));
         ((TextView) findViewById(R.id.lastText)).setText(um.findUserLast(name));
