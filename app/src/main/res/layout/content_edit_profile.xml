@@ -125,4 +125,15 @@
         android:layout_alignTop="@+id/nameEditText"
         android:layout_alignLeft="@+id/majorTextView"
         android:layout_alignStart="@+id/majorTextView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:id="@+id/button2"
+        android:onClick="onChangePassButtonClick"
+        android:layout_alignTop="@+id/firstTextView"
+        android:layout_toRightOf="@+id/applyButton"
+        android:layout_toEndOf="@+id/applyButton" />
+
 </RelativeLayout>
