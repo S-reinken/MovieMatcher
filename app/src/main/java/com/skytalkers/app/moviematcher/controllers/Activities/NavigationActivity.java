@@ -126,8 +126,6 @@ public class NavigationActivity extends AppCompatActivity
             myFragment = new MovieListFragment();
             mm.setTitle("Recommendations");
             mm.setType(1);
-            ((Button) findViewById(R.id.leftButton)).setText("Overall");
-            ((Button) findViewById(R.id.rightButton)).setText("By Major");
             mm.getOverallRec();
         }
 
