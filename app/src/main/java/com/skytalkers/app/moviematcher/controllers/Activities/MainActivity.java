@@ -13,11 +13,15 @@ import com.skytalkers.app.moviematcher.models.*;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Occurs on creation of activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
-        DatabaseManager mgr = new DatabaseManager();
+        final DatabaseManager mgr = new DatabaseManager();
         mgr.prepareUsers();
         setContentView(R.layout.activity_main);
 
@@ -26,71 +30,100 @@ public class MainActivity extends AppCompatActivity {
         //databaseTest();
     }
 
+    /**
+     * Occurs on pause, writes log
+     */
     @Override
     public void onPause() {
         super.onPause();
         Log.d("**MOVIEMATCHER**", "Pausing the main opening screen");
     }
 
+    /**
+     * Occurs on resume, writes log
+     */
     public void onResume() {
         super.onResume();
         Log.d("**MOVIEMATCHER**", "Resuming the main opening screen");
     }
 
+    /**
+     * Starts login screen activity when login button is clicked
+     * @param v Button that was clicked
+     */
     public void onLoginButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Login button clicked");
-        Intent intent = new Intent(this, LoginScreenActivity.class);
+        final Intent intent = new Intent(this, LoginScreenActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Starts registration activity when register button is clicked
+     * @param v Button that was clicked
+     */
     public void onRegisterButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Register button clicked");
-        Intent intent = new Intent(this, RegisterScreenActivity.class);
+        final Intent intent = new Intent(this, RegisterScreenActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Sends request for new movies to RottenTomatoes
+     * @param v Button that was clicked
+     * @throws Exception InterruptedException, JSONException, Exception
+     */
     //yedukp76ffytfuy24zsqk7f5
     public void onRTButtonClick(View v) throws Exception {
         Log.d("**MOVIEMATCHER**", "RT Clicked");
-        String req = "http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5";
-        MovieManager mm = new MovieManager();
+        final String req = "http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5";
+        final MovieManager mm = new MovieManager();
         //try {
         mm.sendNewMovieRequest();
         //} catch (Exception e) { for (Movie m : mm.getMovies()) Log.d("**MOVIEMATCHER**", "Title" + m.getTitle()); }
         Log.d("**MOVIEMATCHER**", mm.getTitles().get(0));
     }
 
+    /**
+     * Enables admin features
+     * @param v Button that was clicked
+     */
     public void onDebugButtonClick(View v) {
 
-        UserManager um = new UserManager();
+        final UserManager um = new UserManager();
         //um.databaseTest();
         um.setUser("admin");
-        Intent intent = new Intent(this, NavigationActivity.class);
+        final Intent intent = new Intent(this, NavigationActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Tests ratings
+     */
     public void recTesting() {
-        MovieManager mm = new MovieManager();
+        final MovieManager mm = new MovieManager();
         try { mm.sendNewMovieRequest(); } catch (Exception e) {
             Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
             ToastWrapper.show(this, "Failed to get movies");
         }
         int rating = 1;
-        for (Movie m : mm.getMovies()) {
+        for (final Movie m : mm.getMovies()) {
             m.rate("admin", rating++);
             mm.addMovie(m.getTitle());
         }
     }
 
+    /**
+     * Tests major specific movie ratings
+     */
     public void majorRecTesting() {
-        MovieManager mm = new MovieManager();
+        final MovieManager mm = new MovieManager();
         try { mm.sendNewMovieRequest(); } catch (Exception e) {
             Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
             ToastWrapper.show(this, "Failed to get movies");
         }
         int rating = 1;
         for (int i = 0; i < 5; i+=2) {
-            Movie m = mm.getMovies().get(i);
+            final Movie m = mm.getMovies().get(i);
             m.rate("admin", rating++);
             mm.addMovie((m.getTitle()));
         }
