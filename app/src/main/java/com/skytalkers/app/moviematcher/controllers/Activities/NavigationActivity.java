@@ -92,9 +92,9 @@ public class NavigationActivity extends AppCompatActivity
 
 
     /**
-     *
+     * Handles option menu selections
      * @param item MenuItem clicked
-     * @return True if
+     * @return True or defers to super class
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -112,7 +112,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     /**
-     *
+     * Handles navigation drawer selections
      * @param item MenuItem selected
      * @return True
      */
@@ -183,7 +183,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     /**
-     * Starts EditProfileActivity when User Edit button is clicked
+     * Launches EditProfileActivity when button is clicked
      * @param v Button clicked
      */
     public void onUserEditButtonClick(View v) {
@@ -192,7 +192,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     /**
-     * Starts ChangePasswordActivity when Change Password button is clicked
+     * Launches ChangePasswordActivity when button is clicked
      * @param v Button clicked
      */
     public void onChangePassButtonClick(View v) {
@@ -201,7 +201,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     /**
-     * Starts UserProfileActivity when View Profile is clicked
+     * Launches ViewProfileActivity when button is clicked
      * @param v Button clicked
      */
     public void onViewProfileButtonClick(View v) {
@@ -212,9 +212,9 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     /**
-     * Shows search results when search button is clicked
+     * Returns search results from RottenTomatoes
      * @param v Button clicked
-     * @throws Exception if RottenTomatoes query fails
+     * @throws Exception Occurs when RottenTomatoes query fails
      */
     //http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=[your_api_key]&q=Toy+Story+3&page_limit=1
     public void onBasicSearchButtonClick(View v) throws Exception{
@@ -230,7 +230,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     /**
-     * Shows overall recommendations when button is clicked
+     * Returns overall recommendations when button is clicked
      * @param v Button clicked
      */
     public void onOverallButtonClick(View v) {
@@ -243,7 +243,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     /**
-     * Shows major specific recommendations when Major Recommendations button is clicked
+     * Returns major specific recommendations when button is clicked
      * @param v Button clicked
      */
     public void onMajorButtonClick(View v) {

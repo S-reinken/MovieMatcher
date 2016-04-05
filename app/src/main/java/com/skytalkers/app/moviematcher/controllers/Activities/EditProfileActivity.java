@@ -12,6 +12,10 @@ import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class EditProfileActivity extends AppCompatActivity {
 
+    /**
+     * Occurs on creation of activity
+     * @param savedInstanceState Android instance data
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +32,18 @@ public class EditProfileActivity extends AppCompatActivity {
         ((EditText) findViewById(R.id.majorEditText)).setText(um.getUserMajor());
     }
 
+    /**
+     * Returns to previous view if back button is clicked
+     * @param v Button clicked
+     */
     public void onBackButtonClick(View v) {
         finish();
     }
 
+    /**
+     * Applies changes to user profile
+     * @param v Button clicked
+     */
     public void onApplyButtonClick(View v) {
         final UserManager um = new UserManager();
         final String name = ((EditText) findViewById(R.id.nameEditText)).getText().toString();

@@ -24,7 +24,18 @@ import java.util.List;
 /**
  * Created by Bruce on 3/8/2016.
  */
+
 public class MovieListFragment extends Fragment {
+    private View myView;
+    private ListAdapter adapter;
+
+    /**
+     * Sets up movie list view
+     * @param inflater Inflates raw XML into UI
+     * @param container Parent ViewGroup
+     * @param savedInstanceState Android instance state
+     * @return Movie list view
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -12,6 +12,12 @@ import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class UserListActivity extends ListActivity {
 
+    private ArrayAdapter<String> adapter;
+
+    /**
+     * Occurs on creation of activity, populates list and displays it in ListView
+     * @param savedInstanceState Android instance data
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ArrayAdapter<String> adapter;
@@ -23,6 +29,13 @@ public class UserListActivity extends ListActivity {
         listview.setAdapter(adapter);
     }
 
+    /**
+     * Starts UserProfileActivity of selected user
+     * @param lv ListView of users
+     * @param v Specific view in ListView
+     * @param position Position of selected user
+     * @param id row position of selected item
+     */
     @Override
     public void onListItemClick(ListView lv, View v, int position, long id) {
         final UserManager um = new UserManager();

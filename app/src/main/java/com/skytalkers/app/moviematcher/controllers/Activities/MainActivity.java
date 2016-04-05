@@ -77,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
      * @param v Button that was clicked
      * @throws Exception InterruptedException, JSONException, Exception
      */
+    /**
+     * Sends request for new movies to RottenTomatoes
+     * @param v Button that was clicked
+     * @throws Exception Occurs if RottenTomatoes query fails
+     */
     //yedukp76ffytfuy24zsqk7f5
     public void onRTButtonClick(View v) throws Exception {
         Log.d(MMTag, "RT Clicked");

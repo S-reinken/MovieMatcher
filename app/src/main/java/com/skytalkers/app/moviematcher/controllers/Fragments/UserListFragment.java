@@ -22,7 +22,21 @@ import java.util.List;
 /**
  * Created by Bruce on 3/15/2016.
  */
+
+/**
+ * Displays list of users along with their banned status
+ */
 public class UserListFragment extends Fragment {
+    private View myView;
+    private ListAdapter adapter;
+
+    /**
+     * Sets up User List view
+     * @param inflater Inflates raw XML into View objects
+     * @param container Parent ViewGroup
+     * @param savedInstanceState Android instance state
+     * @return User list view view
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
