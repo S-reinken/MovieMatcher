@@ -26,6 +26,7 @@ public class DatabaseManager {
     }
 
     public void addMovie(Movie movie) {
+        Log.d("DBM", movie.toString());
         Firebase m = client.child("Movies").child(movie.getTitle());
         for (String key : movie.getRatings().keySet()) {
             m.child("ratings").child(key).setValue(movie.getRating(key));
@@ -72,11 +73,15 @@ public class DatabaseManager {
         public void onDataChange(DataSnapshot dataSnapshot) {
             for (DataSnapshot snp : dataSnapshot.getChildren()) {
                 //Log.d("DatabaseManager", snp.toString());
-                Movie m = new Movie(snp.getKey(), ((Long)snp.child("id").getValue()).intValue(), (String)snp.child("image").getValue());
-                for (DataSnapshot sn : snp.child("ratings").getChildren()) {
-                    m.rate(sn.getKey(), ((Long)sn.getValue()).intValue());
+                try {
+                    Movie m = new Movie(snp.getKey(), ((Long) snp.child("id").getValue()).intValue(), (String) snp.child("image").getValue());
+                    for (DataSnapshot sn : snp.child("ratings").getChildren()) {
+                        m.rate(sn.getKey(), ((Long) sn.getValue()).intValue());
+                    }
+                    movieList.add(m);
+                } catch (NullPointerException e) {
+
                 }
-                movieList.add(m);
             }
         }
 

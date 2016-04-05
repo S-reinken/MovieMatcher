@@ -20,7 +20,7 @@ public class HTTPRequest {
         this.req = req;
     }
 
-    public void sendRequest() throws Exception {
+    public void sendRequest() throws InterruptedException {
         HTTPRetriever retriever = new HTTPRetriever(req);
         Thread thread = new Thread(retriever);
         thread.start();
@@ -28,7 +28,7 @@ public class HTTPRequest {
         res = retriever.getResponse();
     }
 
-    public void sendImageRequest() throws Exception {
+    public void sendImageRequest() throws InterruptedException {
         HTTPImageRetriever retriever = new HTTPImageRetriever(req);
         Thread thread = new Thread(retriever);
         thread.start();

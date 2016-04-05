@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -108,20 +109,26 @@ public class NavigationActivity extends AppCompatActivity
             myFragment = new ProfileFragment();
         } else if (id == R.id.nav_new_movies) {
             mm.setTitle("New Movies");
+            mm.setType(0);
             try { mm.sendNewMovieRequest(); } catch (Exception e) {
                 Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
                 ToastWrapper.show(this, "Failed to get movies");
             }
             myFragment = new MovieListFragment();
-        } else if (id == R.id.nav_new_dvds) {
+        } /*else if (id == R.id.nav_new_dvds) {
             mm.setTitle("New DVDs");
             try { mm.sendRecentDVDRequest(); } catch (Exception e) {
                 Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
                 ToastWrapper.show(this, "Failed to get movies");
             }
             myFragment = new MovieListFragment();
-        } else if (id == R.id.nav_rec) {
-            myFragment = new RecommendationFragment();
+        } */else if (id == R.id.nav_rec) {
+            myFragment = new MovieListFragment();
+            mm.setTitle("Recommendations");
+            mm.setType(1);
+            ((Button) findViewById(R.id.leftButton)).setText("Overall");
+            ((Button) findViewById(R.id.rightButton)).setText("By Major");
+            mm.getOverallRec();
         }
 
         android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
@@ -179,7 +186,31 @@ public class NavigationActivity extends AppCompatActivity
         lv.setAdapter(adapter);
     }
 
-    public void onOverallButtonClick(View v) {
+    public void onRightButtonClick(View v) {
+        MovieManager mm = new MovieManager();
+        if (mm.getType() == 0) {
+            mm.sendRecentDVDRequest();
+        } else {
+            mm.getMajorRec(new UserManager().getUserMajor());
+        }
+        ArrayList<String> titlesToShow = mm.getTitles();
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titlesToShow);
+        ((ListView) findViewById(R.id.movieListView)).setAdapter(adapter);
+    }
+
+    public void onLeftButtonClick(View v) {
+        MovieManager mm = new MovieManager();
+        if (mm.getType() == 0) {
+            mm.sendNewMovieRequest();
+        } else {
+            mm.getOverallRec();
+        }
+        ArrayList<String> titlesToShow = mm.getTitles();
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titlesToShow);
+        ((ListView) findViewById(R.id.movieListView)).setAdapter(adapter);
+    }
+
+    /*public void onOverallButtonClick(View v) {
         MovieManager mm = new MovieManager();
         mm.setMovies();
         mm.setTitle("Overall Recommendations");
@@ -196,5 +227,5 @@ public class NavigationActivity extends AppCompatActivity
         mm.getMajorRec(new UserManager().getUserMajor());
         android.support.v4.app.Fragment myFragment = new MovieListFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).commit();
-    }
+    }*/
 }

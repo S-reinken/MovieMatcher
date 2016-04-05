@@ -20,6 +20,7 @@ public class MovieManager {
     private static String req;
     private static List<Movie> userMovies;
     private static String listTitle;
+    private static int type;
 
 
     public MovieManager() {
@@ -38,13 +39,16 @@ public class MovieManager {
 
     }
 
+    public void setType(int t) { type = t; }
+    public int getType() { return type; }
+
     public void setTitle(String title) {
         listTitle = title;
     }
 
     public String getTitle() { return listTitle; }
 
-    public void sendRTRequest(String name) throws Exception {
+    public void sendRTRequest(String name) {
         req = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey="
                 + HTTPRequest.getKey()
                 + "q="
@@ -53,13 +57,13 @@ public class MovieManager {
         for (Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
     }
 
-    public void sendNewMovieRequest() throws Exception {
+    public void sendNewMovieRequest() {
         movies = RottenTomatoesManager.getNewMovies();
         Log.d("**MOVIEMATCHER**", String.valueOf(movies.size()));
         for (Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
     }
 
-    public void sendRecentDVDRequest() throws Exception {
+    public void sendRecentDVDRequest() {
         movies = RottenTomatoesManager.getRecentDVDs();
         for (Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
     }
@@ -75,9 +79,10 @@ public class MovieManager {
     public Movie findMovie(String m) { return movieMap.get(m); }
 
     public void addMovie(String m) {
-        Log.d("Movie Add", m + " " + String.valueOf(movieMap.get(m)));
+        Log.d("Movie Add", m);
         userMovies.add(movieMap.get(m));
         DatabaseManager mgr = new DatabaseManager();
+        Log.d("MovieManager", movieMap.get(m).toString());
         mgr.addMovie(movieMap.get(m));
     }
 
@@ -90,7 +95,9 @@ public class MovieManager {
 
     public ArrayList<String> getTitles() {
         ArrayList<String> titles = new ArrayList<>();
-        for (Movie m : movies) titles.add(m.getTitle());
+        for (Movie m : movies) {
+            titles.add(m.getTitle().replace('_','.'));
+        }
         return titles;
     }
 

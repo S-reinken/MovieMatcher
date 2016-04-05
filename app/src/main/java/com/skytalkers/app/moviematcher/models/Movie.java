@@ -62,7 +62,7 @@ public class Movie {
     }
 
     public String toString() {
-        return name;
+        return name + " " + id;
     }
 
     @Override

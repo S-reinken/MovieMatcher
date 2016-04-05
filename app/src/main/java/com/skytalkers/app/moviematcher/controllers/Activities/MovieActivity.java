@@ -35,7 +35,7 @@ public class MovieActivity extends AppCompatActivity {
             Log.d("MovieActivity", m.getTitle());
             Log.d("MovieActivity", mm.getMovie(m.getTitle()).getTitle());
         }
-        ((TextView) findViewById(R.id.movieTextView)).setText(title);
+        ((TextView) findViewById(R.id.movieTextView)).setText(title.replace('_','.'));
         ((ImageView) findViewById(R.id.movieImageView)).setImageBitmap(Bitmap.createScaledBitmap(image, 405, 600, false));
         ((RatingBar) findViewById(R.id.avgAllRating)).setRating(mm.getMovie(title).getAverageRating());
         ((RatingBar) findViewById(R.id.avgMajorRating)).setRating(mm.getMovie(title).getMajorRating());

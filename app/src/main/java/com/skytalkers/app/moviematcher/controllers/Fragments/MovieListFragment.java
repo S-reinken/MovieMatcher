@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,6 +36,13 @@ public class MovieListFragment extends Fragment {
         MovieManager mm = new MovieManager();
         ArrayList<String> titlesToShow = mm.getTitles();
         adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, titlesToShow);
+        if (mm.getType() == 0) {
+            ((Button) myView.findViewById(R.id.leftButton)).setText("New Movies");
+            ((Button) myView.findViewById(R.id.rightButton)).setText("New DVDs");
+        } else {
+            ((Button) myView.findViewById(R.id.leftButton)).setText("Overall");
+            ((Button) myView.findViewById(R.id.rightButton)).setText("By Major");
+        }
         ((TextView) myView.findViewById(R.id.movieListTextView)).setText(mm.getTitle());
         ListView lv = (ListView) (myView.findViewById(R.id.movieListView));
         lv.setAdapter(adapter);

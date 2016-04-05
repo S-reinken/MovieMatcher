@@ -22,7 +22,8 @@
         android:layout_marginTop="22dp"
         android:layout_below="@+id/movieListTextView"
         android:layout_alignRight="@+id/movieListTextView"
-        android:layout_alignEnd="@+id/movieListTextView" />
+        android:layout_alignEnd="@+id/movieListTextView"
+        android:onClick="onRightButtonClick"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -32,7 +33,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_alignTop="@+id/rightButton"
         android:layout_toLeftOf="@+id/rightButton"
-        android:layout_toStartOf="@+id/rightButton" />
+        android:layout_toStartOf="@+id/rightButton"
+        android:onClick="onLeftButtonClick"/>
 
     <ListView
         android:layout_width="353dp"

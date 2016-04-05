@@ -34,7 +34,7 @@ public class RottenTomatoesManager {
      * @return ArrayList of new movies
      * @throws Exception if there is an error fetching movies
      */
-    public static ArrayList<Movie> getNewMovies() throws Exception { //Opening?; only returning up to 5 for now
+    public static ArrayList<Movie> getNewMovies() { //Opening?; only returning up to 5 for now
         String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
         return getRTRequest(req);
     }
@@ -45,7 +45,7 @@ public class RottenTomatoesManager {
      * @return ArrayList of new DVDs
      * @throws Exception if there is an error fetching movies
      */
-    public static ArrayList<Movie> getRecentDVDs() throws Exception {
+    public static ArrayList<Movie> getRecentDVDs() {
         String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
         return getRTRequest(req);
     }
@@ -57,7 +57,7 @@ public class RottenTomatoesManager {
      * @return ArrayList of movies
      * @throws Exception if there is an error fetching movies or parsing JSONs
      */
-    public static ArrayList<Movie> getRTRequest(String url) throws Exception {
+    public static ArrayList<Movie> getRTRequest(String url) {
         ArrayList<Movie> movies = new ArrayList<>();
         String res;
         try {
@@ -88,6 +88,8 @@ public class RottenTomatoesManager {
                 HTTPRequest http = new HTTPRequest(jsonObject.getJSONObject("posters").optString("thumbnail"));
                 http.sendImageRequest();
                 String image = http.getImage();
+                title = title.replace('.','_');
+                Log.d("RTManager", title);
                 Movie m = new Movie(title, id, image);
                 movies.add(m);
             } catch (Exception e) {
