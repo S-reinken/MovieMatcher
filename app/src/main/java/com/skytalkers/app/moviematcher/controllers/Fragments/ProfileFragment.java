@@ -21,14 +21,14 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        RelativeLayout layout = (RelativeLayout) this.getActivity().findViewById(R.id.newprofilelayout);
+        RelativeLayout layout = (RelativeLayout) this.getActivity().findViewById(R.id.profileLayout);
         Button adminButton = new Button(this.getContext());
         adminButton.setText("Show Users");
         adminButton.setLayoutParams(new RelativeLayout.LayoutParams(20, 20));
         if (this.getActivity().getIntent().getBooleanExtra("Admin", false)) {
             layout.addView(adminButton);
         }
-        myView = inflater.inflate(R.layout.content_primary, container, false);
+        myView = inflater.inflate(R.layout.content_user_profile, container, false);
         Button b = (Button) myView.findViewById(R.id.usersButton);
         if (!(new UserManager().isAdmin())) {
             b.setVisibility(View.INVISIBLE);
@@ -37,13 +37,13 @@ public class ProfileFragment extends Fragment {
         }
         UserManager um = new UserManager();
         String name = um.getUserName();
-        /*
-        ((TextView) this.getActivity().findViewById(R.id.usernameText)).setText(name);
-        ((TextView) this.getActivity().findViewById(R.id.firstText)).setText(um.findUserFirst(name));
-        ((TextView) this.getActivity().findViewById(R.id.lastText)).setText(um.findUserLast(name));
-        ((TextView) this.getActivity().findViewById(R.id.emailText)).setText(um.findUserEmail(name));
-        ((TextView) this.getActivity().findViewById(R.id.majorText)).setText(um.findUserMajor(name));
-        */
+
+        ((TextView) myView.findViewById(R.id.usernameText)).setText(name);
+        ((TextView) myView.findViewById(R.id.firstText)).setText(um.findUserFirst(name));
+        ((TextView) myView.findViewById(R.id.lastText)).setText(um.findUserLast(name));
+        ((TextView) myView.findViewById(R.id.emailText)).setText(um.findUserEmail(name));
+        ((TextView) myView.findViewById(R.id.majorText)).setText(um.findUserMajor(name));
+
         return myView;
     }
 }

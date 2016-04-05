@@ -12,6 +12,7 @@ import com.skytalkers.app.moviematcher.models.*;
 
 
 public class MainActivity extends AppCompatActivity {
+    String MMTag = "**MOVIEMATCHER**";
 
     /**
      * Occurs on creation of activity
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        Log.d("**MOVIEMATCHER**", "Pausing the main opening screen");
+        Log.d(MMTag, "Pausing the main opening screen");
     }
 
     /**
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onResume() {
         super.onResume();
-        Log.d("**MOVIEMATCHER**", "Resuming the main opening screen");
+        Log.d(MMTag, "Resuming the main opening screen");
     }
 
     /**
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v Button that was clicked
      */
     public void onLoginButtonClick(View v) {
-        Log.d("**MOVIEMATCHER**", "Login button clicked");
+        Log.d(MMTag, "Login button clicked");
         final Intent intent = new Intent(this, LoginScreenActivity.class);
         startActivity(intent);
     }
@@ -74,13 +75,13 @@ public class MainActivity extends AppCompatActivity {
      */
     //yedukp76ffytfuy24zsqk7f5
     public void onRTButtonClick(View v) throws Exception {
-        Log.d("**MOVIEMATCHER**", "RT Clicked");
+        Log.d(MMTag, "RT Clicked");
         final String req = "http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5";
         final MovieManager mm = new MovieManager();
         //try {
         mm.sendNewMovieRequest();
         //} catch (Exception e) { for (Movie m : mm.getMovies()) Log.d("**MOVIEMATCHER**", "Title" + m.getTitle()); }
-        Log.d("**MOVIEMATCHER**", mm.getTitles().get(0));
+        Log.d(MMTag, mm.getTitles().get(0));
     }
 
     /**
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     public void recTesting() {
         final MovieManager mm = new MovieManager();
         try { mm.sendNewMovieRequest(); } catch (Exception e) {
-            Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
+            Log.d(MMTag, "Whoops, something went wrong.");
             ToastWrapper.show(this, "Failed to get movies");
         }
         int rating = 1;
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     public void majorRecTesting() {
         final MovieManager mm = new MovieManager();
         try { mm.sendNewMovieRequest(); } catch (Exception e) {
-            Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
+            Log.d(MMTag, "Whoops, something went wrong.");
             ToastWrapper.show(this, "Failed to get movies");
         }
         int rating = 1;
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             m.rate("admin", rating++);
             mm.addMovie((m.getTitle()));
         }
-        Log.d("MOVIEMATCHER", String.valueOf(mm.getUserMovies().size()));
+        Log.d(MMTag, String.valueOf(mm.getUserMovies().size()));
     }
 
 }
