@@ -22,10 +22,10 @@ public class HTTPRetriever implements Runnable {
     public void run() {
         try {
             Log.d("**MOVIEMATCHER**", "Requesting HTTP");
-            URL url = new URL(req);
-            InputStream is = url.openStream();
+            final URL url = new URL(req);
+            final InputStream is = url.openStream();
             this.is = is;
-            StringBuilder sb = new StringBuilder();
+            final StringBuilder sb = new StringBuilder();
             int ch;
             while ((ch = is.read()) != -1) sb.append((char) ch);
             res = sb.toString();

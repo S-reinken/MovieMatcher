@@ -8,7 +8,11 @@ import android.view.View;
 
 import com.firebase.client.Firebase;
 import com.skytalkers.app.moviematcher.R;
-import com.skytalkers.app.moviematcher.models.*;
+import com.skytalkers.app.moviematcher.models.DatabaseManager;
+import com.skytalkers.app.moviematcher.models.Movie;
+import com.skytalkers.app.moviematcher.models.MovieManager;
+import com.skytalkers.app.moviematcher.models.ToastWrapper;
+import com.skytalkers.app.moviematcher.models.UserManager;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -123,7 +127,8 @@ public class MainActivity extends AppCompatActivity {
             ToastWrapper.show(this, "Failed to get movies");
         }
         int rating = 1;
-        for (int i = 0; i < 5; i+=2) {
+        final int LISTLENGTH = 5;
+        for (int i = 0; i < LISTLENGTH; i+=2) {
             final Movie m = mm.getMovies().get(i);
             m.rate("admin", rating++);
             mm.addMovie((m.getTitle()));

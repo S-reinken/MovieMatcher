@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.skytalkers.app.moviematcher.models.MovieManager;
 import com.skytalkers.app.moviematcher.models.UserManager;
 import com.skytalkers.app.moviematcher.R;
 
@@ -19,30 +18,28 @@ public class RegisterScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_screen);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        UserManager um = new UserManager();
-        MovieManager mm = new MovieManager();
     }
 
     public void onRegisterButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Attempting Registration");
-        UserManager um = new UserManager();
-        String name = ((EditText) findViewById(R.id.regUsername)).getText().toString();
-        String email = ((EditText) findViewById(R.id.regEmail)).getText().toString();
-        String first = ((EditText) findViewById(R.id.regFirst)).getText().toString();
-        String last = ((EditText) findViewById(R.id.regLast)).getText().toString();
-        String pass = ((EditText) findViewById(R.id.regPassword)).getText().toString();
-        Context context = getApplicationContext();
-        int dur = Toast.LENGTH_SHORT;
+        final UserManager um = new UserManager();
+        final String name = ((EditText) findViewById(R.id.regUsername)).getText().toString();
+        final String email = ((EditText) findViewById(R.id.regEmail)).getText().toString();
+        final String first = ((EditText) findViewById(R.id.regFirst)).getText().toString();
+        final String last = ((EditText) findViewById(R.id.regLast)).getText().toString();
+        final String pass = ((EditText) findViewById(R.id.regPassword)).getText().toString();
+        final Context context = getApplicationContext();
+        final int dur = Toast.LENGTH_SHORT;
         if (um.findUser(name) != null) {
-            Toast t = Toast.makeText(context, "Username already exists", dur);
+            final Toast t = Toast.makeText(context, "Username already exists", dur);
             t.show();
         } else {
             um.addUser(name, pass, first, last, email);
-            Toast t = Toast.makeText(context, "User successfully registered", dur);
+            final Toast t = Toast.makeText(context, "User successfully registered", dur);
             t.show();
             finish();
         }

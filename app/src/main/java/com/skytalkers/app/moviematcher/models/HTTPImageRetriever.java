@@ -21,8 +21,8 @@ public class HTTPImageRetriever implements Runnable {
     public void run() {
         try {
             Log.d("**MOVIEMATCHER**", "Requesting HTTP");
-            URL url = new URL(req);
-            InputStream is = url.openStream();
+            final URL url = new URL(req);
+            final InputStream is = url.openStream();
             image = BitmapFactory.decodeStream(is);
         } catch (Exception e) {
             Log.d("**MOVIEMATCHER**", e.toString());

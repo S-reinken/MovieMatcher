@@ -21,23 +21,24 @@ public class HTTPRequest {
     }
 
     public void sendRequest() throws Exception {
-        HTTPRetriever retriever = new HTTPRetriever(req);
-        Thread thread = new Thread(retriever);
+        final HTTPRetriever retriever = new HTTPRetriever(req);
+        final Thread thread = new Thread(retriever);
         thread.start();
         thread.join();
         res = retriever.getResponse();
     }
 
     public void sendImageRequest() throws Exception {
-        HTTPImageRetriever retriever = new HTTPImageRetriever(req);
-        Thread thread = new Thread(retriever);
+        final HTTPImageRetriever retriever = new HTTPImageRetriever(req);
+        final Thread thread = new Thread(retriever);
         thread.start();
         thread.join();
-        Bitmap bmp = retriever.getImage();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        final Bitmap bmp = retriever.getImage();
+        final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        final int FORMAT = 100;
+        bmp.compress(Bitmap.CompressFormat.PNG, FORMAT, stream);
         bmp.recycle();
-        byte[] bytes = stream.toByteArray();
+        final byte[] bytes = stream.toByteArray();
         image = Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
@@ -52,7 +53,7 @@ public class HTTPRequest {
     }
 
     public static boolean getErr() {
-        HTTPRetriever retriever = new HTTPRetriever("");
+        final HTTPRetriever retriever = new HTTPRetriever("");
         return retriever.getErr();
     }
 
