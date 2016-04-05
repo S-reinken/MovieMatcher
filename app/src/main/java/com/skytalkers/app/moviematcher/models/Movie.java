@@ -1,6 +1,5 @@
 package com.skytalkers.app.moviematcher.models;
 
-import android.graphics.Bitmap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,7 +53,8 @@ public class Movie {
         final UserManager um = new UserManager();
         for (final Map.Entry<String,Integer> rating : ratings.entrySet()) {
             if (um.getUserMajor().equals(um.findUserMajor(rating.getKey()))) {
-                avg += rating.getValue(); count++;
+                avg += rating.getValue();
+                count++;
             }
         }
         return count > 0 ? avg / count : 0;

@@ -35,7 +35,8 @@ public class HTTPRequest {
         thread.join();
         final Bitmap bmp = retriever.getImage();
         final ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        final int FORMAT = 100;
+        bmp.compress(Bitmap.CompressFormat.PNG, FORMAT, stream);
         bmp.recycle();
         final byte[] bytes = stream.toByteArray();
         image = Base64.encodeToString(bytes, Base64.DEFAULT);

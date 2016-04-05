@@ -39,9 +39,13 @@ public class ChangePasswordActivity extends AppCompatActivity {
         final UserManager um = new UserManager();
         final String name = um.getUserName();
         String pass = ((EditText) findViewById(R.id.oldEdit)).getText().toString();
-        if (!confirm(name, pass)) {return;}
+        if (!confirm(name, pass)) {
+            return;
+        }
         pass = ((EditText) findViewById(R.id.confirmOldEdit)).getText().toString();
-        if (!confirm(name, pass)) {return;}
+        if (!confirm(name, pass)) {
+            return;
+        }
         pass = ((EditText) findViewById(R.id.newEdit)).getText().toString();
         if (!pass.equals(((EditText) findViewById(R.id.confirmNewEdit)).getText().toString())) {
             msgbox("New passwords don't match");

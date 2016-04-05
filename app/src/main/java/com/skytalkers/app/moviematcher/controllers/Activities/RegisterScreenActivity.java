@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.skytalkers.app.moviematcher.models.MovieManager;
 import com.skytalkers.app.moviematcher.models.UserManager;
 import com.skytalkers.app.moviematcher.R;
 

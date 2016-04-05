@@ -20,6 +20,7 @@ public class UserListActivity extends ListActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ArrayAdapter<String> adapter;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
         final UserManager um = new UserManager();

@@ -28,10 +28,12 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View myView;
         final RelativeLayout layout = (RelativeLayout) this.getActivity().findViewById(R.id.profileLayout);
         final Button adminButton = new Button(this.getContext());
         adminButton.setText("Show Users");
-        adminButton.setLayoutParams(new RelativeLayout.LayoutParams(20, 20));
+        final int PARAM = 20;
+        adminButton.setLayoutParams(new RelativeLayout.LayoutParams(PARAM, PARAM));
         if (this.getActivity().getIntent().getBooleanExtra("Admin", false)) {
             layout.addView(adminButton);
         }

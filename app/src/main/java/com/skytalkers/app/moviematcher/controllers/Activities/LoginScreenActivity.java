@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import com.firebase.client.Firebase;
 import com.skytalkers.app.moviematcher.R;
-import com.skytalkers.app.moviematcher.models.MovieManager;
 import com.skytalkers.app.moviematcher.models.ToastWrapper;
 import com.skytalkers.app.moviematcher.models.UserManager;
 

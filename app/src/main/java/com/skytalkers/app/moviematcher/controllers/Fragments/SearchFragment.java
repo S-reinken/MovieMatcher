@@ -40,8 +40,9 @@ public class SearchFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View myView;
         myView = inflater.inflate(R.layout.search_layout, container, false);
-
+        ListAdapter adapter;
         final List<String> content = new ArrayList<>();
         adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, content);
         final ListView lv = (ListView) (myView.findViewById(R.id.searchListView));
