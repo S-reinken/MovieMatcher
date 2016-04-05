@@ -210,7 +210,7 @@ public class UserManager {
      * @param e Email address of the new user
      */
     public void addUser(String name, String pass, String f, String l, String e) {
-        users.put(name, new User(name, pass, f, l, e));
+        users.put(name, new User(name, pass, f, l, e, "NONE"));
         userList = new ArrayList<>(users.keySet());
         final DatabaseManager mgr = new DatabaseManager();
         mgr.addUser(users.get(name));

@@ -14,7 +14,7 @@
         <item
             android:id="@+id/nav_search"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Search Movies" />
+            android:title="Search" />
         <item
             android:id="@+id/nav_new_movies"
             android:icon="@drawable/ic_menu_manage"
@@ -26,7 +26,11 @@
         <item
             android:id="@+id/nav_rec"
             android:icon="@drawable/ic_menu_share"
-            android:title="Get Movie Recommendations" />
+            android:title="Movie Recommendations by All" />
+        <item
+            android:id="@+id/nav_rec_major"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Movie Recommendations by Major" />
     </group>
     <!--
     <item android:title="Communicate">
