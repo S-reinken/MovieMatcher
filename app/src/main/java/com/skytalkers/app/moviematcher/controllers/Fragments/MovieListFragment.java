@@ -28,6 +28,14 @@ import java.util.ArrayList;
 public class MovieListFragment extends Fragment {
     private View myView;
     private ListAdapter adapter;
+
+    /**
+     * Sets up movie list view
+     * @param inflater Converts XML to View objects
+     * @param container Parent ViewGroup
+     * @param savedInstanceState Android instance data
+     * @return Movie List view
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

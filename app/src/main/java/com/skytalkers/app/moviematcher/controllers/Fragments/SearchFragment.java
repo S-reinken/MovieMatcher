@@ -27,6 +27,14 @@ import java.util.List;
 public class SearchFragment extends Fragment {
     private View myView;
     private ListAdapter adapter;
+
+    /**
+     * Sets up Search view
+     * @param inflater Converts XML to view objects
+     * @param container Parent ViewGroup
+     * @param savedInstanceState Android instance data
+     * @return View
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

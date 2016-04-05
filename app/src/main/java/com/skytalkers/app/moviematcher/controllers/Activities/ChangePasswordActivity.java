@@ -23,10 +23,18 @@ public class ChangePasswordActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * Returns to previous view
+     * @param v Button clicked
+     */
     public void onBackButtonClick(View v) {
         finish();
     }
 
+    /**
+     * Applies changes
+     * @param v Button clicked
+     */
     public void onApplyButtonClick(View v) {
         UserManager um = new UserManager();
         String name = um.getUserName();
@@ -43,6 +51,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Confirms changes
+     * @param name Username
+     * @param pass Password
+     * @return True or false depending on success/ fail
+     */
     public boolean confirm(String name, String pass) {
         UserManager um = new UserManager();
         if (!um.login(name, pass)) {
@@ -52,6 +66,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Used to display toast
+     * @param msg Message to display
+     */
     public void msgbox(String msg) {
         Context context = getApplicationContext();
         int dur = Toast.LENGTH_SHORT;

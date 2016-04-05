@@ -28,6 +28,10 @@ public class UserStatusActivity extends AppCompatActivity {
         ((Button) findViewById(R.id.statusButton)).setText(ban ? "Unlock" : "Ban");
     }
 
+    /**
+     * Displays account status of user
+     * @param v Button clicked
+     */
     public void onStatusButtonClick(View v) {
         UserManager um = new UserManager();
         String name = ((TextView) findViewById(R.id.userNameTextView)).getText().toString();

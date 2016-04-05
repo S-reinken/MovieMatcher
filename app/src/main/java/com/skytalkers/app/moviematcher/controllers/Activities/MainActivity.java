@@ -27,29 +27,48 @@ public class MainActivity extends AppCompatActivity {
         //databaseTest();
     }
 
+    /**
+     * Pauses activity
+     */
     @Override
     public void onPause() {
         super.onPause();
         Log.d(MMTag, "Pausing the main opening screen");
     }
 
+    /**
+     * Resumes activity
+     */
     public void onResume() {
         super.onResume();
         Log.d(MMTag, "Resuming the main opening screen");
     }
 
+    /**
+     * Starts login activity
+     * @param v Button clicked
+     */
     public void onLoginButtonClick(View v) {
         Log.d(MMTag, "Login button clicked");
         Intent intent = new Intent(this, LoginScreenActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Starts registration activity
+     * @param v Button clicked
+     */
     public void onRegisterButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Register button clicked");
         Intent intent = new Intent(this, RegisterScreenActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Queries RottenTomatoes for new movies
+     * @param v Button clicked
+     * @throws Exception Occurs if RottenTomatoes query fails
+     */
     //yedukp76ffytfuy24zsqk7f5
     public void onRTButtonClick(View v) throws Exception {
         Log.d(MMTag, "RT Clicked");
@@ -61,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d(MMTag, mm.getTitles().get(0));
     }
 
+    /**
+     * Opens navigation activity as admin
+     * @param v Button clicked
+     */
     public void onDebugButtonClick(View v) {
 
         UserManager um = new UserManager();

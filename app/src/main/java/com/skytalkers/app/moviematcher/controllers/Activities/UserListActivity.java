@@ -24,6 +24,13 @@ public class UserListActivity extends ListActivity {
         listview.setAdapter(adapter);
     }
 
+    /**
+     * Handles list item selection
+     * @param lv Listview selected from
+     * @param v Selected view
+     * @param position Position of view in list
+     * @param id Row ID of selected item
+     */
     @Override
     public void onListItemClick(ListView lv, View v, int position, long id) {
         UserManager um = new UserManager();

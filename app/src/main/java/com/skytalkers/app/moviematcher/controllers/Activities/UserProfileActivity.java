@@ -28,6 +28,10 @@ public class UserProfileActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.majorText)).setText(um.findUserMajor(name));
     }
 
+    /**
+     * Returns to previous view
+     * @param v Button clicked
+     */
     public void onBackButtonClick(View v) {
         finish();
     }

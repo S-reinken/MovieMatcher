@@ -28,10 +28,18 @@ public class EditProfileActivity extends AppCompatActivity {
         ((EditText) findViewById(R.id.majorEditText)).setText(um.getUserMajor());
     }
 
+    /**
+     * Returns to previous view
+     * @param v Button clicked
+     */
     public void onBackButtonClick(View v) {
         finish();
     }
 
+    /**
+     * Apply changes
+     * @param v Button clicked
+     */
     public void onApplyButtonClick(View v) {
         UserManager um = new UserManager();
         String name = ((EditText) findViewById(R.id.nameEditText)).getText().toString();
@@ -43,6 +51,10 @@ public class EditProfileActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Starts change password activity
+     * @param v Button clicked
+     */
     public void onChangePassButtonClick(View v) {
         Intent intent = new Intent(this, ChangePasswordActivity.class);
         startActivity(intent);

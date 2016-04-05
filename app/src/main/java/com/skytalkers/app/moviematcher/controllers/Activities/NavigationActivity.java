@@ -2,19 +2,18 @@ package com.skytalkers.app.moviematcher.controllers.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -22,7 +21,6 @@ import android.widget.ListView;
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.controllers.Fragments.MovieListFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.ProfileFragment;
-import com.skytalkers.app.moviematcher.controllers.Fragments.RecommendationFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.SearchFragment;
 import com.skytalkers.app.moviematcher.controllers.Fragments.UserListFragment;
 import com.skytalkers.app.moviematcher.models.MovieManager;
@@ -61,6 +59,9 @@ public class NavigationActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Closes drawer if it is open, defers to default back button behaviour otherwise
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -71,6 +72,11 @@ public class NavigationActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Inflates menu, adds items
+     * @param menu Menu to be inflated
+     * @return boolean True
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -78,6 +84,11 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Handles selection of options
+     * @param item Item selected
+     * @return boolean True
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -93,6 +104,11 @@ public class NavigationActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Handles selection of navigation items
+     * @param item Item selected
+     * @return True
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -141,12 +157,21 @@ public class NavigationActivity extends AppCompatActivity
     /*
     All button and screen responses must be referred here in the ACTIVITY, NOT the fragment they are contained in.
      */
+
+    /**
+     * Logs user out
+     * @param v Button clicked
+     */
     public void onLogoutButtonClick(View v) {
         UserManager um = new UserManager();
         um.logout();
         finish();
     }
 
+    /**
+     * Displays list of users
+     * @param v Button clicked
+     */
     public void onUsersButtonClick(View v) {
         android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
         fManager.beginTransaction()
@@ -154,16 +179,28 @@ public class NavigationActivity extends AppCompatActivity
                 .commit();
     }
 
+    /**
+     * Starts EditProfileActivity
+     * @param v Button clicked
+     */
     public void onUserEditButtonClick(View v) {
         Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Starts change password activity
+     * @param v Button clicked
+     */
     public void onChangePassButtonClick(View v) {
         Intent intent = new Intent(this, ChangePasswordActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Starts user profile activity
+     * @param v Button clicked
+     */
     public void onViewProfileButtonClick(View v) {
         UserManager um = new UserManager();
         Intent intent = new Intent(this, UserProfileActivity.class);
@@ -171,6 +208,11 @@ public class NavigationActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    /**
+     * Conducts search
+     * @param v Button clicked
+     * @throws Exception Occurs if RottenTomatoes query fails
+     */
     //http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=[your_api_key]&q=Toy+Story+3&page_limit=1
     public void onBasicSearchButtonClick(View v) throws Exception{
         String name = ((EditText) findViewById(R.id.basicSearchEditText)).getText().toString();
@@ -184,6 +226,10 @@ public class NavigationActivity extends AppCompatActivity
         lv.setAdapter(adapter);
     }
 
+    /**
+     * Returns list of recent DVDs
+     * @param v Button clicked
+     */
     public void onRightButtonClick(View v) {
         MovieManager mm = new MovieManager();
         if (mm.getType() == 0) {
@@ -196,6 +242,10 @@ public class NavigationActivity extends AppCompatActivity
         ((ListView) findViewById(R.id.movieListView)).setAdapter(adapter);
     }
 
+    /**
+     * Returns list of new movies
+     * @param v Button clicked
+     */
     public void onLeftButtonClick(View v) {
         MovieManager mm = new MovieManager();
         if (mm.getType() == 0) {

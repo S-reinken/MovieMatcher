@@ -25,6 +25,14 @@ import java.util.List;
 public class UserListFragment extends Fragment {
     private View myView;
     private ListAdapter adapter;
+
+    /**
+     * Sets up user list view
+     * @param inflater Converts XML to View objects
+     * @param container parent viewgroup
+     * @param savedInstanceState android instance data
+     * @return User list view
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

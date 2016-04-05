@@ -55,6 +55,11 @@ public class MovieActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Decodes image into bitmap
+     * @param image Image to be decoded
+     * @return final bitmap
+     */
     public Bitmap decodeImage(String image) {
         byte[] bytes = Base64.decode(image, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);

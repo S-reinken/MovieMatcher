@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import com.firebase.client.Firebase;
 import com.skytalkers.app.moviematcher.R;
-import com.skytalkers.app.moviematcher.models.DatabaseManager;
 import com.skytalkers.app.moviematcher.models.MovieManager;
 import com.skytalkers.app.moviematcher.models.ToastWrapper;
 import com.skytalkers.app.moviematcher.models.UserManager;
@@ -33,17 +32,27 @@ public class LoginScreenActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * Pauses activity
+     */
     @Override
     public void onPause() {
         super.onPause();
         Log.d(MMTag, "Pausing the login screen");
     }
 
+    /**
+     * Resumes activity
+     */
     public void onResume() {
         super.onResume();
         Log.d(MMTag, "Resuming the login screen");
     }
 
+    /**
+     * Attempts login
+     * @param v Button clicked
+     */
     public void onLoginButtonClick(View v) {
         Log.d(MMTag, "Attempting Login");
         UserManager um = new UserManager();
@@ -65,6 +74,10 @@ public class LoginScreenActivity extends AppCompatActivity {
         //System.out.println("Now the button click has ended");
     }
 
+    /**
+     * Cancels login
+     * @param v Button clicked
+     */
     public void onCancelButtonClick(View v) {
         Log.d(MMTag, "Cancel Login");
         finish();

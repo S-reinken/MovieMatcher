@@ -13,6 +13,14 @@ import com.skytalkers.app.moviematcher.R;
  * Created by Bruce on 3/7/2016.
  */
 public class RecommendationFragment extends Fragment {
+
+    /**
+     * Sets up recommendation view
+     * @param inflater Converts XML to View objects
+     * @param container Parent ViewGroup
+     * @param savedInstanceState Android instance view
+     * @return Recommendation view
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
