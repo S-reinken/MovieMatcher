@@ -14,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -34,26 +33,30 @@ import java.util.ArrayList;
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Occurs on creation of activity, sets up drawer layout
+     * @param savedInstanceState Android instance data
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, 0, 0);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
 
-        android.support.v4.app.Fragment myFragment = new ProfileFragment();
-        android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
+        final android.support.v4.app.Fragment myFragment = new ProfileFragment();
+        final android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
         fManager.beginTransaction()
                 .replace(R.id.container, myFragment)
                 .addToBackStack(null)
@@ -61,9 +64,13 @@ public class NavigationActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Closes navigation drawer when the back button is pressed, defers to the default back button
+     * behaviour if it isn't
+     */
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -71,6 +78,11 @@ public class NavigationActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Inflates and populates options menu
+     * @param menu Menu to be inflated
+     * @return True
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -78,12 +90,18 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
 
+
+    /**
+     * Handles option menu selections
+     * @param item MenuItem clicked
+     * @return True or defers to super class
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        final int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -93,13 +111,18 @@ public class NavigationActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Handles navigation drawer selections
+     * @param item MenuItem selected
+     * @return True
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         android.support.v4.app.Fragment myFragment = null;
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        MovieManager mm = new MovieManager();
+        final int id = item.getItemId();
+        final MovieManager mm = new MovieManager();
         /*
         If you want to add a new Fragment to the system, make the fragment and add it to this if - else if series.
         */
@@ -109,33 +132,27 @@ public class NavigationActivity extends AppCompatActivity
             myFragment = new ProfileFragment();
         } else if (id == R.id.nav_new_movies) {
             mm.setTitle("New Movies");
-            mm.setType(0);
             try { mm.sendNewMovieRequest(); } catch (Exception e) {
                 Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
                 ToastWrapper.show(this, "Failed to get movies");
             }
             myFragment = new MovieListFragment();
-        } /*else if (id == R.id.nav_new_dvds) {
+        } else if (id == R.id.nav_new_dvds) {
             mm.setTitle("New DVDs");
             try { mm.sendRecentDVDRequest(); } catch (Exception e) {
                 Log.d("**MOVIEMATCHER**", "Whoops, something went wrong.");
                 ToastWrapper.show(this, "Failed to get movies");
             }
             myFragment = new MovieListFragment();
-        } */else if (id == R.id.nav_rec) {
-            myFragment = new MovieListFragment();
-            mm.setTitle("Recommendations");
-            mm.setType(1);
-            ((Button) findViewById(R.id.leftButton)).setText("Overall");
-            ((Button) findViewById(R.id.rightButton)).setText("By Major");
-            mm.getOverallRec();
+        } else if (id == R.id.nav_rec) {
+            myFragment = new RecommendationFragment();
         }
 
-        android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
+        final android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
         fManager.beginTransaction()
                 .replace(R.id.container, myFragment)
                 .commit();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -143,89 +160,99 @@ public class NavigationActivity extends AppCompatActivity
     /*
     All button and screen responses must be referred here in the ACTIVITY, NOT the fragment they are contained in.
      */
+
+    /**
+     * Logs user out
+     * @param v Button clicked
+     */
     public void onLogoutButtonClick(View v) {
-        UserManager um = new UserManager();
+        final UserManager um = new UserManager();
         um.logout();
         finish();
     }
 
+    /**
+     * Launches UserListFragment
+     * @param v Button clicked
+     */
     public void onUsersButtonClick(View v) {
-        android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
+        final android.support.v4.app.FragmentManager fManager = getSupportFragmentManager();
         fManager.beginTransaction()
                 .replace(R.id.container, new UserListFragment())
                 .commit();
     }
 
+    /**
+     * Launches EditProfileActivity when button is clicked
+     * @param v Button clicked
+     */
     public void onUserEditButtonClick(View v) {
-        Intent intent = new Intent(this, EditProfileActivity.class);
+        final Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Launches ChangePasswordActivity when button is clicked
+     * @param v Button clicked
+     */
     public void onChangePassButtonClick(View v) {
-        Intent intent = new Intent(this, ChangePasswordActivity.class);
+        final Intent intent = new Intent(this, ChangePasswordActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Launches ViewProfileActivity when button is clicked
+     * @param v Button clicked
+     */
     public void onViewProfileButtonClick(View v) {
-        UserManager um = new UserManager();
-        Intent intent = new Intent(this, UserProfileActivity.class);
+        final UserManager um = new UserManager();
+        final Intent intent = new Intent(this, UserProfileActivity.class);
         intent.putExtra("user", um.getUserName());
         startActivity(intent);
     }
 
+    /**
+     * Returns search results from RottenTomatoes
+     * @param v Button clicked
+     * @throws Exception Occurs when RottenTomatoes query fails
+     */
     //http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=[your_api_key]&q=Toy+Story+3&page_limit=1
     public void onBasicSearchButtonClick(View v) throws Exception{
-        String name = ((EditText) findViewById(R.id.basicSearchEditText)).getText().toString();
-        String parsed[] = name.split(" ");
-        String parsedName = TextUtils.join("+", parsed);
-        MovieManager mm = new MovieManager();
+        final String name = ((EditText) findViewById(R.id.basicSearchEditText)).getText().toString();
+        final String parsed[] = name.split(" ");
+        final String parsedName = TextUtils.join("+", parsed);
+        final MovieManager mm = new MovieManager();
         mm.sendRTRequest(parsedName);
-        ArrayList<String> movies = mm.getTitles();
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, movies);
-        ListView lv = (ListView) findViewById(R.id.searchListView);
+        final ArrayList<String> movies = mm.getTitles();
+        final ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, movies);
+        final ListView lv = (ListView) findViewById(R.id.searchListView);
         lv.setAdapter(adapter);
     }
 
-    public void onRightButtonClick(View v) {
-        MovieManager mm = new MovieManager();
-        if (mm.getType() == 0) {
-            mm.sendRecentDVDRequest();
-        } else {
-            mm.getMajorRec(new UserManager().getUserMajor());
-        }
-        ArrayList<String> titlesToShow = mm.getTitles();
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titlesToShow);
-        ((ListView) findViewById(R.id.movieListView)).setAdapter(adapter);
-    }
-
-    public void onLeftButtonClick(View v) {
-        MovieManager mm = new MovieManager();
-        if (mm.getType() == 0) {
-            mm.sendNewMovieRequest();
-        } else {
-            mm.getOverallRec();
-        }
-        ArrayList<String> titlesToShow = mm.getTitles();
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titlesToShow);
-        ((ListView) findViewById(R.id.movieListView)).setAdapter(adapter);
-    }
-
-    /*public void onOverallButtonClick(View v) {
-        MovieManager mm = new MovieManager();
+    /**
+     * Returns overall recommendations when button is clicked
+     * @param v Button clicked
+     */
+    public void onOverallButtonClick(View v) {
+        final MovieManager mm = new MovieManager();
         mm.setMovies();
         mm.setTitle("Overall Recommendations");
         mm.getOverallRec();
-        android.support.v4.app.Fragment myFragment = new MovieListFragment();
+        final android.support.v4.app.Fragment myFragment = new MovieListFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).commit();
     }
 
+    /**
+     * Returns major specific recommendations when button is clicked
+     * @param v Button clicked
+     */
     public void onMajorButtonClick(View v) {
-        MovieManager mm = new MovieManager();
+        final MovieManager mm = new MovieManager();
         mm.setMovies();
         mm.setTitle("Major Recommendations");
         Log.d("**MOVIEMATCHER**", String.valueOf(mm.getUserTitles()));
         mm.getMajorRec(new UserManager().getUserMajor());
-        android.support.v4.app.Fragment myFragment = new MovieListFragment();
+        final android.support.v4.app.Fragment myFragment = new MovieListFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).commit();
-    }*/
+    }
 }

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.models.UserManager;
@@ -18,32 +17,33 @@ import com.skytalkers.app.moviematcher.models.UserManager;
  */
 public class ProfileFragment extends Fragment {
     private View myView;
+
+    /**
+     * Sets up profile view
+     * @param inflater Inflates raw XML into UI
+     * @param container Parent ViewGroup
+     * @param savedInstanceState Android instance state
+     * @return Profile view
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        RelativeLayout layout = (RelativeLayout) this.getActivity().findViewById(R.id.profileLayout);
-        Button adminButton = new Button(this.getContext());
+        View myView;
+        final RelativeLayout layout = (RelativeLayout) this.getActivity().findViewById(R.id.profileLayout);
+        final Button adminButton = new Button(this.getContext());
         adminButton.setText("Show Users");
-        adminButton.setLayoutParams(new RelativeLayout.LayoutParams(20, 20));
+        final int PARAM = 20;
+        adminButton.setLayoutParams(new RelativeLayout.LayoutParams(PARAM, PARAM));
         if (this.getActivity().getIntent().getBooleanExtra("Admin", false)) {
             layout.addView(adminButton);
         }
-        myView = inflater.inflate(R.layout.content_user_profile, container, false);
-        Button b = (Button) myView.findViewById(R.id.usersButton);
+        myView = inflater.inflate(R.layout.content_primary, container, false);
+        final Button b = (Button) myView.findViewById(R.id.usersButton);
         if (!(new UserManager().isAdmin())) {
             b.setVisibility(View.INVISIBLE);
         } else {
             b.setVisibility(View.VISIBLE);
         }
-        UserManager um = new UserManager();
-        String name = um.getUserName();
-
-        ((TextView) myView.findViewById(R.id.usernameText)).setText(name);
-        ((TextView) myView.findViewById(R.id.firstText)).setText(um.findUserFirst(name));
-        ((TextView) myView.findViewById(R.id.lastText)).setText(um.findUserLast(name));
-        ((TextView) myView.findViewById(R.id.emailText)).setText(um.findUserEmail(name));
-        ((TextView) myView.findViewById(R.id.majorText)).setText(um.findUserMajor(name));
-
         return myView;
     }
 }

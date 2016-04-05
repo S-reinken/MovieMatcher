@@ -1,6 +1,5 @@
 package com.skytalkers.app.moviematcher.models;
 
-import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -20,13 +19,14 @@ public class MovieManager {
     private static String req;
     private static List<Movie> userMovies;
     private static String listTitle;
-    private static int type;
 
 
     public MovieManager() {
         if (userMovies == null) {
             userMovies = new DatabaseManager().getMovieList();
-            for (Movie m : userMovies) movieMap.put(m.getTitle(), m);
+            for (final Movie m : userMovies) {
+                movieMap.put(m.getTitle(), m);
+            }
         }
     }
 
@@ -39,33 +39,42 @@ public class MovieManager {
 
     }
 
-    public void setType(int t) { type = t; }
-    public int getType() { return type; }
-
     public void setTitle(String title) {
         listTitle = title;
     }
 
     public String getTitle() { return listTitle; }
 
-    public void sendRTRequest(String name) {
+    public void sendRTRequest(String name) throws Exception {
         req = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey="
                 + HTTPRequest.getKey()
                 + "q="
                 + name + "&page_limit=5";
         movies = RottenTomatoesManager.getRTRequest(req);
-        for (Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
+        for (final Movie m : movies) {
+            if (!movieMap.containsKey(m.getTitle())) {
+                movieMap.put(m.getTitle(), m);
+            }
+        }
     }
 
-    public void sendNewMovieRequest() {
+    public void sendNewMovieRequest() throws Exception {
         movies = RottenTomatoesManager.getNewMovies();
         Log.d("**MOVIEMATCHER**", String.valueOf(movies.size()));
-        for (Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
+        for (final Movie m : movies) {
+            if (!movieMap.containsKey(m.getTitle())) {
+                movieMap.put(m.getTitle(), m);
+            }
+        }
     }
 
-    public void sendRecentDVDRequest() {
+    public void sendRecentDVDRequest() throws Exception {
         movies = RottenTomatoesManager.getRecentDVDs();
-        for (Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
+        for (final Movie m : movies) {
+            if (!movieMap.containsKey(m.getTitle())) {
+                movieMap.put(m.getTitle(), m);
+            }
+        }
     }
 
     public List<Movie> getMovies() { return movies; }
@@ -79,10 +88,9 @@ public class MovieManager {
     public Movie findMovie(String m) { return movieMap.get(m); }
 
     public void addMovie(String m) {
-        Log.d("Movie Add", m);
+        Log.d("Movie Add", m + " " + movieMap.get(m));
         userMovies.add(movieMap.get(m));
-        DatabaseManager mgr = new DatabaseManager();
-        Log.d("MovieManager", movieMap.get(m).toString());
+        final DatabaseManager mgr = new DatabaseManager();
         mgr.addMovie(movieMap.get(m));
     }
 
@@ -93,22 +101,28 @@ public class MovieManager {
 
     public List<Movie> getUserMovies() { return userMovies; }
 
-    public ArrayList<String> getTitles() {
-        ArrayList<String> titles = new ArrayList<>();
-        for (Movie m : movies) {
-            titles.add(m.getTitle().replace('_','.'));
+    public List<String> getTitles() {
+        final ArrayList<String> titles = new ArrayList<>();
+        for (final Movie m : movies) {
+            titles.add(m.getTitle());
         }
         return titles;
     }
 
-    public ArrayList<String> getUserTitles() {
-        ArrayList<String> titles = new ArrayList<>();
-        for (Movie m : userMovies) titles.add(m.getTitle());
+    public List<String> getUserTitles() {
+        final ArrayList<String> titles = new ArrayList<>();
+        for (final Movie m : userMovies) {
+            titles.add(m.getTitle());
+        }
         return titles;
     }
 
     public boolean contains(Movie mov) {
-        for (Movie m : userMovies) if (m.equals(mov)) return true;
+        for (final Movie m : userMovies) {
+            if (m.equals(mov)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -121,10 +135,12 @@ public class MovieManager {
         movies = userMovies;
     }
 
-    public ArrayList<Movie> filterMajorMovies() {
-        ArrayList<Movie> temp = new ArrayList<>();
-        for (Movie m : userMovies) {
-            if (m.getMajorRating() != 0) temp.add(m);
+    public List<Movie> filterMajorMovies() {
+        final ArrayList<Movie> temp = new ArrayList<>();
+        for (final Movie m : userMovies) {
+            if (m.getMajorRating() != 0) {
+                temp.add(m);
+            }
         }
         return temp;
     }

@@ -35,7 +35,8 @@
         android:layout_below="@+id/searchButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:nestedScrollingEnabled="true"
+        android:nestedScrollingEnabled="false"
         android:scrollIndicators="right"
-        android:clickable="true" />
+        android:clickable="true"
+        android:onClick="onResultClick" />
 </RelativeLayout>
