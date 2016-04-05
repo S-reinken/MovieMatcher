@@ -16,7 +16,7 @@ public class UserListActivity extends ListActivity {
 
     /**
      * Occurs on creation of activity, populates list and displays it in ListView
-     * @param savedInstanceState
+     * @param savedInstanceState Android instance data
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class UserListActivity extends ListActivity {
      * @param lv ListView of users
      * @param v Specific view in ListView
      * @param position Position of selected user
-     * @param id
+     * @param id row position of selected item
      */
     @Override
     public void onListItemClick(ListView lv, View v, int position, long id) {

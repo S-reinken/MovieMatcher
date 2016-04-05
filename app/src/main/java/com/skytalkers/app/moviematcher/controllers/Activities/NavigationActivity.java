@@ -92,9 +92,9 @@ public class NavigationActivity extends AppCompatActivity
 
 
     /**
-     *
+     * Handles option menu selections
      * @param item MenuItem clicked
-     * @return True if
+     * @return True or defers to super class
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -112,7 +112,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     /**
-     *
+     * Handles navigation drawer selections
      * @param item MenuItem selected
      * @return True
      */
@@ -182,16 +182,28 @@ public class NavigationActivity extends AppCompatActivity
                 .commit();
     }
 
+    /**
+     * Launches EditProfileActivity when button is clicked
+     * @param v Button clicked
+     */
     public void onUserEditButtonClick(View v) {
         final Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Launches ChangePasswordActivity when button is clicked
+     * @param v Button clicked
+     */
     public void onChangePassButtonClick(View v) {
         final Intent intent = new Intent(this, ChangePasswordActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Launches ViewProfileActivity when button is clicked
+     * @param v Button clicked
+     */
     public void onViewProfileButtonClick(View v) {
         final UserManager um = new UserManager();
         final Intent intent = new Intent(this, UserProfileActivity.class);
@@ -199,6 +211,11 @@ public class NavigationActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    /**
+     * Returns search results from RottenTomatoes
+     * @param v Button clicked
+     * @throws Exception Occurs when RottenTomatoes query fails
+     */
     //http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=[your_api_key]&q=Toy+Story+3&page_limit=1
     public void onBasicSearchButtonClick(View v) throws Exception{
         final String name = ((EditText) findViewById(R.id.basicSearchEditText)).getText().toString();
@@ -212,6 +229,10 @@ public class NavigationActivity extends AppCompatActivity
         lv.setAdapter(adapter);
     }
 
+    /**
+     * Returns overall recommendations when button is clicked
+     * @param v Button clicked
+     */
     public void onOverallButtonClick(View v) {
         final MovieManager mm = new MovieManager();
         mm.setMovies();
@@ -221,6 +242,10 @@ public class NavigationActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).commit();
     }
 
+    /**
+     * Returns major specific recommendations when button is clicked
+     * @param v Button clicked
+     */
     public void onMajorButtonClick(View v) {
         final MovieManager mm = new MovieManager();
         mm.setMovies();

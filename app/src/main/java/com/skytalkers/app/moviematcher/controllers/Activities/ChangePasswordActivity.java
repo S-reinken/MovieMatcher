@@ -15,7 +15,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     /**
      * Occurs on creation of activity
-     * @param savedInstanceState
+     * @param savedInstanceState Android instance data
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

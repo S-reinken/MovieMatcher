@@ -21,7 +21,7 @@ public class MovieActivity extends AppCompatActivity {
 
     /**
      * Occurs on creation of activity
-     * @param savedInstanceState
+     * @param savedInstanceState Android instance data
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +63,9 @@ public class MovieActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param image
-     * @return
+     * Decodes image into bitmap
+     * @param image Image to be decoded
+     * @return Final bitmap
      */
     public Bitmap decodeImage(String image) {
         final byte[] bytes = Base64.decode(image, Base64.DEFAULT);

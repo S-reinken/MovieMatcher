@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Sends request for new movies to RottenTomatoes
      * @param v Button that was clicked
-     * @throws Exception InterruptedException, JSONException, Exception
+     * @throws Exception Occurs if RottenTomatoes query fails
      */
     //yedukp76ffytfuy24zsqk7f5
     public void onRTButtonClick(View v) throws Exception {

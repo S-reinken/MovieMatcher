@@ -1,5 +1,6 @@
 package com.skytalkers.app.moviematcher.controllers.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +14,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     /**
      * Occurs on creation of activity
-     * @param savedInstanceState
+     * @param savedInstanceState Android instance data
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     /**
      * Applies changes to user profile
-     * @param v
+     * @param v Button clicked
      */
     public void onApplyButtonClick(View v) {
         final UserManager um = new UserManager();
@@ -52,6 +53,11 @@ public class EditProfileActivity extends AppCompatActivity {
         final String major = ((EditText) findViewById(R.id.majorEditText)).getText().toString();
         um.editUser(name, first, last, email, major);
         finish();
+    }
+
+    public void onChangePassButtonClick(View v) {
+        Intent intent = new Intent(this, ChangePasswordActivity.class);
+        startActivity(intent);
     }
 
 }

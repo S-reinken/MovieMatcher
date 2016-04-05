@@ -17,7 +17,7 @@ public class LoginScreenActivity extends AppCompatActivity {
 
     /**
      * Occurs on creation of activity
-     * @param savedInstanceState
+     * @param savedInstanceState Android instance data
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class LoginScreenActivity extends AppCompatActivity {
 
     /**
      * Cancels activity
-     * @param v View that was clicked
+     * @param v Button clicked
      */
     public void onCancelButtonClick(View v) {
         Log.d("**MOVIEMATCHER**", "Cancel Login");
