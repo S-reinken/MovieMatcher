@@ -31,7 +31,8 @@ public class UserListFragment extends Fragment {
         final UserManager um = new UserManager();
         final List<String> users = um.getUserList();
         final ListAdapter adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, users);
-        ((TextView) myView.findViewById(R.id.movieListTextView)).setText("Users");
+        final String u = "Users";
+        ((TextView) myView.findViewById(R.id.movieListTextView)).setText(u);
         final ListView lv = (ListView) (myView.findViewById(R.id.movieListView));
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

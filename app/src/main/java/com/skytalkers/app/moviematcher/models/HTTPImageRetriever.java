@@ -37,7 +37,6 @@ public class HTTPImageRetriever implements Runnable {
             image = BitmapFactory.decodeStream(is);
         } catch (IOException e) {
             Log.d("**MOVIEMATCHER**", e.toString());
-            return;
         }
     }
 

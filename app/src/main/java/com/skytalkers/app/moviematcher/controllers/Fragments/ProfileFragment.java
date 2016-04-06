@@ -22,7 +22,8 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final RelativeLayout layout = (RelativeLayout) this.getActivity().findViewById(R.id.profileLayout);
         final Button adminButton = new Button(this.getContext());
-        adminButton.setText("Show Users");
+        final String show = "Show Users";
+        adminButton.setText(show);
         final int coords = 20;
         adminButton.setLayoutParams(new RelativeLayout.LayoutParams(coords, coords));
         if (this.getActivity().getIntent().getBooleanExtra("Admin", false)) {

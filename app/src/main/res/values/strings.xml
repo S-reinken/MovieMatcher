@@ -16,4 +16,9 @@
     <string name="title_activity_movie">Movie Information</string>
     <string name="title_activity_user_status">User Information</string>
     <string name="title_activity_primary">.</string>
+    <string name="show_users">Show Users</string>
+    <string name="new_movies">New Movies</string>
+    <string name="new_dvds">New DVDs</string>
+    <String name="overall">Overall</String>
+    <String name="by_major">By Major</String>
 </resources>

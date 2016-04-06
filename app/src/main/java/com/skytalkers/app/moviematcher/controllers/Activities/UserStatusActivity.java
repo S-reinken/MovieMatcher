@@ -24,8 +24,10 @@ public class UserStatusActivity extends AppCompatActivity {
         final String name = getIntent().getStringExtra("name");
         final boolean ban = getIntent().getBooleanExtra("ban", false);
         ((TextView) findViewById(R.id.userNameTextView)).setText(name);
-        ((TextView) findViewById(R.id.statusTextView)).setText("Status: " + (ban ? "Banned" : "Unlocked"));
-        ((Button) findViewById(R.id.statusButton)).setText(ban ? "Unlock" : "Ban");
+        final String stat = "Status: " + (ban ? "Banned" : "Unlocked");
+        final String act = ban ? "Unlock" : "Ban";
+        ((TextView) findViewById(R.id.statusTextView)).setText(stat);
+        ((Button) findViewById(R.id.statusButton)).setText(act);
     }
 
     /**
@@ -37,8 +39,10 @@ public class UserStatusActivity extends AppCompatActivity {
         final String name = ((TextView) findViewById(R.id.userNameTextView)).getText().toString();
         um.toggleBan(name);
         final boolean ban = um.isBanned(name);
-        ((TextView) findViewById(R.id.statusTextView)).setText("Status: " + (ban ? "Banned" : "Unlocked"));
-        ((Button) findViewById(R.id.statusButton)).setText(ban ? "Unlock" : "Ban");
+        final String stat = "Status: " + (ban ? "Banned" : "Unlocked");
+        final String act = ban ? "Unlock" : "Ban";
+        ((TextView) findViewById(R.id.statusTextView)).setText(stat);
+        ((Button) findViewById(R.id.statusButton)).setText(act);
         ToastWrapper.show(this, name + " has been " + (ban ? "Banned" : "Unlock"));
     }
 

@@ -36,11 +36,13 @@ public class MovieListFragment extends Fragment {
         final ArrayList<String> titlesToShow = new ArrayList<>(new HashSet<>(mm.getTitles()));
         final ListAdapter adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, titlesToShow);
         if (mm.getType() == 0) {
-            ((Button) myView.findViewById(R.id.leftButton)).setText("New Movies");
-            ((Button) myView.findViewById(R.id.rightButton)).setText("New DVDs");
+            ((Button) myView.findViewById(R.id.leftButton)).setText(R.string.new_movies);
+            ((Button) myView.findViewById(R.id.rightButton)).setText(R.string.new_dvds);
         } else {
-            ((Button) myView.findViewById(R.id.leftButton)).setText("Overall");
-            ((Button) myView.findViewById(R.id.rightButton)).setText("By Major");
+            final String overall = "Overall";
+            final String byMajor = "By Major";
+            ((Button) myView.findViewById(R.id.leftButton)).setText(overall);
+            ((Button) myView.findViewById(R.id.rightButton)).setText(byMajor);
         }
         ((TextView) myView.findViewById(R.id.movieListTextView)).setText(mm.getTitle());
         final ListView lv = (ListView) (myView.findViewById(R.id.movieListView));

@@ -41,7 +41,6 @@ public class HTTPRetriever implements Runnable {
             res = sb.toString();
         } catch (IOException e) {
             Log.d("**MOVIEMATCHER**", e.toString());
-            return;
         }
     }
 

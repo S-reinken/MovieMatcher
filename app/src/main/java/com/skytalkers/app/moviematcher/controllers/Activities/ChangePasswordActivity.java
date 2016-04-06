@@ -59,11 +59,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
      */
     public boolean confirm(String name, String pass) {
         final UserManager um = new UserManager();
-        if (!um.login(name, pass)) {
-            msgbox("Incorrect Password");
-            return false;
+        if (um.login(name, pass)) {
+            return true;
         }
-        return true;
+        msgbox("Incorrect Password");
+        return false;
     }
 
     /**
