@@ -2,6 +2,7 @@ package com.skytalkers.app.moviematcher.models;
 
 import android.util.Log;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
@@ -9,11 +10,19 @@ import java.net.URL;
  * Created by Bruce on 2/22/2016.
  */
 public class HTTPRetriever implements Runnable {
+    /**
+     * Request String
+     */
     private String req;
+    /**
+     * Response String
+     */
     private String res;
-    private InputStream is;
-    private static boolean err = false;
 
+    /**
+     * Constructor to set request string
+     * @param r Request string
+     */
     public HTTPRetriever(String r) {
         req = r;
     }
@@ -22,31 +31,25 @@ public class HTTPRetriever implements Runnable {
     public void run() {
         try {
             Log.d("**MOVIEMATCHER**", "Requesting HTTP");
-            URL url = new URL(req);
-            InputStream is = url.openStream();
-            this.is = is;
-            StringBuilder sb = new StringBuilder();
+            final URL url = new URL(req);
+            final InputStream iss = url.openStream();
+            final StringBuilder sb = new StringBuilder();
             int ch;
-            while ((ch = is.read()) != -1) sb.append((char) ch);
+            while ((ch = iss.read()) != -1) {
+                sb.append((char) ch);
+            }
             res = sb.toString();
-        } catch (Exception e) {
+        } catch (IOException e) {
             Log.d("**MOVIEMATCHER**", e.toString());
-            err = true;
             return;
         }
     }
 
-    public InputStream getStream() { return is; }
-
+    /**
+     * Get JSON response string
+     * @return JSON response string
+     */
     public String getResponse() {
         return res;
-    }
-
-    public boolean getErr() {
-        if (err) {
-            err = false;
-            return true;
-        }
-        return false;
     }
 }

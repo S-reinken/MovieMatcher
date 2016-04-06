@@ -1,24 +1,18 @@
 package com.skytalkers.app.moviematcher.models;
 
-import android.graphics.Bitmap;
 import android.util.Log;
-
-//import com.android.volley.*;
-////import com.android.volley.Request;
-////import com.android.volley.Response;
-////import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //yedukp76ffytfuy24zsqk7f5
 //"http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5"
-public class RottenTomatoesManager {
+public final class RottenTomatoesManager {
 
-    private String res;
     //getMoviebyName(String name) {
     //getMoviebyDate(Date initial, Date final)
 
@@ -32,10 +26,9 @@ public class RottenTomatoesManager {
     /**
      * Fetches a list of Movie objects that are currently in theaters
      * @return ArrayList of new movies
-     * @throws Exception if there is an error fetching movies
      */
-    public static ArrayList<Movie> getNewMovies() { //Opening?; only returning up to 5 for now
-        String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
+    public static List<Movie> getNewMovies() { //Opening?; only returning up to 5 for now
+        final String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
         return getRTRequest(req);
     }
 
@@ -43,10 +36,9 @@ public class RottenTomatoesManager {
     /**
      * Fetches a list of Movie objects that are new on DVD
      * @return ArrayList of new DVDs
-     * @throws Exception if there is an error fetching movies
      */
-    public static ArrayList<Movie> getRecentDVDs() {
-        String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
+    public static List<Movie> getRecentDVDs() {
+        final String req = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=yedukp76ffytfuy24zsqk7f5&page_limit=5";
         return getRTRequest(req);
     }
 
@@ -55,46 +47,38 @@ public class RottenTomatoesManager {
      * JSON files into Movie objects
      * @param url The url to request from RT
      * @return ArrayList of movies
-     * @throws Exception if there is an error fetching movies or parsing JSONs
      */
-    public static ArrayList<Movie> getRTRequest(String url) {
-        ArrayList<Movie> movies = new ArrayList<>();
+    public static List<Movie> getRTRequest(String url) {
+        final ArrayList<Movie> movies = new ArrayList<>();
         String res;
-        try {
-            HTTPRequest http = new HTTPRequest(url);
-            http.sendRequest();
-            res = http.getResponse();
-        } catch (InterruptedException e) {
-            Log.d("**JSON**", "EXCEPTION: " + e.toString());
-            return movies;
-        }
+        final HTTPRequest http = new HTTPRequest(url);
+        http.sendRequest();
+        res = http.getResponse();
 
         JSONObject json = null;
         try {
             json = new JSONObject(res);
         } catch (JSONException e) {
             Log.d("**JSON**", "Failed to get JSON object");
-            e.printStackTrace();
         }
         assert json != null;
         //now get the array of "movies"data
-        JSONArray array = json.optJSONArray("movies");
+        final JSONArray array = json.optJSONArray("movies");
         for (int i = 0; i < array.length(); i++) {
             try {
-                JSONObject jsonObject = array.getJSONObject(i);
+                final JSONObject jsonObject = array.getJSONObject(i);
                 assert jsonObject != null;
                 String title = jsonObject.optString("title");
-                int id = jsonObject.optInt("id");
-                HTTPRequest http = new HTTPRequest(jsonObject.getJSONObject("posters").optString("thumbnail"));
-                http.sendImageRequest();
-                String image = http.getImage();
+                final int id = jsonObject.optInt("id");
+                final HTTPRequest https = new HTTPRequest(jsonObject.getJSONObject("posters").optString("thumbnail"));
+                https.sendImageRequest();
+                final String image = https.getImage();
                 title = title.replace('.','_');
                 Log.d("RTManager", title);
-                Movie m = new Movie(title, id, image);
+                final Movie m = new Movie(title, id, image);
                 movies.add(m);
-            } catch (Exception e) {
+            } catch (JSONException e) {
                 Log.d("VolleyApp", "Failed to get JSON object");
-                e.printStackTrace();
             }
         }
         return movies;

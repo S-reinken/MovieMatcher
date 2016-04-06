@@ -23,25 +23,23 @@ import java.util.List;
  * Created by Bruce on 3/15/2016.
  */
 public class UserListFragment extends Fragment {
-    private View myView;
-    private ListAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.movie_list_layout, container, false);
+        final View myView = inflater.inflate(R.layout.movie_list_layout, container, false);
 
-        UserManager um = new UserManager();
-        List<String> users = um.getUserList();
-        adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, users);
+        final UserManager um = new UserManager();
+        final List<String> users = um.getUserList();
+        final ListAdapter adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, users);
         ((TextView) myView.findViewById(R.id.movieListTextView)).setText("Users");
-        ListView lv = (ListView) (myView.findViewById(R.id.movieListView));
+        final ListView lv = (ListView) (myView.findViewById(R.id.movieListView));
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                UserManager um = new UserManager();
-                String name = um.getUserList().get(position);
-                Intent intent = new Intent(getActivity().getApplicationContext(), UserStatusActivity.class);
+                final UserManager um = new UserManager();
+                final String name = um.getUserList().get(position);
+                final Intent intent = new Intent(getActivity().getApplicationContext(), UserStatusActivity.class);
                 intent.putExtra("name", name);
                 intent.putExtra("ban", um.isBanned(name));
                 startActivity(intent);

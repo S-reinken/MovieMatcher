@@ -23,40 +23,47 @@ public class MovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_movie);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String title = getIntent().getStringExtra("title");
-        Bitmap image = decodeImage(getIntent().getStringExtra("image"));
-        MovieManager mm = new MovieManager();
+        final String title = getIntent().getStringExtra("title");
+        final Bitmap image = decodeImage(getIntent().getStringExtra("image"));
+        final MovieManager mm = new MovieManager();
         Log.d("MovieActivity", title);
-        for (Movie m : mm.getMovies()) {
+        for (final Movie m : mm.getMovies()) {
             Log.d("MovieActivity", m.getTitle());
             Log.d("MovieActivity", mm.getMovie(m.getTitle()).getTitle());
         }
         ((TextView) findViewById(R.id.movieTextView)).setText(title.replace('_','.'));
-        ((ImageView) findViewById(R.id.movieImageView)).setImageBitmap(Bitmap.createScaledBitmap(image, 405, 600, false));
+        final int width = 405;
+        final int height = 600;
+        ((ImageView) findViewById(R.id.movieImageView)).setImageBitmap(Bitmap.createScaledBitmap(image, width, height, false));
         ((RatingBar) findViewById(R.id.avgAllRating)).setRating(mm.getMovie(title).getAverageRating());
         ((RatingBar) findViewById(R.id.avgMajorRating)).setRating(mm.getMovie(title).getMajorRating());
-        try {
-            int rating = mm.getRatings(title).get(new UserManager().getUserName());
-            ((RatingBar) findViewById(R.id.userRating)).setRating(mm.getRatings(title).get(new UserManager().getUserName()));
-        } catch (Exception e) { }
+        //
+        final Integer r = mm.getRatings(title).get(new UserManager().getUserName());
+        ((RatingBar) findViewById(R.id.userRating)).setRating(r == null ? 0 : r);
+        //
         ((RatingBar) findViewById(R.id.userRating)).setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                UserManager um = new UserManager();
-                String title = MovieActivity.this.getIntent().getStringExtra("title");
+                final UserManager um = new UserManager();
+                final String title = MovieActivity.this.getIntent().getStringExtra("title");
                 //um.rate(title, (int) rating);
-                MovieManager mm = new MovieManager();
+                final MovieManager mm = new MovieManager();
                 mm.rate(title, um.getUserName(), (int) rating);
             }
         });
     }
 
+    /**
+     * Method to transform string to image
+     * @param image string to transform
+     * @return Bitmap of the string
+     */
     public Bitmap decodeImage(String image) {
-        byte[] bytes = Base64.decode(image, Base64.DEFAULT);
+        final byte[] bytes = Base64.decode(image, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
 

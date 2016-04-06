@@ -2,58 +2,90 @@ package com.skytalkers.app.moviematcher.models;
 
 import android.graphics.Bitmap;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 
 /**
  * Created by Bruce on 2/22/2016.
  */
 public class HTTPRequest {
 
+    /**
+     * Request String
+     */
     private String req;
+    /**
+     * Response String
+     */
     private String res;
-    private InputStream is;
+    /**
+     * Image String
+     */
     private String image;
 
-    public HTTPRequest(String req) {
-        this.req = req;
+    /**
+     * Constructor to set request
+     * @param reqs Request string
+     */
+    public HTTPRequest(String reqs) {
+        this.req = reqs;
     }
 
-    public void sendRequest() throws InterruptedException {
-        HTTPRetriever retriever = new HTTPRetriever(req);
-        Thread thread = new Thread(retriever);
+    /**
+     * Send a movie info request
+     */
+    public void sendRequest() {
+        final HTTPRetriever retriever = new HTTPRetriever(req);
+        final Thread thread = new Thread(retriever);
         thread.start();
-        thread.join();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Log.d("HTTPRequest", "Thread failed to join");
+        }
         res = retriever.getResponse();
     }
 
-    public void sendImageRequest() throws InterruptedException {
-        HTTPImageRetriever retriever = new HTTPImageRetriever(req);
-        Thread thread = new Thread(retriever);
+    /**
+     * Send a movie image request
+     */
+    public void sendImageRequest() {
+        final HTTPImageRetriever retriever = new HTTPImageRetriever(req);
+        final Thread thread = new Thread(retriever);
         thread.start();
-        thread.join();
-        Bitmap bmp = retriever.getImage();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Log.d("HTTPRequest", "Thread failed to join");
+        }
+        final Bitmap bmp = retriever.getImage();
+        final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        final int cmp = 100;
+        bmp.compress(Bitmap.CompressFormat.PNG, cmp, stream);
         bmp.recycle();
-        byte[] bytes = stream.toByteArray();
+        final byte[] bytes = stream.toByteArray();
         image = Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
+    /**
+     * Get JSON response
+     * @return String form of JSON response
+     */
     public String getResponse() { return res; }
 
-    public InputStream getStream() throws InterruptedException { return is; }
+    /**
+     * Get image
+     * @return image
+     */
+    public String getImage() { return image; }
 
-    public String getImage() throws Exception { return image; }
-
+    /**
+     * Holds API key
+     * @return API key
+     */
     public static String getKey() {
         return "yedukp76ffytfuy24zsqk7f5&";
-    }
-
-    public static boolean getErr() {
-        HTTPRetriever retriever = new HTTPRetriever("");
-        return retriever.getErr();
     }
 
 }

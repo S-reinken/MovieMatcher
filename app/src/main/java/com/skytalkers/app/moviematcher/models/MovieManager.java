@@ -1,6 +1,5 @@
 package com.skytalkers.app.moviematcher.models;
 
-import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -15,120 +14,196 @@ import java.util.Map;
  * Class to hold and manage a list of movies.
  */
 public class MovieManager {
+    /**
+     * Map of movie name to movie
+     */
     private static Map<String,Movie> movieMap = new HashMap<>();
+    /**
+     * List of movies
+     */
     private static List<Movie> movies;
-    private static String req;
+    /**
+     * List of personal Movies
+     */
     private static List<Movie> userMovies;
+    /**
+     * Title of type type
+     */
     private static String listTitle;
+    /**
+     * Type of list
+     */
     private static int type;
 
-
+    /**
+     * Constructor for pulling movielist from database if not already
+     */
     public MovieManager() {
         if (userMovies == null) {
             userMovies = new DatabaseManager().getMovieList();
-            for (Movie m : userMovies) movieMap.put(m.getTitle(), m);
+            for (final Movie m : userMovies) {
+                movieMap.put(m.getTitle(), m);
+            }
         }
     }
 
-
-    public MovieManager(String url) {
-        req = url;
-    }
-
-    public void setMovies() {
-
-    }
-
+    /**
+     * Set Boolean for type of event
+     * @param t type of event
+     */
     public void setType(int t) { type = t; }
+
+    /**
+     * Get type of event
+     * @return type of event
+     */
     public int getType() { return type; }
 
+    /**
+     * Set list title
+     * @param title title string
+     */
     public void setTitle(String title) {
         listTitle = title;
     }
 
+    /**
+     * Get title string
+     * @return title string
+     */
     public String getTitle() { return listTitle; }
 
+    /**
+     * Send a request to rotten tomatoes
+     * @param name parsed search
+     */
     public void sendRTRequest(String name) {
-        req = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey="
+        final String req = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey="
                 + HTTPRequest.getKey()
                 + "q="
                 + name + "&page_limit=5";
         movies = RottenTomatoesManager.getRTRequest(req);
-        for (Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
+        for (final Movie m : movies) {
+            if (!movieMap.containsKey(m.getTitle())) { movieMap.put(m.getTitle(), m); }
+        }
     }
 
+    /**
+     * Send request for new movies
+     */
     public void sendNewMovieRequest() {
         movies = RottenTomatoesManager.getNewMovies();
         Log.d("**MOVIEMATCHER**", String.valueOf(movies.size()));
-        for (Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
+        for (final Movie m : movies) {
+            if (!movieMap.containsKey(m.getTitle())) { movieMap.put(m.getTitle(), m); }
+        }
     }
 
+    /**
+     * Send request for new dvds
+     */
     public void sendRecentDVDRequest() {
         movies = RottenTomatoesManager.getRecentDVDs();
-        for (Movie m : movies) {if (!movieMap.containsKey(m.getTitle())) movieMap.put(m.getTitle(), m);}
+        for (final Movie m : movies) {
+            if (!movieMap.containsKey(m.getTitle())) { movieMap.put(m.getTitle(), m); }
+        }
     }
 
+    /**
+     * Get list of movies
+     * @return list of Movies
+     */
     public List<Movie> getMovies() { return movies; }
 
+    /**
+     * Get a movie by name
+     * @param m Movie name
+     * @return Movie object
+     */
     public Movie getMovie(String m) { return movieMap.get(m); }
 
-    public Map<String,Movie> getMap() { return movieMap; }
-
+    /**
+     * Get ratings of a movie
+     * @param m Movie name
+     * @return Map of ratings by user
+     */
     public Map<String,Integer> getRatings(String m) { return getMovie(m).getRatings(); }
 
-    public Movie findMovie(String m) { return movieMap.get(m); }
-
+    /**
+     * Add movie to internal list
+     * @param m Movie name
+     */
     public void addMovie(String m) {
         Log.d("Movie Add", m);
         userMovies.add(movieMap.get(m));
-        DatabaseManager mgr = new DatabaseManager();
+        final DatabaseManager mgr = new DatabaseManager();
         Log.d("MovieManager", movieMap.get(m).toString());
         mgr.addMovie(movieMap.get(m));
     }
 
+    /**
+     * Rate a movie
+     * @param m movie name to rate
+     * @param u User rating it
+     * @param r Rating value
+     */
     public void rate(String m, String u, int r) {
         movieMap.get(m).rate(u, r);
         new DatabaseManager().rate(movieMap.get(m), u, r);
     }
 
-    public List<Movie> getUserMovies() { return userMovies; }
-
-    public ArrayList<String> getTitles() {
-        ArrayList<String> titles = new ArrayList<>();
-        for (Movie m : movies) {
+    /**
+     * Get list of titles of currnet movie list
+     * @return List of titles
+     */
+    public List<String> getTitles() {
+        final ArrayList<String> titles = new ArrayList<>();
+        for (final Movie m : movies) {
             titles.add(m.getTitle().replace('_','.'));
         }
         return titles;
     }
 
-    public ArrayList<String> getUserTitles() {
-        ArrayList<String> titles = new ArrayList<>();
-        for (Movie m : userMovies) titles.add(m.getTitle());
-        return titles;
-    }
-
+    /**
+     * Check for a movie
+     * @param mov Movie to check for
+     * @return true is movie is in list, else false
+     */
     public boolean contains(Movie mov) {
-        for (Movie m : userMovies) if (m.equals(mov)) return true;
+        for (final Movie m : userMovies) {
+            if (m.equals(mov)) { return true; }
+        }
         return false;
     }
 
+    /**
+     * Get list of movies sorted by overall rating
+     */
     public void getOverallRec() {
         Collections.sort(userMovies, new Comparator<Movie>() {
-           public int compare(Movie m1, Movie m2) {
-               return m2.getAverageRating() - m1.getAverageRating();
-           }
+            public int compare(Movie m1, Movie m2) {
+                return m2.getAverageRating() - m1.getAverageRating();
+            }
         });
         movies = userMovies;
     }
 
-    public ArrayList<Movie> filterMajorMovies() {
-        ArrayList<Movie> temp = new ArrayList<>();
-        for (Movie m : userMovies) {
-            if (m.getMajorRating() != 0) temp.add(m);
+    /**
+     * Get list of movie that have been rated by a major
+     * @return list of movies filtered by a major
+     */
+    public List<Movie> filterMajorMovies() {
+        final ArrayList<Movie> temp = new ArrayList<>();
+        for (final Movie m : userMovies) {
+            if (m.getMajorRating() != 0) { temp.add(m); }
         }
         return temp;
     }
 
+    /**
+     * Get a list of major rated movies sorted by rating
+     * @param major list of movies by rating
+     */
     public void getMajorRec(String major) {
         Collections.sort(userMovies, new Comparator<Movie>() {
             public int compare(Movie m1, Movie m2) {

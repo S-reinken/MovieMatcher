@@ -8,14 +8,41 @@ import java.util.Map;
  * Holds basic information about a user.
  */
 public class User {
+    /**
+     * User name
+     */
     private String username;
+    /**
+     * User password
+     */
     private String password;
+    /**
+     * User first name
+     */
     private String first;
+    /**
+     * User last name
+     */
     private String last;
+    /**
+     * User  email
+     */
     private String email;
+    /**
+     * User major
+     */
     private String major;
+    /**
+     * User ratings
+     */
     private Map<String,Integer> ratings = new HashMap<>();
+    /**
+     * User ban status
+     */
     private boolean banned = false;
+    /**
+     * User admin status
+     */
     private boolean admin = false;
 
     /**
@@ -28,36 +55,36 @@ public class User {
     /**
      * Constructs a user object
      * @param name Username of the user
-     * @param password Password of the user
-     * @param first First name of the user
-     * @param last Last name of the user
-     * @param email Email address of the user
-     * @param major Major of the user
+     * @param p Password of the user
+     * @param f First name of the user
+     * @param l Last name of the user
+     * @param e Email address of the user
+     * @param m Major of the user
      */
-    public User(String name, String password, String first, String last, String email, String major) {
+    public User(String name, String p, String f, String l, String e, String m) {
         username = name;
-        this.password = password;
-        this.first = first;
-        this.last = last;
-        this.email = email;
-        this.major = major;
+        this.password = p;
+        this.first = f;
+        this.last = l;
+        this.email = e;
+        this.major = m;
     }
 
     /**
      * Constructs a user object without a major parameter
      * @param name Username of the user
-     * @param password Password of the user
-     * @param first First name of the user
-     * @param last Last name of the user
-     * @param email Email address of the user
+     * @param p Password of the user
+     * @param f First name of the user
+     * @param l Last name of the user
+     * @param e Email address of the user
      */
-    public User(String name, String password, String first, String last, String email) {
+    public User(String name, String p, String f, String l, String e) {
         username = name;
-        this.password = password;
-        this.first = first;
-        this.last = last;
-        this.email = email;
-        major = "";
+        this.password = p;
+        this.first = f;
+        this.last = l;
+        this.email = e;
+        major = "NONE";
     }
 
     /**

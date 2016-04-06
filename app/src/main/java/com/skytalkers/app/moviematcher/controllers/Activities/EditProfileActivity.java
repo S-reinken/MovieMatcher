@@ -16,11 +16,11 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        UserManager um = new UserManager();
+        final UserManager um = new UserManager();
         ((EditText) findViewById(R.id.nameEditText)).setText(um.getUserName());
         ((EditText) findViewById(R.id.firstEditText)).setText(um.getUserFirst());
         ((EditText) findViewById(R.id.lastEditText)).setText(um.getUserLast());
@@ -28,23 +28,35 @@ public class EditProfileActivity extends AppCompatActivity {
         ((EditText) findViewById(R.id.majorEditText)).setText(um.getUserMajor());
     }
 
+    /**
+     * Finish Activity on back press
+     * @param v Current View
+     */
     public void onBackButtonClick(View v) {
         finish();
     }
 
+    /**
+     * Confirm user info change
+     * @param v Current View
+     */
     public void onApplyButtonClick(View v) {
-        UserManager um = new UserManager();
-        String name = ((EditText) findViewById(R.id.nameEditText)).getText().toString();
-        String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
-        String first = ((EditText) findViewById(R.id.firstEditText)).getText().toString();
-        String last = ((EditText) findViewById(R.id.lastEditText)).getText().toString();
-        String major = ((EditText) findViewById(R.id.majorEditText)).getText().toString();
+        final UserManager um = new UserManager();
+        final String name = ((EditText) findViewById(R.id.nameEditText)).getText().toString();
+        final String email = ((EditText) findViewById(R.id.emailEditText)).getText().toString();
+        final String first = ((EditText) findViewById(R.id.firstEditText)).getText().toString();
+        final String last = ((EditText) findViewById(R.id.lastEditText)).getText().toString();
+        final String major = ((EditText) findViewById(R.id.majorEditText)).getText().toString();
         um.editUser(name, first, last, email, major);
         finish();
     }
 
+    /**
+     * Opens password change activity
+     * @param v Current View
+     */
     public void onChangePassButtonClick(View v) {
-        Intent intent = new Intent(this, ChangePasswordActivity.class);
+        final Intent intent = new Intent(this, ChangePasswordActivity.class);
         startActivity(intent);
     }
 

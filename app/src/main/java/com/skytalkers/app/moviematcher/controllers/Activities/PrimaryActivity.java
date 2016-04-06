@@ -15,43 +15,53 @@ public class PrimaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_primary);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
+    /**
+     * Logout User
+     * @param v Current View
+     */
     public void onLogoutButtonClick(View v) {
-        UserManager um = new UserManager();
+        final UserManager um = new UserManager();
         um.logout();
         finish();
     }
 
+    /**
+     * Logout User
+     */
     public void onBackPressed() {
-        UserManager um = new UserManager();
+        final UserManager um = new UserManager();
         um.logout();
         super.onBackPressed();
     }
 
+    /**
+     * Bring up user list
+     * @param v Current View
+     */
     public void onUsersButtonClick(View v) {
-        Intent intent = new Intent(this, UserListActivity.class);
+        final Intent intent = new Intent(this, UserListActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Edit User profile
+     * @param v Current View
+     */
     public void onUserEditButtonClick(View v) {
-        Intent intent = new Intent(this, EditProfileActivity.class);
+        final Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Start ChangePassword Activity
+     * @param v Current View
+     */
     public void onChangePassButtonClick(View v) {
-        Intent intent = new Intent(this, ChangePasswordActivity.class);
+        final Intent intent = new Intent(this, ChangePasswordActivity.class);
         startActivity(intent);
     }
-
-    public void onViewProfileButtonClick(View v) {
-        UserManager um = new UserManager();
-        String user = um.getUserName();
-        Intent intent = new Intent(this, UserProfileActivity.class);
-        intent.putExtra("user_object", user);
-        startActivity(intent);
-    }
-
 }

@@ -10,24 +10,26 @@ import android.widget.EditText;
 
 import com.firebase.client.Firebase;
 import com.skytalkers.app.moviematcher.R;
-import com.skytalkers.app.moviematcher.models.DatabaseManager;
 import com.skytalkers.app.moviematcher.models.MovieManager;
 import com.skytalkers.app.moviematcher.models.ToastWrapper;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
 public class LoginScreenActivity extends AppCompatActivity {
-    String MMTag = "**MOVIEMATCHER**";
+    /**
+     * App tag
+     */
+    private static String mmtag = "**MOVIEMATCHER**";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Firebase.setAndroidContext(this);
-        UserManager um = new UserManager();
-        MovieManager mm = new MovieManager();
+        new UserManager();
+        new MovieManager();
 
         setContentView(R.layout.activity_login_screen);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -36,24 +38,29 @@ public class LoginScreenActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(MMTag, "Pausing the login screen");
+        Log.d(mmtag, "Pausing the login screen");
     }
 
+    @Override
     public void onResume() {
         super.onResume();
-        Log.d(MMTag, "Resuming the login screen");
+        Log.d(mmtag, "Resuming the login screen");
     }
 
+    /**
+     * Login to app
+     * @param v Current View
+     */
     public void onLoginButtonClick(View v) {
-        Log.d(MMTag, "Attempting Login");
-        UserManager um = new UserManager();
-        String name = ((EditText) findViewById(R.id.usernameText)).getText().toString();
-        String pass = ((EditText) findViewById(R.id.passwordText)).getText().toString();
+        Log.d(mmtag, "Attempting Login");
+        final UserManager um = new UserManager();
+        final String name = ((EditText) findViewById(R.id.usernameText)).getText().toString();
+        final String pass = ((EditText) findViewById(R.id.passwordText)).getText().toString();
         if (um.login(name, pass)) {
-            Log.d(MMTag, "Login Match");
+            Log.d(mmtag, "Login Match");
             if (!um.isBanned(name)) {
                 um.setUser(name);
-                Intent intent = new Intent(this, NavigationActivity.class);
+                final Intent intent = new Intent(this, NavigationActivity.class);
                 startActivity(intent);
                 finish();
             } else {
@@ -65,8 +72,12 @@ public class LoginScreenActivity extends AppCompatActivity {
         //System.out.println("Now the button click has ended");
     }
 
+    /**
+     * Cancel login activity
+     * @param v Current View
+     */
     public void onCancelButtonClick(View v) {
-        Log.d(MMTag, "Cancel Login");
+        Log.d(mmtag, "Cancel Login");
         finish();
     }
 }
