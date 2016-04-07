@@ -187,12 +187,12 @@ public class UserManager {
      * @param e Email address of the new user
      * @param m Major of the new user
      */
-    public void addUser(String name, String pass, String f, String l, String e, String m) {
+    /*public void addUser(String name, String pass, String f, String l, String e, String m) {
         users.put(name, new User(name, pass, f, l, e, m));
         userList = new ArrayList<>(users.keySet());
         final DatabaseManager mgr = new DatabaseManager();
         mgr.addUser(users.get(name));
-    }
+    }*/
 
     /*public void addUser(String name, String pass, String f, String l, String e, String m) {
         mgr.addUser(new User(name, pass, f, l, e, m));
@@ -210,7 +210,7 @@ public class UserManager {
      * @param e Email address of the new user
      */
     public void addUser(String name, String pass, String f, String l, String e) {
-        users.put(name, new User(name, pass, f, l, e, "NONE"));
+        users.put(name, new User(name, pass, f, l, e));
         userList = new ArrayList<>(users.keySet());
         final DatabaseManager mgr = new DatabaseManager();
         mgr.addUser(users.get(name));
@@ -224,10 +224,6 @@ public class UserManager {
      * Removes a user from the map of users
      * @param name Username of the user
      */
-    public void deleteUser(String name) {
-        users.remove(name);
-        //userList = new ArrayList<>(users.keySet());
-    }
 
     /**
      * Changes the information contained in the current user
@@ -274,18 +270,18 @@ public class UserManager {
      * @param m Name of the movie
      * @return Rating given by the user
      */
-    public int getRating(String m) {
+    /*public int getRating(String m) {
         return user.getRating(m);
-    }
+    }*/
 
     /**
      * Gives a rating to a movie
      * @param m Name of the movie
      * @param r Rating to give the movie
      */
-    public void rate(String m, int r) {
+    /*public void rate(String m, int r) {
         user.rate(m,r);
-    }
+    }*/
 
     /**
      * Logs the user out of the system

@@ -7,14 +7,14 @@ import android.util.Log;
 import java.io.ByteArrayOutputStream;
 
 /**
- * Created by Bruce on 2/22/2016.
+ * Object to retrieve movie information
  */
-public class HTTPRequest {
+class HTTPRequest {
 
     /**
      * Request String
      */
-    private String req;
+    private final String req;
     /**
      * Response String
      */
@@ -79,13 +79,5 @@ public class HTTPRequest {
      * @return image
      */
     public String getImage() { return image; }
-
-    /**
-     * Holds API key
-     * @return API key
-     */
-    public static String getKey() {
-        return "yedukp76ffytfuy24zsqk7f5&";
-    }
 
 }

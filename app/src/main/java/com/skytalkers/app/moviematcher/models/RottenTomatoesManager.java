@@ -11,7 +11,7 @@ import java.util.List;
 
 //yedukp76ffytfuy24zsqk7f5
 //"http://api.rottentomatoes.com/api/public/v1.0.json?apikey=yedukp76ffytfuy24zsqk7f5"
-public final class RottenTomatoesManager {
+final class RottenTomatoesManager {
 
     //getMoviebyName(String name) {
     //getMoviebyDate(Date initial, Date final)

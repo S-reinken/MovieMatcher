@@ -62,7 +62,7 @@ public class MovieActivity extends AppCompatActivity {
      * @param image string to transform
      * @return Bitmap of the string
      */
-    public Bitmap decodeImage(String image) {
+    private Bitmap decodeImage(String image) {
         final byte[] bytes = Base64.decode(image, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }

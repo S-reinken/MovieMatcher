@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * Created by Bruce on 3/8/2016.
+ * Fragment to list movies
  */
 public class MovieListFragment extends Fragment {
     @Nullable

@@ -12,30 +12,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by schuylerreinken on 2/23/16.
+ * Class for communicating with Database
  */
 public class DatabaseManager {
     //private static Firebase client = new Firebase("https://blazing-fire-2549.firebaseio.com/");
     /**
      * Firebase link
      */
-    private static Firebase client = new Firebase("https://resplendent-fire-3901.firebaseio.com/");
+    private static final Firebase CLIENT = new Firebase("https://resplendent-fire-3901.firebaseio.com/");
     /**
      * List of users
      */
-    private static List<User> userList = new ArrayList<>();
+    private static final List<User> USERLIST = new ArrayList<>();
     /**
      * List of movies
      */
-    private static List<Movie> movieList = new ArrayList<>();
+    private static final List<Movie> MOVIELIST = new ArrayList<>();
 
     /**
      * Add a user to the database
      * @param user User object to add.
      */
     public void addUser(User user) {
-        client.child("Users").child("NormalUsers").child(user.getUsername()).setValue(user);
-        userList.add(user);
+        CLIENT.child("Users").child("NormalUsers").child(user.getUsername()).setValue(user);
+        USERLIST.add(user);
     }
 
     /**
@@ -44,13 +44,13 @@ public class DatabaseManager {
      */
     public void addMovie(Movie movie) {
         Log.d("DBM", movie.toString());
-        final Firebase m = client.child("Movies").child(movie.getTitle());
+        final Firebase m = CLIENT.child("Movies").child(movie.getTitle());
         for (final String key : movie.getRatings().keySet()) {
             m.child("ratings").child(key).setValue(movie.getRating(key));
         }
         m.child("image").setValue(movie.getImage());
         m.child("id").setValue(movie.getId());
-        movieList.add(movie);
+        MOVIELIST.add(movie);
     }
 
     /**
@@ -60,16 +60,16 @@ public class DatabaseManager {
      * @param r Rating value
      */
     public void rate(Movie m, String u, int r) {
-        client.child("Movies").child(m.getTitle()).child("ratings").child(u).setValue(r);
+        CLIENT.child("Movies").child(m.getTitle()).child("ratings").child(u).setValue(r);
     }
 
     /**
      * Database init stuff
      */
     public void prepareUsers() {
-        client.child("Users").child("NormalUsers").addValueEventListener(new ListListener());
-        client.child("Movies").addValueEventListener(new MovieListener());
-        //client.child("Users").child("Admins").addValueEventListener(new AdminListListener());
+        CLIENT.child("Users").child("NormalUsers").addValueEventListener(new ListListener());
+        CLIENT.child("Movies").addValueEventListener(new MovieListener());
+        //CLIENT.child("Users").child("Admins").addValueEventListener(new AdminListListener());
     }
 
     /**
@@ -77,7 +77,7 @@ public class DatabaseManager {
      * @return List of users
      */
     public List<User> getAllUsers() {
-        return userList;
+        return USERLIST;
     }
 
     /**
@@ -85,7 +85,7 @@ public class DatabaseManager {
      * @return List of movies
      */
     public List<Movie> getMovieList() {
-        return movieList;
+        return MOVIELIST;
     }
 
 
@@ -93,7 +93,7 @@ public class DatabaseManager {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             for (final DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                userList.add(snapshot.getValue(User.class));
+                USERLIST.add(snapshot.getValue(User.class));
             }
         }
 
@@ -112,7 +112,7 @@ public class DatabaseManager {
                 for (final DataSnapshot sn : snp.child("ratings").getChildren()) {
                     m.rate(sn.getKey(), ((Long) sn.getValue()).intValue());
                 }
-                movieList.add(m);
+                MOVIELIST.add(m);
             }
         }
 

@@ -14,7 +14,7 @@ import com.skytalkers.app.moviematcher.R;
 import com.skytalkers.app.moviematcher.models.UserManager;
 
 /**
- * Created by schuylerreinken on 2/18/16.
+ * Fragment to display profile.
  */
 public class ProfileFragment extends Fragment {
     @Nullable

@@ -17,7 +17,7 @@ public class MovieManager {
     /**
      * Map of movie name to movie
      */
-    private static Map<String,Movie> movieMap = new HashMap<>();
+    private static final Map<String,Movie> MOOVIEMAP = new HashMap<>();
     /**
      * List of movies
      */
@@ -42,7 +42,7 @@ public class MovieManager {
         if (userMovies == null) {
             userMovies = new DatabaseManager().getMovieList();
             for (final Movie m : userMovies) {
-                movieMap.put(m.getTitle(), m);
+                MOOVIEMAP.put(m.getTitle(), m);
             }
         }
     }
@@ -79,12 +79,12 @@ public class MovieManager {
      */
     public void sendRTRequest(String name) {
         final String req = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey="
-                + HTTPRequest.getKey()
+                + "yedukp76ffytfuy24zsqk7f5&"
                 + "q="
                 + name + "&page_limit=5";
         movies = RottenTomatoesManager.getRTRequest(req);
         for (final Movie m : movies) {
-            if (!movieMap.containsKey(m.getTitle())) { movieMap.put(m.getTitle(), m); }
+            if (!MOOVIEMAP.containsKey(m.getTitle())) { MOOVIEMAP.put(m.getTitle(), m); }
         }
     }
 
@@ -95,7 +95,7 @@ public class MovieManager {
         movies = RottenTomatoesManager.getNewMovies();
         Log.d("**MOVIEMATCHER**", String.valueOf(movies.size()));
         for (final Movie m : movies) {
-            if (!movieMap.containsKey(m.getTitle())) { movieMap.put(m.getTitle(), m); }
+            if (!MOOVIEMAP.containsKey(m.getTitle())) { MOOVIEMAP.put(m.getTitle(), m); }
         }
     }
 
@@ -105,7 +105,7 @@ public class MovieManager {
     public void sendRecentDVDRequest() {
         movies = RottenTomatoesManager.getRecentDVDs();
         for (final Movie m : movies) {
-            if (!movieMap.containsKey(m.getTitle())) { movieMap.put(m.getTitle(), m); }
+            if (!MOOVIEMAP.containsKey(m.getTitle())) { MOOVIEMAP.put(m.getTitle(), m); }
         }
     }
 
@@ -120,7 +120,7 @@ public class MovieManager {
      * @param m Movie name
      * @return Movie object
      */
-    public Movie getMovie(String m) { return movieMap.get(m); }
+    public Movie getMovie(String m) { return MOOVIEMAP.get(m); }
 
     /**
      * Get ratings of a movie
@@ -135,10 +135,10 @@ public class MovieManager {
      */
     public void addMovie(String m) {
         Log.d("Movie Add", m);
-        userMovies.add(movieMap.get(m));
+        userMovies.add(MOOVIEMAP.get(m));
         final DatabaseManager mgr = new DatabaseManager();
-        Log.d("MovieManager", movieMap.get(m).toString());
-        mgr.addMovie(movieMap.get(m));
+        Log.d("MovieManager", MOOVIEMAP.get(m).toString());
+        mgr.addMovie(MOOVIEMAP.get(m));
     }
 
     /**
@@ -148,8 +148,8 @@ public class MovieManager {
      * @param r Rating value
      */
     public void rate(String m, String u, int r) {
-        movieMap.get(m).rate(u, r);
-        new DatabaseManager().rate(movieMap.get(m), u, r);
+        MOOVIEMAP.get(m).rate(u, r);
+        new DatabaseManager().rate(MOOVIEMAP.get(m), u, r);
     }
 
     /**
@@ -192,7 +192,7 @@ public class MovieManager {
      * Get list of movie that have been rated by a major
      * @return list of movies filtered by a major
      */
-    public List<Movie> filterMajorMovies() {
+    private List<Movie> filterMajorMovies() {
         final ArrayList<Movie> temp = new ArrayList<>();
         for (final Movie m : userMovies) {
             if (m.getMajorRating() != 0) { temp.add(m); }
@@ -205,6 +205,7 @@ public class MovieManager {
      * @param major list of movies by rating
      */
     public void getMajorRec(String major) {
+        Log.d("MM", major);
         Collections.sort(userMovies, new Comparator<Movie>() {
             public int compare(Movie m1, Movie m2) {
                 return m2.getMajorRating() - m1.getMajorRating();
