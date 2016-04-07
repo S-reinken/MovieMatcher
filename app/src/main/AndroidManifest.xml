@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.skytalkers.app.moviematcher">
+    package="com.skytalkers.app.moviematcher" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,8 +9,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".controllers.Activities.MainActivity">
+        android:theme="@style/AppTheme" >
+        <activity android:name=".controllers.Activities.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,7 @@
             android:label="@string/title_activity_login_screen"
             android:noHistory="true"
             android:parentActivityName=".controllers.Activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
 
             <!--
             <intent-filter>
@@ -46,7 +46,7 @@
             android:name=".controllers.Activities.PrimaryActivity"
             android:label="@string/title_activity_primary"
             android:parentActivityName=".controllers.Activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controllers.Activities.MainActivity" />
@@ -54,7 +54,7 @@
         <activity
             android:name=".controllers.Activities.UserProfileActivity"
             android:label="@string/title_activity_user_profile"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controllers.Activities.UserListActivity" />
@@ -63,7 +63,7 @@
             android:name=".controllers.Activities.UserListActivity"
             android:label="@string/title_activity_user_list"
             android:parentActivityName=".controllers.Activities.PrimaryActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controllers.Activities.PrimaryActivity" />
@@ -72,7 +72,7 @@
             android:name=".controllers.Activities.EditProfileActivity"
             android:label="@string/title_activity_edit_profile"
             android:parentActivityName=".controllers.Activities.PrimaryActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controllers.Activities.UserProfileActivity" />
@@ -81,7 +81,7 @@
             android:name=".controllers.Activities.ChangePasswordActivity"
             android:label="@string/title_activity_change_password"
             android:parentActivityName=".controllers.Activities.PrimaryActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".controllers.Activities.PrimaryActivity" />
@@ -89,11 +89,11 @@
         <activity
             android:name=".controllers.Activities.MovieActivity"
             android:label="@string/title_activity_movie"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controllers.Activities.UserStatusActivity"
             android:label="@string/title_activity_user_status"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
