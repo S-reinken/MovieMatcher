@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 /**
- * Created by Bruce on 2/28/2016.
+ * Object to display alerts
  */
 public final class ToastWrapper {
     /**

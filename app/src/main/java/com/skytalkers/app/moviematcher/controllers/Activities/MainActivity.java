@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * App tag
      */
-    private static String mmtag = "**MOVIEMATCHER**";
+    private static final String MMTAG = "**MOVIEMATCHER**";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(mmtag, "Pausing the main opening screen");
+        Log.d(MMTAG, "Pausing the main opening screen");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(mmtag, "Resuming the main opening screen");
+        Log.d(MMTAG, "Resuming the main opening screen");
     }
 
     /**
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v Current View
      */
     public void onLoginButtonClick(View v) {
-        Log.d(mmtag, "Login button clicked");
+        Log.d(MMTAG, "Login button clicked");
         final Intent intent = new Intent(this, LoginScreenActivity.class);
         startActivity(intent);
     }

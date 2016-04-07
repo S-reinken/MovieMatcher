@@ -7,19 +7,19 @@ public class Movie {
     /**
      * Movie name
      */
-    private String name;
+    private final String name;
     /**
      * Movie id
      */
-    private int id;
+    private final int id;
     /**
      * Movie image string
      */
-    private String image;
+    private final String image;
     /**
      * Movie ratings by user
      */
-    private Map<String,Integer> ratings = new HashMap<>();
+    private final Map<String,Integer> ratings = new HashMap<>();
 
     //date released
     //ratinglist / array
@@ -58,13 +58,13 @@ public class Movie {
      * Set movie title
      * @param t Movie title
      */
-    public void setTitle(String t) { name = t; }
+    //public void setTitle(String t) { name = t; }
 
     /**
      * Set movie image
      * @param b Movie image
      */
-    public void setImage(String b) { image = b; }
+    //public void setImage(String b) { image = b; }
 
     /**
      * Rate a movie
@@ -121,7 +121,11 @@ public class Movie {
 
     @Override
     public boolean equals(Object m) {
+        return (m instanceof Movie) && (id == ((Movie)m).getId());
+        /*
+        if (!(m instanceof Movie)) return false;
         return id == ((Movie)m).getId();
+        */
     }
 
     @Override

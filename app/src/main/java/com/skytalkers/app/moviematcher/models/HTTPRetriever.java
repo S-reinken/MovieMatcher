@@ -7,13 +7,13 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- * Created by Bruce on 2/22/2016.
+ * Object to retrieve and organize movie information
  */
-public class HTTPRetriever implements Runnable {
+class HTTPRetriever implements Runnable {
     /**
      * Request String
      */
-    private String req;
+    private final String req;
     /**
      * Response String
      */

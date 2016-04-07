@@ -18,7 +18,7 @@ public class LoginScreenActivity extends AppCompatActivity {
     /**
      * App tag
      */
-    private static String mmtag = "**MOVIEMATCHER**";
+    private static final String MMTAG = "**MOVIEMATCHER**";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +38,13 @@ public class LoginScreenActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(mmtag, "Pausing the login screen");
+        Log.d(MMTAG, "Pausing the login screen");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(mmtag, "Resuming the login screen");
+        Log.d(MMTAG, "Resuming the login screen");
     }
 
     /**
@@ -52,12 +52,12 @@ public class LoginScreenActivity extends AppCompatActivity {
      * @param v Current View
      */
     public void onLoginButtonClick(View v) {
-        Log.d(mmtag, "Attempting Login");
+        Log.d(MMTAG, "Attempting Login");
         final UserManager um = new UserManager();
         final String name = ((EditText) findViewById(R.id.usernameText)).getText().toString();
         final String pass = ((EditText) findViewById(R.id.passwordText)).getText().toString();
         if (um.login(name, pass)) {
-            Log.d(mmtag, "Login Match");
+            Log.d(MMTAG, "Login Match");
             if (!um.isBanned(name)) {
                 um.setUser(name);
                 final Intent intent = new Intent(this, NavigationActivity.class);
@@ -77,7 +77,7 @@ public class LoginScreenActivity extends AppCompatActivity {
      * @param v Current View
      */
     public void onCancelButtonClick(View v) {
-        Log.d(mmtag, "Cancel Login");
+        Log.d(MMTAG, "Cancel Login");
         finish();
     }
 }

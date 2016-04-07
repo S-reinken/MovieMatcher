@@ -9,14 +9,14 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- * Created by Bruce on 2/29/2016.
+ * Object to retrieve movie image
  */
-public class HTTPImageRetriever implements Runnable {
+class HTTPImageRetriever implements Runnable {
 
     /**
      * Request String
      */
-    private String req;
+    private final String req;
     /**
      * Movie image
      */

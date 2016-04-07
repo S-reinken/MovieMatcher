@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * Created by Bruce on 3/8/2016.
+ * Fragment to list movies
  */
 public class MovieListFragment extends Fragment {
     @Nullable
@@ -36,10 +36,10 @@ public class MovieListFragment extends Fragment {
         final ArrayList<String> titlesToShow = new ArrayList<>(new HashSet<>(mm.getTitles()));
         final ListAdapter adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_list_item_1, titlesToShow);
         if (mm.getType() == 0) {
-            final String new_movies = "New Movies";
-            final String new_dvds = "New DVDs";
-            ((Button) myView.findViewById(R.id.leftButton)).setText(new_movies);
-            ((Button) myView.findViewById(R.id.rightButton)).setText(new_dvds);
+            final String newMovies = "New Movies";
+            final String newDvds = "New DVDs";
+            ((Button) myView.findViewById(R.id.leftButton)).setText(newMovies);
+            ((Button) myView.findViewById(R.id.rightButton)).setText(newDvds);
         } else {
             final String overall = "Overall";
             final String byMajor = "By Major";

@@ -1,8 +1,5 @@
 package com.skytalkers.app.moviematcher.models;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by Bruce on 2/3/2016.
  * Holds basic information about a user.
@@ -31,11 +28,11 @@ public class User {
     /**
      * User major
      */
-    private String major;
+    private String major = "NONE";
     /**
      * User ratings
      */
-    private Map<String,Integer> ratings = new HashMap<>();
+    //private final Map<String,Integer> ratings = new HashMap<>();
     /**
      * User ban status
      */
@@ -43,7 +40,7 @@ public class User {
     /**
      * User admin status
      */
-    private boolean admin = false;
+    private static final boolean ADMIN = false;
 
     /**
      * Constructs a user object with no starting values
@@ -59,15 +56,13 @@ public class User {
      * @param f First name of the user
      * @param l Last name of the user
      * @param e Email address of the user
-     * @param m Major of the user
      */
-    public User(String name, String p, String f, String l, String e, String m) {
+    public User(String name, String p, String f, String l, String e) {
         username = name;
         this.password = p;
         this.first = f;
         this.last = l;
         this.email = e;
-        this.major = m;
     }
 
     /**
@@ -78,14 +73,14 @@ public class User {
      * @param l Last name of the user
      * @param e Email address of the user
      */
-    public User(String name, String p, String f, String l, String e) {
+    /*public User(String name, String p, String f, String l, String e) {
         username = name;
         this.password = p;
         this.first = f;
         this.last = l;
         this.email = e;
         major = "NONE";
-    }
+    }*/
 
     /**
      * Fetches the user's username
@@ -115,7 +110,7 @@ public class User {
      * Fetches the user's password
      * @return The password
      */
-    public String getPassword() { return password; }
+    //public String getPassword() { return password; }
 
     /**
      * Checks if a provided password matches the user's password
@@ -167,20 +162,20 @@ public class User {
      * @param m Title of the movie to rate
      * @param r Rating of the movie
      */
-    public void rate(String m, int r) { ratings.put(m,r); }
+    //public void rate(String m, int r) { ratings.put(m,r); }
 
     /**
      * Checks the user's rating of a movie
      * @param m Title of the movie
      * @return Rating of the movie
      */
-    public int getRating(String m) { return ratings.get(m); }
+    //public int getRating(String m) { return ratings.get(m); }
 
     /**
      * Checks whether the user is an admin
      * @return True if user is an admin, false otherwise
      */
-    public boolean isAdmin() { return admin; }
+    public boolean isAdmin() { return ADMIN; }
 
     /**
      * Checks whether the user is banned
@@ -191,7 +186,7 @@ public class User {
     /**
      * Makes the user an admin
      */
-    public void setAdmin() { admin = true; }
+    //public void setAdmin() { admin = true; }
 
     /**
      * Changes whether the user is banned

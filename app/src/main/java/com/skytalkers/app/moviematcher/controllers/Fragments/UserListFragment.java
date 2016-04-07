@@ -20,7 +20,7 @@ import com.skytalkers.app.moviematcher.models.UserManager;
 import java.util.List;
 
 /**
- * Created by Bruce on 3/15/2016.
+ * Fragment to display a list of users.
  */
 public class UserListFragment extends Fragment {
     @Nullable
